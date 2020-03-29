@@ -1,6 +1,11 @@
 {
     "Welcome to React": "Welcome to React and react-i18next",
-    "login": "Login",
+    "Login": "Login",
+    "Register": "Register",
+    "Enter email or username": "Enter email or username",
+    "Email address or username": "Email address or username",
+    "Password": "Password",
+    "Confirm Password": "Confirm Password",
     "Valid email is required.": "Valid email is required.",
     "Password is required.": "Password is required."
 }
