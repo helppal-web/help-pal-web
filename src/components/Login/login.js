@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
+import './login.scss';
 
 export default function Login() {
     const { register, handleSubmit, errors } = useForm();
