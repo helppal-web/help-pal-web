@@ -1,18 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react'
+import { Router, Route, Switch } from 'react-router-dom'
+import history from './helpers/history';
+import Header from './components/Header/header';
+import './App.scss';
+import Main from './pages/Main/main';
 
-class App extends Component {
+class App extends React.Component {
+  state = {
+    isMobile: true
+  };
+
+  componentDidMount() {
+    // Handle window resize
+    window.addEventListener('resize', this.resize.bind(this));
+    this.resize();
+  }
+
+  resize() {
+    let currentMobileState = (window.innerWidth <= 576);
+    if (currentMobileState !== this.state.isMobile) {
+      this.setState({ isMobile: currentMobileState });
+    }
+  }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className={this.state.isMobile ? 'mobile' : 'desktop'}>
+        <div className="App">
+          <Fragment>
+            <Router history={history}>
+              <Header />
+              <Switch>
+                <Route exact path='/' component={Main} />
+              </Switch>
+            </Router>
+          </Fragment>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
