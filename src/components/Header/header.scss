@@ -1,10 +1,15 @@
-.App-header {
-  height: 150px;
-  padding: 20px;
-  color: white;
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
 
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-  }
+.app-logo-wrapper {
+    position: absolute;
+    left: 0.5rem;
+}
+
+.user-actions-wrapper {
+    position: absolute;
+    right: 0.5rem;
 }
