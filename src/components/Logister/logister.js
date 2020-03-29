@@ -1,7 +1,7 @@
 import React from 'react';
 import './logister.scss';
-import Login from './login';
-import Register from './register';
+import Login from '../Login/login';
+import Register from '../Register/register';
 
 export default function Logister() {
     const [key, setKey] = useState('login');
