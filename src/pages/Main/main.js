@@ -6,17 +6,10 @@ import { withTranslation } from 'react-i18next';
 
 class MainPage extends Component {
     render() {
-        const { t } = this.props;
-        return (
-            <div className="main-container">
-                {this.props.seekers.map((seeker, index) =>
-                    <div key={seeker.id} className="seeker">
-                        {seeker.name}
-                    </div>
-                )}
-                {t('Welcome to React')}
-                <Map />
-            </div>
+        return (<div className="container mt-3" >
+            <Map />
+        </div>
+
         );
     }
 }

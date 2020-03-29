@@ -1,16 +1,27 @@
-import React from 'react';
-import logo from '../../assets/logo.svg';
+import React, { Component } from 'react';
 import './header.scss';
-import { Link } from 'react-router-dom';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
-export default function Header(props) {
-    return (
-        <div className="App-header">
-            {/* TODO: Change to helppal */}
-            <Link to='/'>
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>Welcome to React</h2>
-            </Link >
-        </div>
-    );
+import UserProfile from "./UserProfile";
+class Header extends Component {
+    render() {
+        return (
+            <div className="app-bar" >
+                <AppBar>
+                    <Toolbar className="toobar">
+                        <div className="app-logo-wrapper">
+                            <h6>HelpPal</h6>
+                        </div>
+                        <div className="user-actions-wrapper">
+                            <UserProfile></UserProfile>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+
+            </div>
+        );
+    }
 }
+
+export default Header;
