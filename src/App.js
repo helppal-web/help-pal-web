@@ -4,6 +4,7 @@ import history from './helpers/history';
 import Header from './components/Header/header';
 import './App.scss';
 import Main from './pages/Main/main';
+import Register from './components/Register/register';
 import Login from './components/Login/login';
 
 class App extends React.Component {
@@ -32,7 +33,9 @@ class App extends React.Component {
               <Header />
               <Switch>
                 <Route exact path='/' component={Main} />
+                <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
+
               </Switch>
             </Router>
           </Fragment>

@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import './login.scss';
 import { useTranslation } from 'react-i18next';
 
-export default function Login() {
+export default function Login(props) {
     const { register, handleSubmit, errors } = useForm();
     const { t } = useTranslation();
 
