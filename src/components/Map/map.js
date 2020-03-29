@@ -7,10 +7,11 @@ export default function MapComponent() {
     let state = {
         lat: 32.078044,
         lng: 34.774198,
-        zoom: 14,
+        zoom: 13,
     }
 
-    const position = [state.lat, state.lng]
+    const position = [state.lat, state.lng];
+    
     return (
         <Map center={position} zoom={state.zoom}>
             <TileLayer
@@ -20,8 +21,8 @@ export default function MapComponent() {
             <Marker position={position}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+                </Popup>
             </Marker>
         </Map>
-    )
+ )
 }
