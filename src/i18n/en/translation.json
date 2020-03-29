@@ -1,4 +1,6 @@
 {
     "Welcome to React": "Welcome to React and react-i18next",
-    "login": "Login"
+    "login": "Login",
+    "Valid email is required.": "Valid email is required.",
+    "Password is required.": "Password is required."
 }

@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import './login.scss';
 import { useTranslation } from 'react-i18next';
 
-export default function Login() {
+export default function Login(props) {
     const { register, handleSubmit, errors } = useForm();
     const { t } = useTranslation();
 
@@ -15,14 +15,16 @@ export default function Login() {
                     {/* TODO: Email or username??? */}
                     <Form.Label>Email address or username</Form.Label>
                     <Form.Control type="email" placeholder="Enter email or username" ref={register} />
+                    {errors.email && t('Valid email is required.')}
                 </Form.Group>
 
                 <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" ref={register} />
+                    {errors.email && t('Password is required.')}
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                {t('login')}
+                    {t('login')}
                 </Button>
             </Form>
         </div>
