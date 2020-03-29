@@ -24,7 +24,7 @@ class UserProfile extends Component {
 
     render() {
         return (
-            <div class="user-profile-wrapper">
+            <div className="user-profile-wrapper">
                 <IconButton
                     edge="end"
                     aria-label="account of current user"
