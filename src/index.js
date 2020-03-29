@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { fetchAllSeekers } from './actions';
+import "./i18n/i18n";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchAllSeekers());

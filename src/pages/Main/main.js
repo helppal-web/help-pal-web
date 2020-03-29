@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './main.scss';
 import Map from '../../components/Map/map';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
 class MainPage extends Component {
     render() {
+        const { t } = this.props;
         return (
             <div className="main-container">
                 {this.props.seekers.map((seeker, index) =>
@@ -12,6 +14,7 @@ class MainPage extends Component {
                         {seeker.name}
                     </div>
                 )}
+                {t('Welcome to React')}
                 <Map />
             </div>
         );
@@ -25,4 +28,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect(mapStateToProps)(MainPage);
+export default connect(mapStateToProps)(withTranslation()(MainPage));

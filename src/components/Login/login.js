@@ -2,9 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import './login.scss';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
     const { register, handleSubmit, errors } = useForm();
+    const { t } = useTranslation();
 
     return (
         <div className="login-container">
@@ -20,7 +22,7 @@ export default function Login() {
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Login
+                {t('login')}
                 </Button>
             </Form>
         </div>
