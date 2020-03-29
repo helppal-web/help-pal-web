@@ -1,13 +1,15 @@
 import {
 	CREATE_USER,
 	EDIT_USER,
-	FETCH_SEEKERS
+	FETCH_SEEKERS,
+	LOGGED_IN_USER
 } from '../actions/types';
 
 const initState = {
 	users: [],
 	seekers: [],
-	isLoading: true
+	isLoading: true,
+	currentUser: {}
 }
 
 export default (state = initState, action) => {
@@ -25,6 +27,12 @@ export default (state = initState, action) => {
 				...state,
 				seekers: action.seekers,
 				isLoading: false
+			}
+
+		case LOGGED_IN_USER:
+			return {
+				...state,
+				currentUser: action.user
 			}
 
 		default:
