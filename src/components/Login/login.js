@@ -7,17 +7,17 @@ export default function Login() {
     const { register, handleSubmit, errors } = useForm();
 
     return (
-        <div className="login-container">
+        <div className="login-container" onSubmit={handleSubmit(props.onSubmit)}>
             <Form>
                 <Form.Group controlId="email">
                     {/* TODO: Email or username??? */}
                     <Form.Label>Email address or username</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email or username" />
+                    <Form.Control type="email" placeholder="Enter email or username" ref={register} />
                 </Form.Group>
 
                 <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" placeholder="Password" ref={register} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Login
