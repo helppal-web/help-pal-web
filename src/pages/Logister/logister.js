@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './logister.scss';
 import Login from '../../components/Login/login';
 import { login } from '../../actions/logister';
 import Register from '../../components/Register/register';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Tabs, Tab } from 'react-bootstrap';
 
-function Logister() {
-    const [key, setKey] = useState('login');
+function Logister(props) {
+    const [key, setKey] = useState(props.isLogin ? 'login' : 'register');
 
     return (
-        <Tabs
-            id="logister-tab-control"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}>
+        <div className="logister-container">
+            <Tabs
+                id="logister-tab-control"
+                activeKey={key}
+                onSelect={(k) => setKey(k)}>
 
-            <Tab eventKey="login" title="Login">
-                <Login onSubmit={this.props.login} />
-            </Tab>
-            <Tab eventKey="register" title="Register">
-                <Register />
-            </Tab>
-        </Tabs>
+                <Tab eventKey="login" title="Login">
+                    <Login onSubmit={props.login} />
+                </Tab>
+                <Tab eventKey="register" title="Register">
+                    <Register />
+                </Tab>
+            </Tabs>
+        </div>
     );
 }
 

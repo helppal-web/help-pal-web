@@ -1,5 +1,5 @@
 
-import { FETCH_SEEKERS, CREATE_USER, EDIT_USER } from './types';
+import { LOGGED_IN_USER } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
 
