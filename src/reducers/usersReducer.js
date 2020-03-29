@@ -12,7 +12,7 @@ const initState = {
 	currentUser: {}
 }
 
-export default function userReducer(state = initState, action) {
+export default (state = initState, action) => {
 	switch (action.type) {
 
 		case CREATE_USER:
