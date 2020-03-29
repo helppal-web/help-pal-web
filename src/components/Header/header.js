@@ -4,16 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import UserProfile from "./UserProfile";
-
-
-
-const menuId = 'primary-search-account-menu';
-
-
 class Header extends Component {
-
-
-
     render() {
         return (
             <div className="app-bar" >
