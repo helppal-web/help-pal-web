@@ -18,9 +18,10 @@ export default function LanguagesMenu(props) {
 
 
     function handleLanguageMenuItemClick(lang) {
-        document.cookie = `lang=${lang};path=/;max-age=31536000`;
-        i18n.changeLanguage(lang);
-
+        if(lang !== i18n.language) {
+            sessionStorage.setItem('lang', `${lang}`);
+            i18n.changeLanguage(lang);
+        }
         handleClose();
     };
 
