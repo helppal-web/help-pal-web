@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Menu, MenuItem, IconButton} from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 
-export default function LanguagesMenu(props) {
+export default (props) => {
     const { i18n } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
