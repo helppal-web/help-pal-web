@@ -5,16 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { withTranslation } from 'react-i18next';
 import UserProfile from "./UserProfileMenu/UserProfile";
 import LanguagesMenu from './LanguagesMenu/LanguagesMenu'
+import * as Config from '../../config/config';
 
-const languages = [
-    {
-        code: 'en',
-        text: 'English',
-    },
-    {
-        code: 'he',
-        text: 'Hebrew',
-    }]
+
 class Header extends Component {
     render() {
         const { t } = this.props;
@@ -27,7 +20,7 @@ class Header extends Component {
                                 <h6>{t('Help Pal')}</h6>
                             </div>
                                 <div className="user-actions-wrapper">
-                                    <LanguagesMenu languages={languages}></LanguagesMenu>
+                                    <LanguagesMenu languages={Config.languages}></LanguagesMenu>
                                     <UserProfile></UserProfile>
                                 </div>
 
