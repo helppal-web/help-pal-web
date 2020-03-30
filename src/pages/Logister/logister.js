@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './logister.scss';
-import Login from '../../components/Login/login';
-import { login } from '../../actions/logister';
+import Login from '../../components/Login/Login';
+import { login, register } from '../../actions/logister';
 import Register from '../../components/Register/register';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap';
 
-function Logister({ logister, login }) {
+function Logister({ logister }) {
     const [key, setKey] = useState(logister);
 
     return (
@@ -21,7 +21,7 @@ function Logister({ logister, login }) {
                     <Login onSubmit={login} />
                 </Tab>
                 <Tab eventKey="register" title="Register">
-                    <Register />
+                    <Register onSubmit={register} />
                 </Tab>
             </Tabs>
         </div>
@@ -36,7 +36,8 @@ const mapStateToProps = (store) => {
 function mapDispatchToProps(dispatch) {
     return {
         dispatch,
-        login: bindActionCreators(login, dispatch)
+        login: bindActionCreators(login, dispatch),
+        register: bindActionCreators(register, dispatch)
     }
 }
 
