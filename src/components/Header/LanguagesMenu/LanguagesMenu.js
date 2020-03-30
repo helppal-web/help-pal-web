@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Menu, MenuItem, IconButton} from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 
-export default function LanguagesMenu(props) {
+export default (props) => {
     const { i18n } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -18,9 +18,10 @@ export default function LanguagesMenu(props) {
 
 
     function handleLanguageMenuItemClick(lang) {
-        document.cookie = `lang=${lang};path=/;max-age=31536000`;
-        i18n.changeLanguage(lang);
-
+        if(lang !== i18n.language) {
+            sessionStorage.setItem('lang', `${lang}`);
+            i18n.changeLanguage(lang);
+        }
         handleClose();
     };
 

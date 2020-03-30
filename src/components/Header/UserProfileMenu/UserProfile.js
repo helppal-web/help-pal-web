@@ -1,54 +1,47 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Menu, MenuItem }  from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import { useTranslation } from 'react-i18next';
 
 
-class UserProfile extends Component {
+export default () => {
 
+    const { t } = useTranslation();
 
-    state = {
-        ProfileAnchorEl: null,
-        isProfileMenuOpen: false
-    }
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    handleProfileMenuOpen = (event) => {
-        this.setState({ ProfileAnchorEl: event.currentTarget, isProfileMenuOpen: true })
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
     };
 
-    handleProfileMenuClose = () => {
-        this.setState({ ProfileAnchorEl: null, isProfileMenuOpen: false })
+    const handleClose = () => {
+        setAnchorEl(null);
     };
 
-
-    render() {
-        return (
-            <div className="user-profile-wrapper">
-                <IconButton
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls="profile-menu"
-                    aria-haspopup="true"
-                    onClick={this.handleProfileMenuOpen}
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <Menu
-                    anchorEl={this.state.ProfileAnchorEl}
-                    id="profile-menu"
-                    keepMounted
-                    open={this.state.isProfileMenuOpen}
-                    onClose={this.handleProfileMenuClose}
-                >
-                    <MenuItem >Profile</MenuItem>
-                    <MenuItem >Logout</MenuItem>
-                </Menu>
-            </div>
-        )
-    }
+    return (
+        <div className="user-profile-wrapper">
+            <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls="profile-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+                color="inherit"
+            >
+                <AccountCircle />
+            </IconButton>
+            <Menu
+                anchorEl={anchorEl}
+                id="profile-menu"
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem >{t('Profile')}</MenuItem>
+                <MenuItem >{t('Logout')}</MenuItem>
+            </Menu>
+        </div>
+    )
 }
-
-export default UserProfile;
