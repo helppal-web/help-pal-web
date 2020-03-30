@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import history from './helpers/history';
-import Header from './components/Header/header';
 import './App.scss';
 import Main from './pages/Main/main';
 import Logister from './pages/Logister/logister';
@@ -29,11 +28,10 @@ class App extends React.Component {
         <div className="App">
           <Fragment>
             <Router history={history}>
-              <Header />
               <Switch>
                 <Route exact path='/' component={Main} />
-                <Route exact path='/login' render={(props) => <Logister logister={'login'} />} />
-                <Route exact path='/register' render={(props) => <Logister logister={'register'} />} />
+                <Route exact path='/login' render={() => <Logister logister={'login'} />} />
+                <Route exact path='/register' render={() => <Logister logister={'register'} />} />
               </Switch>
             </Router>
           </Fragment>
