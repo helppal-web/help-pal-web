@@ -2,7 +2,7 @@ import React from 'react';
 import './map.scss';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-export default function MapComponent() {
+export default function MapComponent(props) {
 
     let state = {
         lat: 32.078044,
