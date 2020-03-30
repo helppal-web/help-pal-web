@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap';
 
 function Logister(props) {
-    const [key, setKey] = useState(props.isLogin ? 'login' : 'register');
+    const [key, setKey] = useState(props.logister);
 
     return (
         <div className="logister-container">

@@ -32,8 +32,8 @@ class App extends React.Component {
               <Header />
               <Switch>
                 <Route exact path='/' component={Main} />
-                <Route exact path='/login' render={(props) => <Logister isLogin={true} />} />
-                <Route exact path='/register' render={(props) => <Logister isLogin={false} />} />
+                <Route exact path='/login' render={(props) => <Logister logister={'login'} />} />
+                <Route exact path='/register' render={(props) => <Logister logister={'register'} />} />
               </Switch>
             </Router>
           </Fragment>
