@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap';
 
-function Logister(props) {
-    const [key, setKey] = useState(props.logister);
+function Logister({ logister, login }) {
+    const [key, setKey] = useState(logister);
 
     return (
         <div className="logister-container">
@@ -18,7 +18,7 @@ function Logister(props) {
                 onSelect={(k) => setKey(k)}>
 
                 <Tab eventKey="login" title="Login">
-                    <Login onSubmit={props.login} />
+                    <Login onSubmit={login} />
                 </Tab>
                 <Tab eventKey="register" title="Register">
                     <Register />
