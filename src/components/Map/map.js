@@ -20,7 +20,7 @@ export default function MapComponent({ showModal, markers }) {
     }
 
     return (
-        <div>
+        <>
             <div className="map-actions d-flex justify-space-between my-3">
                 <Button className="ml-auto" variant="primary" onClick={() => setShowRequestModal(true)}>Create new request</Button>
             </div>
@@ -46,6 +46,6 @@ export default function MapComponent({ showModal, markers }) {
                     <NewRequest hide={hideModal} />
                 </Modal.Body>
             </Modal>
-        </div>
+        </>
     )
 }
