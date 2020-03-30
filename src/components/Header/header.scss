@@ -1,15 +1,16 @@
 .toolbar {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     position: relative;
 }
 
-.app-logo-wrapper {
-    position: absolute;
-    left: 0.5rem;
+.user-actions-wrapper {
+    display: flex;
 }
 
-.user-actions-wrapper {
-    position: absolute;
-    right: 0.5rem;
+.app-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
