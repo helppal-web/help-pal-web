@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { Form } from 'react-bootstrap';
 import * as Config from '../../config/config';
 
 export default function NewRequest(props) {
@@ -10,11 +11,19 @@ export default function NewRequest(props) {
 
     const { t } = useTranslation();
     const { register, handleSubmit, errors } = useForm();
+
+    function onSubmit() {
+        // setTimeout(() => {
+            props.hide();
+        // }, 5000);
+        // props.onSubmit();
+    }
     return (
         <div className="register-container">
-            <form onSubmit={handleSubmit(props.onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label>{t('Choose Category')}</label>
-                <select name="category" ref={register}>
+                <select name="category" ref={register({ required: true, validate: value => value !== undefined })}>
+                    <option value={undefined}>---</option>
                     {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
                         {t(category)}
                     </option>) : ''}
@@ -29,9 +38,16 @@ export default function NewRequest(props) {
                         {t('Whenever')}
                     </option>
                 </select>
+                {/* TODO: Add whenever in hours..? */}
 
-                <input type="checkbox" name="forAFriend" value={forAFriend} onChange={(event) => setForAFriend(event.target.checked)} />
-                <label>{t('Open For A Friend')}</label>
+                <Form.Check
+                    type="checkbox"
+                    id="forAFriend"
+                    label={t('Open For A Friend')}
+                    value={forAFriend}
+                    checked={forAFriend}
+                    onChange={(event) => setForAFriend(event.target.checked)}
+                />
 
                 {(forAFriend) ?
                     // TODO: margin
@@ -51,13 +67,23 @@ export default function NewRequest(props) {
                 <input name="address" type="text" readOnly={!differentAddress} disabled={!differentAddress} placeholder={t("Enter Address")} ref={register} />
                 {errors.address && <p>{t('Address is required')}</p>}
 
-                <input type="checkbox" name="differentAddress" value={differentAddress} onChange={(event) => setDifferentAddress(event.target.checked)} />
-                <label>{t('Use a different address')}</label>
+                <Form.Check
+                    type="checkbox"
+                    id="differentAddress"
+                    label={t('Use a different address')}
+                    value={differentAddress}
+                    checked={differentAddress}
+                    onChange={(event) => setDifferentAddress(event.target.checked)}
+                />
 
-
-                <input type="checkbox" name="previousOnly" value={previousOnly} onChange={(event) => setPreviousOnly(event.target.checked)} />
-                <label>{t('Open request to previous helpers only')}</label>
-
+                <Form.Check
+                    type="checkbox"
+                    id="previousOnly"
+                    label={t('Open request to previous helpers only')}
+                    value={previousOnly}
+                    checked={previousOnly}
+                    onChange={(event) => setPreviousOnly(event.target.checked)}
+                />
                 {/* TODO: Add option to release to public after x hours */}
 
                 <input type="text" name="comments" placeholder={t("Description")} />

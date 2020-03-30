@@ -1,34 +1,33 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import './register.scss';
 
-export default function Register(props) {
+export default function Register({ onSubmit }) {
     const { t } = useTranslation();
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-                //TODO: reaching here meaning the input is valid
-        //need to do dispatch action to register with data 
-    }; // your form submit function which will invoke after successful validation
+    const { register, handleSubmit, errors, watch } = useForm();
+    const password = useRef({});
+    password.current = watch('password');
+
     return (
         <div className="register-container">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>{t('Email address or username')}</label>
-                <input name="email" type="email" placeholder={t('Enter email or username')} ref={register} />
+                <input name="email" type="email" placeholder={t('Enter email or username')} ref={register({ required: true, minLength: 3 })} />
+                {errors.email && <p>{t('Email address or username is required')}</p>}
+
                 <label>{t('Password')}</label>
-                <input
-                    name="password" type="password" placeholder={t('Password')}
-                    ref={register({ required: true, maxLength: 10 })}
-                />
-                {errors.password && <p>This field is required</p>}
+                <input name="password" type="password" placeholder={t('Password')} ref={register({ required: true, minLength: 4 })} />
+                {errors.password && <p>{t('Password is required')}</p>}
 
                 <label>{t('Confirm Password')}</label>
-                <input
-                    name="confirmPassword" type="password" placeholder={t('Confirm Password')}
-                    ref={register({ required: true, maxLength: 10 })}
-                />
-                {errors.confirmPassword && <p>This field is required</p>}
+                <input name="confirmPassword" type="password" placeholder={t('Confirm Password')} ref={register({
+                    required: true,
+                    validate: value =>
+                        value === password.current || t('Password and confirm password must match')
+                })} />
+                {errors.confirmPassword && <p>{errors.confirmPassword.message || t('Confirm password is required')}</p>}
+
                 <input value={t('Register')} type="submit" />
             </form>
         </div>
