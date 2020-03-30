@@ -6,21 +6,22 @@ import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
-
 class UserProfile extends Component {
 
+
     state = {
-        anchorEl: null,
-        isMenuOpen: false
+        ProfileAnchorEl: null,
+        isProfileMenuOpen: false
     }
 
     handleProfileMenuOpen = (event) => {
-        this.setState({ anchorEl: event.currentTarget, isMenuOpen: true })
+        this.setState({ ProfileAnchorEl: event.currentTarget, isProfileMenuOpen: true })
     };
 
-    handleMenuClose = () => {
-        this.setState({ anchorEl: null, isMenuOpen: false })
+    handleProfileMenuClose = () => {
+        this.setState({ ProfileAnchorEl: null, isProfileMenuOpen: false })
     };
+
 
     render() {
         return (
@@ -36,13 +37,11 @@ class UserProfile extends Component {
                     <AccountCircle />
                 </IconButton>
                 <Menu
-                    anchorEl={this.state.anchorEl}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    anchorEl={this.state.ProfileAnchorEl}
                     id="profile-menu"
                     keepMounted
-                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                    open={this.state.isMenuOpen}
-                    onClose={this.handleMenuClose}
+                    open={this.state.isProfileMenuOpen}
+                    onClose={this.handleProfileMenuClose}
                 >
                     <MenuItem >Profile</MenuItem>
                     <MenuItem >Logout</MenuItem>
