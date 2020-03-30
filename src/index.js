@@ -9,14 +9,14 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { fetchAllSeekers } from './actions';
-import "./i18n/i18n";
+import i18n from "./i18n/i18n";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchAllSeekers());
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App i18n={i18n} />
   </Provider>,
   document.getElementById('root')
 );
