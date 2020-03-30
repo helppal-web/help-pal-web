@@ -15,7 +15,7 @@ class Header extends Component {
             <div className="app-bar" >
                 <AppBar>
                     <Toolbar>
-                        <div className="toolbar">
+                        <div className="toolbar mx-4">
                             <div className="app-logo-wrapper">
                                 <h6>{t('Help Pal')}</h6>
                             </div>
