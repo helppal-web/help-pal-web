@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './map.scss';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Modal, Button } from 'react-bootstrap';
+import { Map, TileLayer, Marker } from 'react-leaflet';
+import NewRequest from '../NewRequest/NewRequest';
 
 export default function MapComponent(props) {
+    const [showModal, setShowModal] = useState(props.showModal);
 
     let state = {
         lat: 32.078044,
@@ -11,18 +14,34 @@ export default function MapComponent(props) {
     }
 
     const position = [state.lat, state.lng];
-    
+
     return (
-        <Map center={position} zoom={state.zoom}>
-            <TileLayer
-                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
-        </Map>
- )
+        <div>
+            <div className="map-actions d-flex justify-space-between my-3">
+                <Button variant="primary" onClick={() => setShowModal(true)}>Create new request</Button>
+            </div>
+
+            <Map center={position} zoom={state.zoom}>
+                <TileLayer
+                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {props.markers.length ? props.markers.map((marker, index) =>
+                    <Marker key={index} position={marker.position}>
+                        {marker.content}
+                    </Marker>
+                ) : ''}
+            </Map>
+
+            <Modal dialogClassName="request-modal" show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Create new request</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <NewRequest />
+                </Modal.Body>
+            </Modal>
+        </div>
+    )
 }

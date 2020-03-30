@@ -3,15 +3,34 @@ import './main.scss';
 import Map from '../../components/Map/map';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
+import { Popup } from 'react-leaflet';
 import Header from '../../components/Header/header';
 
 class MainPage extends Component {
     render() {
+
+        const markers = [];
+        const { seekers } = this.props;
+
+        if (seekers.length) {
+            seekers.forEach((seeker) => {
+                if (seeker.location && seeker.location.position) {
+                    markers.push(
+                        {
+                            position: seeker.location.position,
+                            content: <Popup>{seeker.name}</Popup>
+                        }
+                    );
+                }
+            });
+        }
+
+
         return (
             <div>
                 <Header />
-                <div className="container mt-3" >
-                    <Map />
+                <div className="container mt-5" >
+                    <Map markers={markers} />
                 </div>
             </div>
 

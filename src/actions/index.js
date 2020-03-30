@@ -62,9 +62,9 @@ export const fetchAllSeekers = (page = 0) => {
 		// 		throw (error);
 		// 	});
 		let hardCodedSeekers = [
-			{ id: 1, name: 'Blah Blah', email: 'omerfishman.work@gmail.com', cellPhone: '0524280879', profileImage: undefined },
-			{ id: 2, name: 'Blue Blue', email: 'omerfishman.work@gmail.com', cellPhone: '0505123456', profileImage: undefined },
-			{ id: 3, name: 'Omer Fishman', email: 'omerfishman.work@gmail.com', cellPhone: '0522123456', profileImage: undefined }
+			{ id: 1, name: 'Blah Blah', email: 'omerfishman.work@gmail.com', cellPhone: '0524280879', profileImage: undefined, location: { address: '', position: [32.078044, 34.774198] } },
+			{ id: 2, name: 'Blue Blue', email: 'omerfishman.work@gmail.com', cellPhone: '0505123456', profileImage: undefined, location: { address: '', position: [32.086044, 34.794198] } },
+			{ id: 3, name: 'Omer Fishman', email: 'omerfishman.work@gmail.com', cellPhone: '0522123456', profileImage: undefined, location: { address: '', position: [32.075044, 34.794198] } },
 		]
 		return dispatch(fetchSeekersSuccess({ count: hardCodedSeekers.length, seekers: hardCodedSeekers }));
 	}
