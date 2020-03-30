@@ -4,7 +4,6 @@ import Map from '../../components/Map/map';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
-import Header from '../../components/Header/header';
 
 class MainPage extends Component {
     render() {
@@ -27,13 +26,9 @@ class MainPage extends Component {
 
 
         return (
-            <div>
-                <Header />
-                <div className="container mt-5" >
-                    <Map markers={markers} />
-                </div>
+            <div className="container mt-5" >
+                <Map markers={markers} />
             </div>
-
         );
     }
 }

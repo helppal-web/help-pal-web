@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import history from './helpers/history';
 import './App.scss';
-import Main from './pages/Main/main';
+import AppLayout from './pages/AppLayout';
 import Logister from './pages/Logister/logister';
 
 class App extends React.Component {
@@ -29,7 +29,8 @@ class App extends React.Component {
           <Fragment>
             <Router history={history}>
               <Switch>
-                <Route exact path='/' component={Main} />
+                <Route exact path='/' render={() => <Redirect to={'/app'} />} />
+                <Route exact path='/app' component={AppLayout} />
                 <Route exact path='/login' render={() => <Logister logister={'login'} />} />
                 <Route exact path='/register' render={() => <Logister logister={'register'} />} />
               </Switch>
