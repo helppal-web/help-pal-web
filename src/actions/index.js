@@ -62,9 +62,9 @@ export const fetchAllSeekers = (page = 0) => {
 		// 		throw (error);
 		// 	});
 		let hardCodedSeekers = [
-			{ id: 1, name: 'Blah Blah', email: 'omerfishman.work@gmail.com', cellPhone: '0524280879', profileImage: undefined, location: { address: '', position: [32.078044, 34.774198] } },
-			{ id: 2, name: 'Blue Blue', email: 'omerfishman.work@gmail.com', cellPhone: '0505123456', profileImage: undefined, location: { address: '', position: [32.086044, 34.794198] } },
-			{ id: 3, name: 'Omer Fishman', email: 'omerfishman.work@gmail.com', cellPhone: '0522123456', profileImage: undefined, location: { address: '', position: [32.075044, 34.794198] } },
+			{ id: 1, name: 'Blah Blah', email: 'omerfishman.work@gmail.com', phoneNumber: '0524280879', image: undefined, address: '', coords: { lat: 32.078044, lon: 34.774198 }, language: ['hebrew', 'english'], cases: 7, badge: false, birthYear: undefined, score: 33 },
+			{ id: 2, name: 'Blue Blue', email: 'omerfishman.work@gmail.com', phoneNumber: '0505123456', image: undefined, address: '', coords: { lat: 32.086044, lon: 34.794198 }, language: ['hebrew', 'english'], cases: 3, badge: true, birthYear: 1995, score: 81 },
+			{ id: 3, name: 'Omer Fishman', email: 'omerfishman.work@gmail.com', phoneNumber: '0522123456', image: undefined, address: '', coords: { lat: 32.075044, lon: 34.794198 }, language: ['hebrew', 'english'], cases: 2, badge: false, birthYear: 1988, score: 12 },
 		]
 		return dispatch(fetchSeekersSuccess({ count: hardCodedSeekers.length, seekers: hardCodedSeekers }));
 	}

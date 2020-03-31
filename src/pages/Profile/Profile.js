@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './Profile.scss';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
 import Request from '../../components/Request/Request';
 import { CardDeck, Tabs, Tab } from 'react-bootstrap';
 import GeneralInfo from "../../components/GeneralInfo/GeneralInfo"
@@ -45,15 +43,15 @@ export default function Profile() {
                 id="profile-tab-control"
                 activeKey={currentTab}
                 onSelect={(k) => setTab(k)}>
-                <Tab eventKey="generalInfo" title="General Info">
+                <Tab eventKey="generalInfo" title={t('General Info')}>
                     <GeneralInfo></GeneralInfo>
                 </Tab>
-                <Tab eventKey="myRequests" title="My Requests">
+                <Tab eventKey="myRequests" title={t('My Requests')}>
                     <CardDeck className="row mx-auto mt-4" >
-                        {requests.map((request) => <Request request={request} />)}
+                        {requests.map((request, index) => <Request key={index} request={request} />)}
                     </CardDeck>
                 </Tab>
-                <Tab eventKey="history" title="History">
+                <Tab eventKey="history" title={t('My History')}>
                     TODO: history.... :)
                 </Tab>
             </Tabs>
@@ -62,8 +60,3 @@ export default function Profile() {
     )
 
 }
-
-
-
-
-

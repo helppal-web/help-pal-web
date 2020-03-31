@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './logister.scss';
-import Login from '../../components/Login/Login';
+import Login from '../../components/Login/login';
 import { login, register } from '../../actions/logister';
 import Register from '../../components/Register/register';
 import { bindActionCreators } from 'redux';
