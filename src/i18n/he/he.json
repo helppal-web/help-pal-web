@@ -5,11 +5,18 @@
     "Keep me signed in": "השאר אותי מחובר",
     "Register": "הרשמה",
     "Password": "סיסמה",
-    "Help Pal":"אפלקציית הילף פאל",
-    "Profile":"פרופיל",
-    "Logout":"יציאה",
+    "Help Pal": "אפלקציית הילף פאל",
+    "Profile": "פרופיל",
+    "Logout": "יציאה",
     "General Info": "פרטים כלליים",
     "My Requests": "הבקשות שלי",
     "My History": "ההיסטוריה שלי",
-    "Create New Request": "יצירת בקשה חדשה"
+    "Create New Request": "יצירת בקשה חדשה",
+    "Filters": "סינונים",
+    "TimeFrame": "חלון זמן",
+    "Radius(KM)": "רדיוס(ק״מ)",
+    "PreviousCallers": "קריאות קודמות",
+    "Badge": "תג",
+    "Done": "סיום"
+
 }
