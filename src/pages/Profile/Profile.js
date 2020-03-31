@@ -23,7 +23,7 @@ function Profile({ requests }) {
                 </Tab>
                 <Tab eventKey="myRequests" title={t('My Requests')}>
                     <CardDeck className="row mx-auto mt-4" >
-                        {requests.map((request, index) => <Request key={index} request={request} />)}
+                        {requests.map((request, index) => <Request key={index} request={request} customClasses={'col-sm-4'} />)}
                     </CardDeck>
                 </Tab>
                 <Tab eventKey="history" title={t('My History')}>

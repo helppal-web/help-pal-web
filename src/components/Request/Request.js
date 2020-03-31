@@ -6,10 +6,10 @@ export const requestTypes = {
     Asker: 'Asker'
 }
 
-export default function Request({ request, type = requestTypes.Seek }) {
+export default function Request({ customClasses = '', request, type = requestTypes.Seek }) {
 
     return (
-        <div className="col-12 col-sm-4 px-2">
+        <div className={"col-12 px-2 " + customClasses}>
             <Card>
                 <Card.Body>
                     <Card.Title className="text-left">{request.name} - {request.category}</Card.Title>

@@ -4,20 +4,25 @@ import Map from '../../components/Map/map';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
+import Request from '../../components/Request/Request';
 
 class MainPage extends Component {
     render() {
 
         const markers = [];
         const { seekers } = this.props;
+        const { requests } = this.props;
 
         if (seekers.length) {
             seekers.forEach((seeker) => {
                 if (seeker && seeker.coords) {
                     markers.push(
                         {
+                            name: seeker.name,
                             position: seeker.coords,
-                            content: <Popup>{seeker.name}</Popup>
+                            content: <Popup>
+                                <Request request={requests[0]} />
+                            </Popup>
                         }
                     );
                 }
@@ -34,9 +39,10 @@ class MainPage extends Component {
 }
 
 const mapStateToProps = (store) => {
-    const { state } = store;
+    const { state, requests } = store;
     return {
-        seekers: state.seekers
+        seekers: state.seekers,
+        requests: requests.requests
     }
 }
 
