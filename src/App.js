@@ -6,6 +6,7 @@ import AppLayout from './pages/AppLayout';
 import Logister from './pages/Logister/logister';
 import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
+import Notifications from './pages/Notifications/Notifications';
 
 class App extends React.Component {
   state = {
@@ -15,14 +16,6 @@ class App extends React.Component {
     // Handle window resize
     window.addEventListener('resize', this.resize.bind(this));
     this.resize();
-    this.restoreLanguage();
-  }
-
-  restoreLanguage() {
-    const savedLang = sessionStorage.getItem('lang');
-    if (savedLang && savedLang !== this.props.i18n.language) {
-      this.props.i18n.changeLanguage(savedLang);
-    }
   }
 
   resize() {
@@ -40,6 +33,7 @@ class App extends React.Component {
               <Route exact path='/' render={() => <Redirect to={'/app'} />} />
               <AppLayout exact path='/app' component={Main} />
               <AppLayout exact path='/app/profile' component={Profile} />
+              <AppLayout exact path='/notifications' component={Notifications} />
               <Route exact path='/login' render={() => <Logister logister={'login'} />} />
               <Route exact path='/register' render={() => <Logister logister={'register'} />} />
             </Switch>

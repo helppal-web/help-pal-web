@@ -6,9 +6,11 @@ import NewRequest from '../NewRequest/NewRequest';
 import icon from '../../assets/marker.png';
 import L from 'leaflet';
 import Config from '../../config/config';
+import { useTranslation } from 'react-i18next';
 
 export default function MapComponent({ showModal, markers }) {
     const [showRequestModal, setShowRequestModal] = useState(showModal);
+    const { t } = useTranslation();
 
     let state = {
         lat: 32.078044,
@@ -33,7 +35,7 @@ export default function MapComponent({ showModal, markers }) {
     return (
         <>
             <div className="map-actions d-flex justify-space-between my-3">
-                <Button className="ml-auto" variant="primary" onClick={() => setShowRequestModal(true)}>Create new request</Button>
+                <Button className="ml-auto" variant="primary" onClick={() => setShowRequestModal(true)}>{t('Create New Request')}</Button>
             </div>
 
             <Map center={position} zoom={state.zoom}>
@@ -50,7 +52,7 @@ export default function MapComponent({ showModal, markers }) {
 
             <Modal dialogClassName="request-modal" show={showRequestModal} onHide={hideModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create new request</Modal.Title>
+                    <Modal.Title>{t('Create New Request')}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
