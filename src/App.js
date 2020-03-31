@@ -6,6 +6,7 @@ import AppLayout from './pages/AppLayout';
 import Logister from './pages/Logister/logister';
 import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
+import *  as languageUtil from './helpers/language';
 
 class App extends React.Component {
   state = {
@@ -19,9 +20,9 @@ class App extends React.Component {
   }
 
   restoreLanguage() {
-    const savedLang = sessionStorage.getItem('lang');
+    const savedLang = localStorage.getItem('lang');
     if (savedLang && savedLang !== this.props.i18n.language) {
-      this.props.i18n.changeLanguage(savedLang);
+      languageUtil.changeLanguage(this.props.i18n, savedLang)
     }
   }
 
