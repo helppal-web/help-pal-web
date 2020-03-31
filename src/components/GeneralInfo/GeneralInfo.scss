@@ -1,0 +1,75 @@
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    form {
+        text-align: start;
+        .text-danger {
+            font-size: 0.875rem;
+        }
+        label {
+            display: block;
+            text-align: start;
+            color: #1b1f23;
+            font-size: 0.875rem;
+        }
+        p {
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: start;
+        }
+        input[type="text"] {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid black;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            font-size: 0.875rem;
+        }
+        .profile-photo-wrapper {
+            >div:first-of-type {
+                padding: 0.75rem;
+            }
+            display: flex;
+            .profile-photo-text {
+                font-size: 0.75rem;
+                color: #66727c;
+                width: 75%;
+                text-align: start;
+            }
+            .upload-photo-wrapper {
+                width: 10.5rem;
+                height: 2.5rem;
+                border: solid 1px rgb(221, 221, 221);
+                background: rgb(255, 255, 255);
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                position: relative;
+                label {
+                    padding-inline-start: 0.65rem;
+                    font-size: 0.75rem;
+                    display: inline;
+                }
+                input[type="file"] {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    top: 0;
+                    left: 0;
+                }
+            }
+            .profile-photo {
+                width: 12.5rem;
+                height: 12.5rem;
+                border: solid 1px rgb(221, 221, 221);
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}

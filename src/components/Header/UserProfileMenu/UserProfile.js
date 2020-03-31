@@ -1,9 +1,11 @@
 
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import { Menu, MenuItem }  from '@material-ui/core';
+import { Menu, MenuItem } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useTranslation } from 'react-i18next';
+import history from "../../../helpers/history";
+
 
 
 export default () => {
@@ -39,7 +41,7 @@ export default () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem >{t('Profile')}</MenuItem>
+                <MenuItem onClick={() => history.push('/app/profile')} >{t('Profile')}</MenuItem>
                 <MenuItem >{t('Logout')}</MenuItem>
             </Menu>
         </div>
