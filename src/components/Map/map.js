@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './map.scss';
 import { Modal, Button } from 'react-bootstrap';
-import { Map, TileLayer, Marker } from 'react-leaflet';
+import { Map, TileLayer, Marker, } from 'react-leaflet';
 import NewRequest from '../NewRequest/NewRequest';
+import icon from '../../assets/marker.png';
+import L from 'leaflet';
+import Config from '../../config/config';
 
 export default function MapComponent({ showModal, markers }) {
     const [showRequestModal, setShowRequestModal] = useState(showModal);
@@ -19,6 +22,14 @@ export default function MapComponent({ showModal, markers }) {
         setShowRequestModal(false);
     }
 
+    const myIcon = L.icon({
+        iconUrl: icon,
+        iconSize: [45, 45],
+        iconAnchor: [32, 64],
+        // shadowUrl: null,
+        // shadowSize: null,
+    });
+
     return (
         <>
             <div className="map-actions d-flex justify-space-between my-3">
@@ -27,11 +38,11 @@ export default function MapComponent({ showModal, markers }) {
 
             <Map center={position} zoom={state.zoom}>
                 <TileLayer
-                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+                    url={"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=" + Config.MapBoxKey}
                 />
                 {markers.length ? markers.map((marker, index) =>
-                    <Marker key={index} position={marker.position}>
+                    <Marker icon={myIcon} key={index} position={marker.position}>
                         {marker.content}
                     </Marker>
                 ) : ''}
