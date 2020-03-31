@@ -6,7 +6,6 @@ import AppLayout from './pages/AppLayout';
 import Logister from './pages/Logister/logister';
 import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
-import *  as languageUtil from './helpers/language';
 
 class App extends React.Component {
   state = {
@@ -16,14 +15,6 @@ class App extends React.Component {
     // Handle window resize
     window.addEventListener('resize', this.resize.bind(this));
     this.resize();
-    this.restoreLanguage();
-  }
-
-  restoreLanguage() {
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang && savedLang !== this.props.i18n.language) {
-      languageUtil.changeLanguage(this.props.i18n, savedLang)
-    }
   }
 
   resize() {

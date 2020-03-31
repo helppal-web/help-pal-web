@@ -20,7 +20,7 @@ export default (props) => {
 
     const handleLanguageMenuItemClick = (lang) => {
         if(lang !== i18n.language) {
-            localStorage.setItem('lang', `${lang}`);
+            localStorage.setItem('i18nextLng', `${lang}`);
             languageUtil.changeLanguage(i18n, lang);
         }
         handleClose();

@@ -1,5 +1,9 @@
 {
-    "Login": "הרשמה",
+    "Login": "כניסה",
+    "Enter email or username": "הכנס מייל או שם משתמש",
+    "Email address or username": "מייל או שם משתמש",
+    "Keep me signed in": "השאר אותי מחובר",
+    "Register": "הרשמה",
     "Password": "סיסמה",
     "Help Pal":"אפלקציית הילף פאל",
     "Profile":"פרופיל",
