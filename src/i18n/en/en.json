@@ -52,5 +52,12 @@
     "General Info": "General Info",
     "My Requests": "My Requests",
     "My History": "My History",
+    "Filters": "Filters",
+    "TimeFrame": "Time Frame",
+    "Radius(KM)": "Radius(KM)",
+    "PreviousCallers": "Previous Callers",
+    "Badge": "Badge",
+    "Done": "Done",
     "Notifications": "Notificaitons"
+
 }
