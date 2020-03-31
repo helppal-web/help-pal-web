@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-bootstrap';
-import './Login.scss';
+import './login.scss';
 
 export default function Login({ onSubmit }) {
     const [rememberMe, setRememberMe] = useState(true);

@@ -13,10 +13,10 @@ class MainPage extends Component {
 
         if (seekers.length) {
             seekers.forEach((seeker) => {
-                if (seeker.location && seeker.location.position) {
+                if (seeker && seeker.coords) {
                     markers.push(
                         {
-                            position: seeker.location.position,
+                            position: seeker.coords,
                             content: <Popup>{seeker.name}</Popup>
                         }
                     );
