@@ -3,7 +3,7 @@ import {
 } from '../actions/types';
 
 const initState = {
-	notifications: [],
+	requests: [],
 	isLoading: true
 }
 
@@ -13,7 +13,7 @@ export default (state = initState, action) => {
 		case FETCH_REQUESTS:
 			return {
 				...state,
-				notifications: action.notifications
+				requests: action.requests
 			}
 
 		default:
