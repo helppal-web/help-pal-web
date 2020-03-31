@@ -15,14 +15,6 @@ class App extends React.Component {
     // Handle window resize
     window.addEventListener('resize', this.resize.bind(this));
     this.resize();
-    this.restoreLanguage();
-  }
-
-  restoreLanguage() {
-    const savedLang = sessionStorage.getItem('lang');
-    if (savedLang && savedLang !== this.props.i18n.language) {
-      this.props.i18n.changeLanguage(savedLang);
-    }
   }
 
   resize() {

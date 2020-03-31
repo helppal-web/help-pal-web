@@ -22,6 +22,12 @@ export default () => {
         setAnchorEl(null);
     };
 
+    const handleLanguageMenuItemClick = () => {
+        history.push('/app/profile');
+
+        handleClose();
+    }
+
     return (
         <div className="user-profile-wrapper">
             <IconButton
@@ -41,7 +47,7 @@ export default () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={() => history.push('/app/profile')} >{t('Profile')}</MenuItem>
+                <MenuItem onClick={() => handleLanguageMenuItemClick()} >{t('Profile')}</MenuItem>
                 <MenuItem >{t('Logout')}</MenuItem>
             </Menu>
         </div>
