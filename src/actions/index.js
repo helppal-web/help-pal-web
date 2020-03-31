@@ -139,9 +139,15 @@ export const fetchNotifications = () => {
 		const hardCodedNotifications = [
 			{
 				text: 'Your request was submitted',
+				date: 'Jan 9, 2014'
 			},
 			{
 				text: 'Volunteer is ready to fill your request',
+				date: 'July 20, 2014'
+			},
+			{
+				text: 'Volunteer is sent to you',
+				date: 'July 21, 2014'
 			}
 		]
 		return dispatch(fetchNotificationsSuccess({ count: hardCodedNotifications.length, notifications: hardCodedNotifications }));

@@ -52,7 +52,7 @@ function Notifications({ notificationsStore }) {
                         <div key={index}>
                             <ListItem className={classes.item}>
                                 <ListItemText className={classes.itemText}
-                                    primary={item.text}
+                                    primary={item.text} secondary={item.date}
                                 />
                                 <IconButton onClick={() => handleClick(index)} aria-label="delete">
                                     <DeleteIcon />
