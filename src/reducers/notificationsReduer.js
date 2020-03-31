@@ -1,5 +1,5 @@
 import {
-	FETCH_REQUESTS
+	FETCH_NOTIFICATIONS
 } from '../actions/types';
 
 const initState = {
@@ -10,7 +10,7 @@ const initState = {
 export default (state = initState, action) => {
 	switch (action.type) {
 
-		case FETCH_REQUESTS:
+		case FETCH_NOTIFICATIONS:
 			return {
 				...state,
 				notifications: action.notifications
