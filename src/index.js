@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import './index.scss';
+import { fetchAllRequests, fetchAllSeekers } from './actions';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
-import { fetchAllSeekers } from './actions';
 import i18n from "./i18n/i18n";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchAllSeekers());
+store.dispatch(fetchAllRequests());
 
 ReactDOM.render(
   <Provider store={store}>

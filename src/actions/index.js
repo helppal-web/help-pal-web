@@ -1,5 +1,5 @@
 
-import { FETCH_SEEKERS, CREATE_USER, EDIT_USER } from './types';
+import { FETCH_SEEKERS, CREATE_USER, EDIT_USER, FETCH_REQUESTS } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
 
@@ -49,10 +49,10 @@ export const editUserSuccess = (user) => {
 	}
 }
 
-export const fetchAllSeekers = (page = 0) => {
+export const fetchAllSeekers = () => {
 	return (dispatch) => {
 		// TODO: Change according to Backend
-		// return axios.post(Config.serverUrl + '/fetch_SEFETCH_SEEKERS', { page })
+		// return axios.post(Config.serverUrl + '/fetch_SEFETCH_SEEKERS', { })
 		// 	.then(response => {
 		// 		// TODO: Change according to Backend
 		// 		dispatch(fetchSeekersSuccess(response.data));
@@ -74,6 +74,52 @@ export const fetchSeekersSuccess = (data) => {
 	return {
 		type: FETCH_SEEKERS,
 		seekers: data.seekers,
+		count: data.count
+	}
+};
+
+export const fetchAllRequests = () => {
+	return (dispatch) => {
+		// TODO: Change according to Backend
+		// return axios.post(Config.serverUrl + '/fetch_requests', { })
+		// 	.then(response => {
+		// 		// TODO: Change according to Backend
+		// 		dispatch(fetchRequestsSuccess(response.data));
+		// 	})
+		// 	.catch(error => {
+		// 		alert('An error has occured');
+		// 		throw (error);
+		// 	});
+		const hardCodedRequests = [
+			{
+				category: 'Supermarket',
+				urgency: 'Whenever',
+				forAFriend: false,
+				name: 'Omer Fishman',
+				friendsName: 'Yosi LoOmer',
+				friendsPhoneNumber: '0522424395',
+				address: 'King George 68, Tel-Aviv, Israel',
+				comments: "Take your Time"
+			},
+			{
+				category: 'Medicine',
+				urgency: 'Urgent',
+				forAFriend: false,
+				name: 'Omer Fishman',
+				friendsName: 'Yosi LoOmer',
+				friendsPhoneNumber: '0522424395',
+				address: 'King George 68, Tel-Aviv, Israel',
+				comments: "Be fast please!!"
+			}
+		]
+		return dispatch(fetchRequestsSuccess({ count: hardCodedRequests.length, requests: hardCodedRequests }));
+	}
+}
+
+export const fetchRequestsSuccess = (data) => {
+	return {
+		type: FETCH_REQUESTS,
+		requests: data.requests,
 		count: data.count
 	}
 };
