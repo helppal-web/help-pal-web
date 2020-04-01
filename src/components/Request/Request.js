@@ -16,6 +16,16 @@ export const responseTypes = {
     IRRELEVANT: 'IRRELEVANT'
 }
 
+export const requestStatuses = {
+    OPEN: 'Open',
+    ASSIGNED: 'Assigned',
+    IN_PROGRESS: 'In Progress',
+    DELIVERED: 'Delivered',
+    CLOSED: 'Closed',
+    IN_DISPUTE: 'In Dispute',
+    DISMISSED: 'Dismissed'
+}
+
 export default function Request({ customClasses = '', request, type = requestTypes.HELP, callback }) {
     const { t } = useTranslation();
 

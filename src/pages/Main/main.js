@@ -15,25 +15,24 @@ class MainPage extends Component {
 
         const { t } = this.props;
         const markers = [];
-        const { seekers } = this.props;
         const { requests } = this.props;
 
-        if (seekers.length) {
-            seekers.forEach((seeker) => {
-                if (seeker && seeker.coords) {
+        if (requests.length) {
+            requests.forEach((request) => {
+                if (request && request.location) {
                     markers.push(
                         {
-                            name: seeker.name,
-                            position: seeker.coords,
+                            name: request.name,
+                            position: request.location,
                             content: <Popup style={{ maxWidth: 'auto' }}>
-                                <div className="modal-content">
+                                <div className="modal-content border-none">
                                     <div className="modal-header">
                                         <div className="modal-title h4">
                                             <img alt="" src={helpCall} width="20" />
                                             {t(requestTypes.HELP) + '!'}
                                         </div>
                                     </div>
-                                    <Request callback={requestCallback} request={requests[0]} />
+                                    <Request callback={requestCallback} request={request} />
                                 </div>
                             </Popup>
                         }
@@ -75,9 +74,8 @@ function requestCallback(responseType, request) {
 }
 
 const mapStateToProps = (store) => {
-    const { state, requests } = store;
+    const { requests } = store;
     return {
-        seekers: state.seekers,
         requests: requests.requests
     }
 }
