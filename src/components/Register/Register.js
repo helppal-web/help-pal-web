@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import './register.scss';
+import './Register.scss';
 
 export default function Register({ onSubmit }) {
     const { t } = useTranslation();
