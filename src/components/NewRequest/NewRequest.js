@@ -10,18 +10,29 @@ import './NewRequest.scss';
 export default function NewRequest(props) {
     const [previousOnly, setPreviousOnly] = useState(false);
     const [badgeOnly, setBadgeOnly] = useState(false);
-
-    const request = {
+    const [request, setRequest] = useState({
         category: undefined,
         priority: undefined,
         name: undefined,
         phoneNumber: undefined,
         address: undefined,
-        comments: undefined
-    }
+        comments: undefined,
+        previousOnly: false,
+        badgeOnly: false
+    });
 
     const { t } = useTranslation();
     const { register, handleSubmit, errors } = useForm();
+
+    const onPropChangeHandler = (event) => {
+        const { name, value } = event.target;
+        setRequest({ ...request, [name]: value == "" ? undefined : value })
+    }
+
+    const onCheckedChangedHandler = (event) => {
+        const { name, checked } = event.target;
+        setRequest({ ...request, [name]: checked })
+    }
 
     function onSubmit() {
         // setTimeout(() => {
@@ -38,9 +49,9 @@ export default function NewRequest(props) {
                             native
                             value={request.priority}
                             ref={register({ required: true, validate: value => value !== undefined })}
-                            inputProps={{
-                                name: 'priority'
-                            }}>
+                            name="priority"
+                            onChange={onPropChangeHandler}
+                        >
                             <option aria-label="None" value={undefined}>Priority</option>
                             {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
                                 {t(priority)}
@@ -53,9 +64,9 @@ export default function NewRequest(props) {
                             native
                             value={request.category}
                             ref={register({ required: true, validate: value => value !== undefined })}
-                            inputProps={{
-                                name: 'category'
-                            }}>
+                            name="category"
+                            onChange={onPropChangeHandler}
+                        >
                             <option aria-label="None" value={undefined}>Category</option>
                             {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
                                 {t(category)}
@@ -72,7 +83,10 @@ export default function NewRequest(props) {
                             placeholder={t('Name')}
                             defaultValue={request.name}
                             variant="outlined"
-                            ref={register({ required: true })} />
+                            name="name"
+                            ref={register({ required: true })}
+                            onChange={onPropChangeHandler}
+                        />
                     </Col>
                     <Col>
                         <TextField
@@ -81,7 +95,10 @@ export default function NewRequest(props) {
                             placeholder={t('Phone number')}
                             defaultValue={request.phoneNumber}
                             variant="outlined"
-                            ref={register({ required: true })} />
+                            name="phoneNumber"
+                            ref={register({ required: true })}
+                            onChange={onPropChangeHandler}
+                        />
 
                     </Col>
                     {/* {forAFriend && errors.friendsPhoneNumber && <p>{t("Phone number is required")}</p>} */}
@@ -95,7 +112,12 @@ export default function NewRequest(props) {
                             placeholder={t('Address')}
                             defaultValue={request.address}
                             variant="outlined"
-                            ref={register({ required: true })} />
+                            inputProps={{
+                                name: 'address'
+                            }}
+                            ref={register({ required: true })}
+                            onChange={onPropChangeHandler}
+                        />
                     </Col>
                     {/* {errors.address && <p>{t('Address is required')}</p>} */}
                 </Row>
@@ -104,20 +126,20 @@ export default function NewRequest(props) {
                     <Col>
                         <Form.Check
                             type="checkbox"
-                            id="previousOnly"
+                            name="previousOnly"
                             label={t('Open only to previous volunteers')}
                             value={previousOnly}
                             checked={previousOnly}
-                            onChange={(event) => setPreviousOnly(event.target.checked)} />
+                            onChange={onCheckedChangedHandler} />
                     </Col>
                     <Col>
                         <Form.Check
                             type="checkbox"
-                            id="badgeOnly"
+                            name="badgeOnly"
                             label={t('Open only to helpers with badge')}
                             value={badgeOnly}
                             checked={badgeOnly}
-                            onChange={(event) => setBadgeOnly(event.target.checked)} />
+                            onChange={onCheckedChangedHandler} />
                     </Col>
                 </Row>
                 {/* TODO: Add option to release to public after x hours */}
@@ -133,7 +155,9 @@ export default function NewRequest(props) {
                                 name: 'comments'
                             }}
                             defaultValue={request.comments}
-                            variant="outlined" />
+                            variant="outlined"
+                            onChange={onPropChangeHandler}
+                        />
                     </Col>
                 </Row>
 
