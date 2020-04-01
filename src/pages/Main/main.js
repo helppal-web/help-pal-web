@@ -7,6 +7,7 @@ import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 import { cancelRequest, acceptRequest } from '../../actions';
 import Request, { responseTypes } from '../../components/Request/Request';
+import SideMenu from '../../components/SideMenu/SideMenu';
 
 class MainPage extends Component {
     render() {
@@ -33,7 +34,8 @@ class MainPage extends Component {
 
 
         return (
-            <div className="container mt-5" >
+            <div className="d-flex" >
+                <SideMenu />
                 <Map markers={markers} />
             </div>
         );

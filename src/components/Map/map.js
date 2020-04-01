@@ -41,7 +41,7 @@ export default function MapComponent({ showModal, markers }) {
 
 
     return (
-        <>
+        <div className="flex-grow-1">
             <div className="map-actions d-flex justify-content-between">
                 <Button className="mx-5 rounded-circle new-call" variant="helppal" onClick={() => setShowRequestModal(true)}>+</Button>
                 <Button variant="none" className="mx-2" onClick={() => setFiltersModal(true)}>
@@ -80,6 +80,6 @@ export default function MapComponent({ showModal, markers }) {
                     <Filters onChange={onFiltersChangeHandler}></Filters>
                 </Modal.Body>
             </Modal>
-        </>
+        </div>
     )
 }
