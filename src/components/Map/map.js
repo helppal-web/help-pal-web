@@ -78,7 +78,10 @@ export default function MapComponent({ showModal, markers }) {
 
             <Modal show={showFiltersModal} centered={true} onHide={() => setFiltersModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title> {t('Filters')} </Modal.Title>
+                    <Modal.Title>
+                        <FilterListIcon className="filter-icon" />
+                        {t('Filter By')}
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Filters onChange={onFiltersChangeHandler}></Filters>
