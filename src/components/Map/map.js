@@ -72,7 +72,7 @@ export default function MapComponent({ showModal, markers }) {
                 </Modal.Body>
             </Modal>
 
-            <Modal show={showFiltersModal} centered={true} show={showFiltersModal} onHide={() => setFiltersModal(false)}>
+            <Modal show={showFiltersModal} centered={true} onHide={() => setFiltersModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title> {t('Filters')} </Modal.Title>
                 </Modal.Header>
