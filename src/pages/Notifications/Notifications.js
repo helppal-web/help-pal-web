@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     itemText: {
         textAlign: 'start',
     },
-    demo: {
+    listContainer: {
         backgroundColor: theme.palette.background.paper,
     },
     title: {
@@ -46,7 +46,7 @@ function Notifications({ notificationsStore }) {
             <Typography variant="h6" className={classes.title}>
             {t('Notifications')}
           </Typography>
-            <div className={classes.demo}>
+            <div className={classes.listContainer}>
                 <List dense={dense} className={classes.root}>
                     {notificationsStore.notifications.map((item, index) => (
                         <div key={index}>

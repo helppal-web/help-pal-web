@@ -16,6 +16,8 @@ class App extends React.Component {
     // Handle window resize
     window.addEventListener('resize', this.resize.bind(this));
     this.resize();
+    document.body.style.direction = this.props.i18n.dir();
+
   }
 
   resize() {

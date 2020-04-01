@@ -3,7 +3,6 @@ import LanguageIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Menu, MenuItem, IconButton} from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import *  as languageUtil from '../../../helpers/language';
 
 export default (props) => {
     const { i18n } = useTranslation();
@@ -21,7 +20,8 @@ export default (props) => {
     const handleLanguageMenuItemClick = (lang) => {
         if(lang !== i18n.language) {
             localStorage.setItem('i18nextLng', `${lang}`);
-            languageUtil.changeLanguage(i18n, lang);
+            i18n.changeLanguage(lang);
+            document.body.style.direction = i18n.dir();
         }
         handleClose();
     };
