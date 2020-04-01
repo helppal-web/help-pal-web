@@ -28,7 +28,7 @@ export default function SideMenu(props) {
             <nav className="menu-sidebar">
                 <ul className="menu-list list-unstyled">
                     {routes.map((route, index) =>
-                        <li key={index} className={"menu-list-item " + (location.pathname == route.route ? 'active' : '')}>
+                        <li key={index} className={"menu-list-item " + (location.pathname === route.route ? 'active' : '')}>
                             <Link to={route.route}>
                                 {route.icon}
                                 {route.text}

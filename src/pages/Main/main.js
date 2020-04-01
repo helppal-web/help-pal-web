@@ -9,7 +9,6 @@ import { cancelRequest, acceptRequest } from '../../actions';
 import Request, { responseTypes, requestTypes } from '../../components/Request/Request';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
-import { Modal } from 'react-bootstrap';
 
 class MainPage extends Component {
     render() {

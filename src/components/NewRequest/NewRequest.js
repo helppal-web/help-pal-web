@@ -8,8 +8,7 @@ import Refresh from '@material-ui/icons/Refresh';
 import './NewRequest.scss';
 
 export default function NewRequest(props) {
-    const [previousOnly, setPreviousOnly] = useState(false);
-    const [badgeOnly, setBadgeOnly] = useState(false);
+
     const [request, setRequest] = useState({
         category: undefined,
         priority: undefined,
@@ -26,7 +25,7 @@ export default function NewRequest(props) {
 
     const onPropChangeHandler = (event) => {
         const { name, value } = event.target;
-        setRequest({ ...request, [name]: value == "" ? undefined : value })
+        setRequest({ ...request, [name]: value === "" ? undefined : value })
     }
 
     const onCheckedChangedHandler = (event) => {
@@ -52,7 +51,7 @@ export default function NewRequest(props) {
                             name="priority"
                             onChange={onPropChangeHandler}
                         >
-                            <option aria-label="None" value={undefined}>Priority</option>
+                            <option aria-label="None" value={undefined}>{t('Priority')}</option>
                             {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
                                 {t(priority)}
                             </option>) : ''}
@@ -67,7 +66,7 @@ export default function NewRequest(props) {
                             name="category"
                             onChange={onPropChangeHandler}
                         >
-                            <option aria-label="None" value={undefined}>Category</option>
+                            <option aria-label="None" value={undefined}>{t('Category')}</option>
                             {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
                                 {t(category)}
                             </option>) : ''}
@@ -101,7 +100,6 @@ export default function NewRequest(props) {
                         />
 
                     </Col>
-                    {/* {forAFriend && errors.friendsPhoneNumber && <p>{t("Phone number is required")}</p>} */}
                 </Row>
 
                 <Row className="my-3">
@@ -119,6 +117,7 @@ export default function NewRequest(props) {
                             onChange={onPropChangeHandler}
                         />
                     </Col>
+                    {/* TODO: General form errors!! */}
                     {/* {errors.address && <p>{t('Address is required')}</p>} */}
                 </Row>
 
@@ -128,18 +127,20 @@ export default function NewRequest(props) {
                             type="checkbox"
                             name="previousOnly"
                             label={t('Open only to previous volunteers')}
-                            value={previousOnly}
-                            checked={previousOnly}
-                            onChange={onCheckedChangedHandler} />
+                            value={request.previousOnly}
+                            checked={request.previousOnly}
+                            onChange={onCheckedChangedHandler}
+                            className="text-start" />
                     </Col>
                     <Col>
                         <Form.Check
                             type="checkbox"
                             name="badgeOnly"
                             label={t('Open only to helpers with badge')}
-                            value={badgeOnly}
-                            checked={badgeOnly}
-                            onChange={onCheckedChangedHandler} />
+                            value={request.badgeOnly}
+                            checked={request.badgeOnly}
+                            onChange={onCheckedChangedHandler}
+                            className="text-start" />
                     </Col>
                 </Row>
                 {/* TODO: Add option to release to public after x hours */}
@@ -148,7 +149,7 @@ export default function NewRequest(props) {
                 <Row className="my-3">
                     <Col>
                         <TextField
-                            label="Description"
+                            label={t("Description")}
                             multiline
                             rows="6"
                             inputProps={{

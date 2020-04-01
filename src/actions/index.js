@@ -95,20 +95,16 @@ export const fetchAllRequests = () => {
 			{
 				category: 'Supermarket',
 				priority: 'High',
-				forAFriend: false,
 				name: 'Omer Fishman',
-				friendsName: 'Yosi LoOmer',
-				friendsPhoneNumber: '0522424395',
+				phoneNumber: '0522424395',
 				address: 'King George 68, Tel-Aviv, Israel',
 				comments: "Take your Time"
 			},
 			{
 				category: 'Medicine',
 				priority: 'Low',
-				forAFriend: false,
 				name: 'Omer Fishman',
-				friendsName: 'Yosi LoOmer',
-				friendsPhoneNumber: '0522424395',
+				phoneNumber: '0522424395',
 				address: 'King George 68, Tel-Aviv, Israel',
 				comments: "Be fast please!!"
 			}

@@ -23,7 +23,7 @@ export default function Filters(props) {
 
     const onFilterChangeHandler = (event) => {
         const { name, value } = event.target;
-        setFilters({ ...filters, [name]: value == "" ? undefined : value })
+        setFilters({ ...filters, [name]: value === "" ? undefined : value })
     }
 
     const onCheckedChangedHandler = (event) => {

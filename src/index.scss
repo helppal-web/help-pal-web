@@ -27,3 +27,11 @@ body {
 .border-top {
   border-color: #e9e9e9;
 }
+
+// RTL Form checkbox fixes
+.form-check-input {
+  margin-right: -1.25rem;
+}
+.form-check {
+  padding-right: 1.25rem;
+}
