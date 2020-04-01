@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { Menu, MenuItem } from '@material-ui/core';
 import history from "../../../helpers/history";
 import { connect } from 'react-redux';
+import {APP_PATHS} from '../../../App'
 
 function NotificationsMenu ({ notificationsStore }) {
 
@@ -19,7 +20,7 @@ function NotificationsMenu ({ notificationsStore }) {
     };
 
     const handleNotificationsMenuItemClick = () => {
-        history.push('/notifications');
+        history.push(`${APP_PATHS.notifications}`);
 
         handleClose();
     }
