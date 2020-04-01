@@ -3,7 +3,7 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import history from './helpers/history';
 import './App.scss';
 import AppLayout from './pages/AppLayout';
-import Logister from './pages/Logister/logister';
+import Logister from './pages/Logister/Logister';
 import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
 import Notifications from './pages/Notifications/Notifications';
