@@ -3,15 +3,17 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import { Menu, MenuItem } from '@material-ui/core';
-import history from "../../../helpers/history";
 import { connect } from 'react-redux';
 import { APP_PATHS } from '../../../App'
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 function NotificationsMenu({ notificationsStore }) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { t } = useTranslation();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -20,12 +22,6 @@ function NotificationsMenu({ notificationsStore }) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const handleNotificationsMenuItemClick = () => {
-        history.push(`${APP_PATHS.notifications}`);
-
-        handleClose();
-    }
 
     return (
         <div className="notifications-menu-wrapper">
@@ -51,7 +47,7 @@ function NotificationsMenu({ notificationsStore }) {
                         <Divider />
                         <MenuItem
 
-                            onClick={() => handleNotificationsMenuItemClick()}
+                            onClick={() => handleClose()}
                         >
                             {item.text}
                         </MenuItem>
@@ -60,9 +56,13 @@ function NotificationsMenu({ notificationsStore }) {
 
                 ))}
                 <Divider />
-                <Link className='link' to='/notificaitons'>
-                    See all in notifications
-                </Link>
+                <div className='menu-bottom-container'>
+                    <Link className='link' to={`${APP_PATHS.notifications}`}>
+                        
+                        <span onClick={() => handleClose()}>{t('See all notifications')}</span>
+                    </Link>
+                </div>
+
             </Menu>
         </div>
     )
