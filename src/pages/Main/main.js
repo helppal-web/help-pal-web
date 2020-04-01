@@ -4,7 +4,7 @@ import Map from '../../components/Map/map';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
-import Request from '../../components/Request/Request';
+import Request, { responseTypes } from '../../components/Request/Request';
 
 class MainPage extends Component {
     render() {
@@ -21,7 +21,7 @@ class MainPage extends Component {
                             name: seeker.name,
                             position: seeker.coords,
                             content: <Popup>
-                                <Request request={requests[0]} />
+                                <Request callback={requestCallback} request={requests[0]} />
                             </Popup>
                         }
                     );
@@ -38,6 +38,27 @@ class MainPage extends Component {
     }
 }
 
+function requestCallback(responseType, request) {
+
+    switch (responseType) {
+        case responseTypes.CREATED:
+            break;
+        case responseTypes.UPDATED:
+            break;
+        case responseTypes.DIFFERENT:
+            break;
+        case responseTypes.IRRELEVANT:
+            break;
+        case responseTypes.ACCEPTED:
+            console.log('acc');
+            break;
+
+        default:
+            //Close popup
+            break;
+    }
+}
+
 const mapStateToProps = (store) => {
     const { state, requests } = store;
     return {
@@ -45,5 +66,7 @@ const mapStateToProps = (store) => {
         requests: requests.requests
     }
 }
+
+
 
 export default connect(mapStateToProps)(withTranslation()(MainPage));

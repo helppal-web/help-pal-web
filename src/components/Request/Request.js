@@ -1,12 +1,20 @@
 import React from 'react';
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 export const requestTypes = {
     Seek: 'Seek',
     Asker: 'Asker'
 }
 
-export default function Request({ customClasses = '', request, type = requestTypes.Seek }) {
+export const responseTypes = {
+    CREATED: 'CREATED',
+    UPDATED: 'UPDATED',
+    ACCEPTED: 'ACCEPTED',
+    DIFFERENT: 'DIFFERENT',
+    IRRELEVANT: 'IRRELEVANT'
+}
+
+export default function Request({ customClasses = '', request, type = requestTypes.Seek, callback }) {
 
     return (
         <div className={"col-12 px-2 " + customClasses}>
@@ -20,10 +28,10 @@ export default function Request({ customClasses = '', request, type = requestTyp
                         {request.comments}
                     </Card.Text>
                     <div className="actions-container d-flex align-items-center mt-2">
-                        {type === requestTypes.Seek ? <Card.Link href="#">Help the guy!</Card.Link> : ''}
-                        {type === requestTypes.Asker ? <Card.Link href="#">Accept​</Card.Link> : ''}
-                        {type === requestTypes.Asker ? <Card.Link href="#">Different helper wanted​</Card.Link> : ''}
-                        {type === requestTypes.Asker ? <Card.Link href="#">Irrelevant, close call​</Card.Link> : ''}
+                        {type === requestTypes.Seek ? <Button variant="helppal" onClick={() => callback(responseTypes.ACCEPTED, request)}>Help the guy!</Button> : ''}
+                        {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.ACCEPTED, request)}>Accept​</Button> : ''}
+                        {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.DIFFERENT, request)}>Different helper wanted​</Button> : ''}
+                        {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.IRRELEVANT, request)}>Irrelevant, close call​</Button> : ''}
                     </div>
                 </Card.Body>
             </Card>
