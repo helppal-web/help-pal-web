@@ -42,10 +42,10 @@ export default function MapComponent({ showModal, markers }) {
 
     return (
         <>
-            <div className="map-actions d-flex justify-space-between my-3">
-                <Button className="ml-auto" variant="primary" onClick={() => setShowRequestModal(true)}>{t('Create New Request')}</Button>
-                <Button className="ml-2" onClick={() => setFiltersModal(true)}>
-                    <FilterListIcon></FilterListIcon>
+            <div className="map-actions d-flex justify-content-between">
+                <Button className="mx-5 rounded-circle new-call" variant="helppal" onClick={() => setShowRequestModal(true)}>+</Button>
+                <Button variant="none" className="mx-2" onClick={() => setFiltersModal(true)}>
+                    <FilterListIcon className="filter-icon"></FilterListIcon>
                     {t('Filters')}
                 </Button>
             </div>

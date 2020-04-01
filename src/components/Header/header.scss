@@ -1,16 +1,26 @@
-.toolbar {
+@import "../../assets/styles/colors";
+
+.helppal-bar {
+  background: $header-bg-color;
+
+  .toolbar {
     display: flex;
     width: 100%;
     justify-content: space-between;
     position: relative;
+
+    .logo-text {
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .user-actions-wrapper {
-    display: flex;
+  display: flex;
 }
 
 .app-logo-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
