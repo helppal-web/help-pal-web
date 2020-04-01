@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { Menu, MenuItem } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useTranslation } from 'react-i18next';
-import history from "../../../helpers/history";
 import {APP_PATHS} from '../../../App'
 
 
@@ -24,8 +23,6 @@ export default () => {
     };
 
     const handleProfileMenuItemClick = () => {
-        history.push(`${APP_PATHS.profile}`);
-
         handleClose();
     }
 

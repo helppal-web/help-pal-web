@@ -5,9 +5,11 @@ import IconButton from '@material-ui/core/IconButton';
 import { Menu, MenuItem } from '@material-ui/core';
 import history from "../../../helpers/history";
 import { connect } from 'react-redux';
-import {APP_PATHS} from '../../../App'
+import { APP_PATHS } from '../../../App'
+import Divider from '@material-ui/core/Divider';
+import { Link } from 'react-router-dom';
 
-function NotificationsMenu ({ notificationsStore }) {
+function NotificationsMenu({ notificationsStore }) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -45,13 +47,22 @@ function NotificationsMenu ({ notificationsStore }) {
                 onClose={handleClose}
             >
                 {notificationsStore.notifications.map((item, index) => (
-                    <MenuItem
-                        key={index}
-                        onClick={() => handleNotificationsMenuItemClick()}
-                    >
-                        {item.text}
-                    </MenuItem>
+                    <div key={index}>
+                        <Divider />
+                        <MenuItem
+
+                            onClick={() => handleNotificationsMenuItemClick()}
+                        >
+                            {item.text}
+                        </MenuItem>
+                    </div>
+
+
                 ))}
+                <Divider />
+                <Link className='link' to='/notificaitons'>
+                    See all in notifications
+                </Link>
             </Menu>
         </div>
     )
