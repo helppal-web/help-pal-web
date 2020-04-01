@@ -2,6 +2,7 @@
 import { FETCH_SEEKERS, CREATE_USER, EDIT_USER, FETCH_REQUESTS, FETCH_NOTIFICATIONS } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
+export * from './request';
 
 export const createUser = (user) => {
 	return (dispatch) => {

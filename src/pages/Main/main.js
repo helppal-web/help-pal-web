@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './main.scss';
 import Map from '../../components/Map/map';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
-import Request from '../../components/Request/Request';
+import { cancelRequest, acceptRequest } from '../../actions';
+import Request, { responseTypes } from '../../components/Request/Request';
 
 class MainPage extends Component {
     render() {
@@ -21,7 +23,7 @@ class MainPage extends Component {
                             name: seeker.name,
                             position: seeker.coords,
                             content: <Popup>
-                                <Request request={requests[0]} />
+                                <Request callback={requestCallback} request={requests[0]} />
                             </Popup>
                         }
                     );
@@ -38,6 +40,28 @@ class MainPage extends Component {
     }
 }
 
+function requestCallback(responseType, request) {
+
+    switch (responseType) {
+        case responseTypes.CREATED:
+            break;
+        case responseTypes.UPDATED:
+            break;
+        case responseTypes.DIFFERENT:
+            break;
+        case responseTypes.IRRELEVANT:
+            cancelRequest(request);
+            break;
+        case responseTypes.ACCEPTED:
+            acceptRequest(request);
+            break;
+
+        default:
+            //Close popup
+            break;
+    }
+}
+
 const mapStateToProps = (store) => {
     const { state, requests } = store;
     return {
@@ -46,4 +70,13 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect(mapStateToProps)(withTranslation()(MainPage));
+
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch,
+        cancelRequest: bindActionCreators(cancelRequest, dispatch),
+        acceptRequest: bindActionCreators(acceptRequest, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(MainPage));

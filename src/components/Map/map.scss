@@ -1,11 +1,31 @@
-// @import '~leaflet/dist/leaflet.css';
+@import "../../assets/styles/colors";
+
+.map-actions {
+  position: relative;
+  z-index: 2;
+
+  .btn-helppal {
+    &.new-call {
+      padding: 7px 17px;
+      font-size: 1.4rem;
+      position: relative;
+      top: 1rem;
+    }
+  }
+
+  .filter-icon {
+    color: $main-color;
+  }
+}
+
 .leaflet-container {
-    width: 100%;
-    height: 75vh;
+  width: 100%;
+  height: 75vh;
+  z-index: 1;
 }
 
 .request-modal,
 .filters-modal {
-    margin: 10vh auto;
-    //   max-width: 90%;
+  margin: 10vh auto;
+  //   max-width: 90%;
 }

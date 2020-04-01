@@ -14,7 +14,7 @@ export default function NewRequest(props) {
 
     function onSubmit() {
         // setTimeout(() => {
-            props.hide();
+        props.hide();
         // }, 5000);
         // props.onSubmit();
     }
@@ -31,12 +31,10 @@ export default function NewRequest(props) {
 
                 <label>{t('Urgency')}</label>
                 <select name="urgency" ref={register}>
-                    <option value={t('Urgent')}>
-                        {t('Urgent')}
-                    </option>
-                    <option value={t('Whenever')}>
-                        {t('Whenever')}
-                    </option>
+                    <option value={undefined}>---</option>
+                    {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
+                        {t(priority)}
+                    </option>) : ''}
                 </select>
                 {/* TODO: Add whenever in hours..? */}
 
