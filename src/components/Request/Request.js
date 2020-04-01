@@ -30,7 +30,7 @@ export default function Request({ customClasses = '', request, type = requestTyp
                         {t(request.priority)}
                     </Card.Text>
                     <Card.Text className="text-start border-top pt-4">
-                        <div className="text-muted mb-1">Description</div>
+                        <span className="d-block text-muted mb-1">Description</span>
                         {request.comments}
                     </Card.Text>
                     <div className="actions-container d-flex justify-content-end mt-3 pt-4">
