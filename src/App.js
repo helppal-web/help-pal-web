@@ -8,6 +8,14 @@ import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
 import Notifications from './pages/Notifications/Notifications';
 
+
+export const APP_PATHS = {
+  app: '/app',
+  profile: '/app/profile',
+  notifications: '/notifications',
+  login: '/login',
+  register: '/register'
+}
 class App extends React.Component {
   state = {
     isMobile: true
@@ -32,12 +40,12 @@ class App extends React.Component {
         <div className="App">
           <Router history={history}>
             <Switch>
-              <Route exact path='/' render={() => <Redirect to={'/app'} />} />
-              <AppLayout exact path='/app' component={Main} />
-              <AppLayout exact path='/app/profile' component={Profile} />
-              <AppLayout exact path='/notifications' component={Notifications} />
-              <Route exact path='/login' render={() => <Logister logister={'login'} />} />
-              <Route exact path='/register' render={() => <Logister logister={'register'} />} />
+              <Route exact path='/' render={() => <Redirect to={APP_PATHS.app} />} />
+              <AppLayout exact path={APP_PATHS.app} component={Main} />
+              <AppLayout exact path={APP_PATHS.profile} component={Profile} />
+              <AppLayout exact path={APP_PATHS.notifications} component={Notifications} />
+              <Route exact path={APP_PATHS.login} render={() => <Logister logister={'login'} />} />
+              <Route exact path={APP_PATHS.register} render={() => <Logister logister={'register'} />} />
             </Switch>
           </Router>
         </div>
