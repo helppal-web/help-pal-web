@@ -32,4 +32,4 @@ export default function Register({ onSubmit }) {
             </form>
         </div>
     );
-}
+
