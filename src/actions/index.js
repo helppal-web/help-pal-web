@@ -94,7 +94,7 @@ export const fetchAllRequests = () => {
 		const hardCodedRequests = [
 			{
 				category: 'Supermarket',
-				urgency: 'Whenever',
+				priority: 'Whenever',
 				forAFriend: false,
 				name: 'Omer Fishman',
 				friendsName: 'Yosi LoOmer',
@@ -104,7 +104,7 @@ export const fetchAllRequests = () => {
 			},
 			{
 				category: 'Medicine',
-				urgency: 'Urgent',
+				priority: 'Urgent',
 				forAFriend: false,
 				name: 'Omer Fishman',
 				friendsName: 'Yosi LoOmer',

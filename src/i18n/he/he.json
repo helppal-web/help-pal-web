@@ -11,7 +11,7 @@
   "General Info": "פרטים כלליים",
   "My Requests": "הבקשות שלי",
   "My History": "ההיסטוריה שלי",
-  "Create New Request": "יצירת בקשה חדשה",
+  "New Call": "יצירת בקשה חדשה",
   "Filters": "סינונים",
   "TimeFrame": "חלון זמן",
   "Radius(KM)": "רדיוס(ק״מ)",
@@ -20,5 +20,7 @@
   "Done": "סיום",
   "Notifications": "התראות",
   "Requests Map": "מפת בקשות",
-  "Requests History": "היסטוריית בקשות"
+  "Requests History": "היסטוריית בקשות",
+  "Priority": "עדיפות",
+  "Reset": "איפוס"
 }

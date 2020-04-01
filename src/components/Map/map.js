@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { Map, TileLayer, Marker, } from 'react-leaflet';
 import NewRequest from '../NewRequest/NewRequest';
 import icon from '../../assets/marker.png';
+import newCall from '../../assets/newCall.png';
 import L from 'leaflet';
 import Config from '../../config/config';
 import { useTranslation } from 'react-i18next';
@@ -62,9 +63,12 @@ export default function MapComponent({ showModal, markers }) {
                 ) : ''}
             </Map>
 
-            <Modal centered show={showRequestModal} onHide={hideRequestModal}>
+            <Modal centered show={showRequestModal} onHide={hideRequestModal} dialogClassName="request-modal">
                 <Modal.Header closeButton>
-                    <Modal.Title>{t('Create New Request')}</Modal.Title>
+                    <Modal.Title>
+                        <img alt="" src={newCall} width="20" />
+                        {t('New Call')}
+                    </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>

@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Form } from 'react-bootstrap';
+import { Select, TextField } from '@material-ui/core';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Config from '../../config/config';
+import Refresh from '@material-ui/icons/Refresh';
+import './NewRequest.scss';
 
 export default function NewRequest(props) {
-    const [forAFriend, setForAFriend] = useState(false);
-    const [differentAddress, setDifferentAddress] = useState(false);
     const [previousOnly, setPreviousOnly] = useState(false);
+    const [badgeOnly, setBadgeOnly] = useState(false);
+
+    const request = {
+        category: undefined,
+        priority: undefined,
+        name: undefined,
+        phoneNumber: undefined,
+        address: undefined,
+        comments: undefined
+    }
 
     const { t } = useTranslation();
     const { register, handleSubmit, errors } = useForm();
@@ -19,74 +30,124 @@ export default function NewRequest(props) {
         // props.onSubmit();
     }
     return (
-        <div className="register-container">
+        <div className="new-request-container">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>{t('Choose Category')}</label>
-                <select name="category" ref={register({ required: true, validate: value => value !== undefined })}>
-                    <option value={undefined}>---</option>
-                    {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
-                        {t(category)}
-                    </option>) : ''}
-                </select>
+                <Row className="my-3">
+                    <Col>
+                        <Select
+                            native
+                            value={request.priority}
+                            ref={register({ required: true, validate: value => value !== undefined })}
+                            inputProps={{
+                                name: 'priority'
+                            }}>
+                            <option aria-label="None" value={undefined}>Priority</option>
+                            {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
+                                {t(priority)}
+                            </option>) : ''}
+                        </Select>
+                        {/* TODO: Add whenever in hours..? */}
+                    </Col>
+                    <Col>
+                        <Select
+                            native
+                            value={request.category}
+                            ref={register({ required: true, validate: value => value !== undefined })}
+                            inputProps={{
+                                name: 'category'
+                            }}>
+                            <option aria-label="None" value={undefined}>Category</option>
+                            {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
+                                {t(category)}
+                            </option>) : ''}
+                        </Select>
+                    </Col>
+                </Row>
 
-                <label>{t('Urgency')}</label>
-                <select name="urgency" ref={register}>
-                    <option value={undefined}>---</option>
-                    {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
-                        {t(priority)}
-                    </option>) : ''}
-                </select>
-                {/* TODO: Add whenever in hours..? */}
+                <Row className="my-3">
+                    <Col>
+                        <TextField
+                            required
+                            label={t("Name")}
+                            placeholder={t('Name')}
+                            defaultValue={request.name}
+                            variant="outlined"
+                            ref={register({ required: true })} />
+                    </Col>
+                    <Col>
+                        <TextField
+                            required
+                            label={t("Phone number")}
+                            placeholder={t('Phone number')}
+                            defaultValue={request.phoneNumber}
+                            variant="outlined"
+                            ref={register({ required: true })} />
 
-                <Form.Check
-                    type="checkbox"
-                    id="forAFriend"
-                    label={t('Open For A Friend')}
-                    value={forAFriend}
-                    checked={forAFriend}
-                    onChange={(event) => setForAFriend(event.target.checked)}
-                />
+                    </Col>
+                    {/* {forAFriend && errors.friendsPhoneNumber && <p>{t("Phone number is required")}</p>} */}
+                </Row>
 
-                {(forAFriend) ?
-                    // TODO: margin
-                    <div className="for-a-friend">
-                        <label>{t("Friend's name")}</label>
-                        <input name="friendsName" type="text" placeholder={t("Enter friend's name")} ref={register} />
-                        {forAFriend && errors.friendsName && <p>{t("Friend's name is required")}</p>}
+                <Row className="my-3">
+                    <Col>
+                        <TextField
+                            required
+                            label={t("Address")}
+                            placeholder={t('Address')}
+                            defaultValue={request.address}
+                            variant="outlined"
+                            ref={register({ required: true })} />
+                    </Col>
+                    {/* {errors.address && <p>{t('Address is required')}</p>} */}
+                </Row>
 
-                        <label>{t("Friend's phone number")}</label>
-                        <input name="friendsPhoneNumber" type="text" placeholder={t("Enter friend's phone number")} ref={register} />
-                        {forAFriend && errors.friendsPhoneNumber && <p>{t("Friend's phone number is required")}</p>}
-
-                    </div>
-                    : ''}
-
-                <label>{t("Address")}</label>
-                <input name="address" type="text" readOnly={!differentAddress} disabled={!differentAddress} placeholder={t("Enter Address")} ref={register} />
-                {errors.address && <p>{t('Address is required')}</p>}
-
-                <Form.Check
-                    type="checkbox"
-                    id="differentAddress"
-                    label={t('Use a different address')}
-                    value={differentAddress}
-                    checked={differentAddress}
-                    onChange={(event) => setDifferentAddress(event.target.checked)}
-                />
-
-                <Form.Check
-                    type="checkbox"
-                    id="previousOnly"
-                    label={t('Open request to previous helpers only')}
-                    value={previousOnly}
-                    checked={previousOnly}
-                    onChange={(event) => setPreviousOnly(event.target.checked)}
-                />
+                <Row className="my-3">
+                    <Col>
+                        <Form.Check
+                            type="checkbox"
+                            id="previousOnly"
+                            label={t('Open only to previous volunteers')}
+                            value={previousOnly}
+                            checked={previousOnly}
+                            onChange={(event) => setPreviousOnly(event.target.checked)} />
+                    </Col>
+                    <Col>
+                        <Form.Check
+                            type="checkbox"
+                            id="badgeOnly"
+                            label={t('Open only to helpers with badge')}
+                            value={badgeOnly}
+                            checked={badgeOnly}
+                            onChange={(event) => setBadgeOnly(event.target.checked)} />
+                    </Col>
+                </Row>
                 {/* TODO: Add option to release to public after x hours */}
 
-                <input type="text" name="comments" placeholder={t("Description")} />
+                {/* <input type="text" name="comments" placeholder={t("Description")} /> */}
+                <Row className="my-3">
+                    <Col>
+                        <TextField
+                            label="Description"
+                            multiline
+                            rows="6"
+                            inputProps={{
+                                name: 'comments'
+                            }}
+                            defaultValue={request.comments}
+                            variant="outlined" />
+                    </Col>
+                </Row>
 
-                <input value={t('Create Request')} type="submit" />
+                <Row className="my-3 request-actions">
+                    <Col className="text-start">
+                        <Button variant="link" type="reset">
+                            <Refresh className="refresh-icon" />
+                            {t('Reset')}
+                        </Button>
+                    </Col>
+                    <Col className="text-end">
+                        <Button variant="helppal" type="submit">{t('Create Request')}</Button>
+                    </Col>
+                </Row>
             </form>
         </div>
     );
