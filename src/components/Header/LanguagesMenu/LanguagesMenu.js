@@ -31,7 +31,7 @@ export default (props) => {
             <IconButton
                 edge="end"
                 aria-label="account of current user"
-                aria-controls="profile-menu"
+                aria-controls="languages-menu"
                 aria-haspopup="true"
                 onClick={handleClick}
                 color="inherit"

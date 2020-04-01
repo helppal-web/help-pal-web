@@ -22,7 +22,7 @@ export default () => {
         setAnchorEl(null);
     };
 
-    const handleLanguageMenuItemClick = () => {
+    const handleProfileMenuItemClick = () => {
         history.push('/app/profile');
 
         handleClose();
@@ -47,7 +47,7 @@ export default () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={() => handleLanguageMenuItemClick()} >{t('Profile')}</MenuItem>
+                <MenuItem onClick={() => handleProfileMenuItemClick()} >{t('Profile')}</MenuItem>
                 <MenuItem >{t('Logout')}</MenuItem>
             </Menu>
         </div>

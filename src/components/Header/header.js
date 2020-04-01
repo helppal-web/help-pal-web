@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withTranslation } from 'react-i18next';
-import UserProfile from "./UserProfileMenu/UserProfile";
+import UserProfile from "./UserProfileMenu/UserProfileMenu";
 import LanguagesMenu from './LanguagesMenu/LanguagesMenu'
+import NotificationsMenu from './NotificationsMenu/NotificationsMenu'
 import * as Config from '../../config/config';
 
 
@@ -27,6 +28,7 @@ class Header extends Component {
                                 </h1>
                             </div>
                             <div className="user-actions-wrapper">
+                                <NotificationsMenu></NotificationsMenu>
                                 <LanguagesMenu languages={Config.languages}></LanguagesMenu>
                                 <UserProfile></UserProfile>
                             </div>
