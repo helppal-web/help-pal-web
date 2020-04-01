@@ -2,21 +2,22 @@ import React from 'react';
 import './SideMenu.scss';
 import { Map, History } from '@material-ui/icons';
 import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 export default function SideMenu(props) {
-    let location = useLocation();
-    console.log(location.pathname);
+    const { t } = useTranslation();
+    const location = useLocation();
 
     let routes = [
         {
             route: '/app',
             icon: <Map className="map-icon" />,
-            text: 'Map something'
+            text: t('Requests Map')
         },
         {
             route: '/app/history',
             icon: <History className="history-icon" />,
-            text: 'Some history'
+            text: t('Requests History')
 
         }
     ]
