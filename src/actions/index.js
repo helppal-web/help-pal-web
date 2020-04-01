@@ -94,21 +94,17 @@ export const fetchAllRequests = () => {
 		const hardCodedRequests = [
 			{
 				category: 'Supermarket',
-				urgency: 'Whenever',
-				forAFriend: false,
+				priority: 'High',
 				name: 'Omer Fishman',
-				friendsName: 'Yosi LoOmer',
-				friendsPhoneNumber: '0522424395',
+				phoneNumber: '0522424395',
 				address: 'King George 68, Tel-Aviv, Israel',
 				comments: "Take your Time"
 			},
 			{
 				category: 'Medicine',
-				urgency: 'Urgent',
-				forAFriend: false,
+				priority: 'Low',
 				name: 'Omer Fishman',
-				friendsName: 'Yosi LoOmer',
-				friendsPhoneNumber: '0522424395',
+				phoneNumber: '0522424395',
 				address: 'King George 68, Tel-Aviv, Israel',
 				comments: "Be fast please!!"
 			}

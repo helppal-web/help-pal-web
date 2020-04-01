@@ -3,6 +3,7 @@ import './SideMenu.scss';
 import { Map, History } from '@material-ui/icons';
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export default function SideMenu(props) {
     const { t } = useTranslation();
@@ -27,11 +28,11 @@ export default function SideMenu(props) {
             <nav className="menu-sidebar">
                 <ul className="menu-list list-unstyled">
                     {routes.map((route, index) =>
-                        <li key={index} className={"menu-list-item " + (location.pathname == route.route ? 'active' : '')}>
-                            <a href={route.route}>
+                        <li key={index} className={"menu-list-item " + (location.pathname === route.route ? 'active' : '')}>
+                            <Link to={route.route}>
                                 {route.icon}
                                 {route.text}
-                            </a>
+                            </Link>
                         </li>
                     )}
                 </ul>

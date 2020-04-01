@@ -1,0 +1,14 @@
+@import "../../assets/styles/colors";
+
+.new-request-container {
+  max-width: 80%;
+  margin: 0 auto;
+
+  .MuiInput-root,
+  .MuiTextField-root {
+    width: 100%;
+  }
+  .refresh-icon {
+    color: $main-color;
+  }
+}
