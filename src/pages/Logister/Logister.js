@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './logister.scss';
+import './Logister.scss';
 import Login from '../../components/Login/Login';
 import { login, register } from '../../actions/logister';
-import Register from '../../components/Register/register';
+import Register from '../../components/Register/Register';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap';

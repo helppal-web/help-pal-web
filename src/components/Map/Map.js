@@ -90,3 +90,4 @@ export default function MapComponent({ showModal, markers }) {
         </div>
     )
 }
+

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './main.scss';
-import Map from '../../components/Map/map';
+import Map from '../../components/Map/Map';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
