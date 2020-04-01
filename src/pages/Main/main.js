@@ -6,12 +6,15 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 import { cancelRequest, acceptRequest } from '../../actions';
-import Request, { responseTypes } from '../../components/Request/Request';
+import Request, { responseTypes, requestTypes } from '../../components/Request/Request';
 import SideMenu from '../../components/SideMenu/SideMenu';
+import helpCall from '../../assets/helpCall.png';
+import { Modal } from 'react-bootstrap';
 
 class MainPage extends Component {
     render() {
 
+        const { t } = this.props;
         const markers = [];
         const { seekers } = this.props;
         const { requests } = this.props;
@@ -23,8 +26,16 @@ class MainPage extends Component {
                         {
                             name: seeker.name,
                             position: seeker.coords,
-                            content: <Popup>
-                                <Request callback={requestCallback} request={requests[0]} />
+                            content: <Popup style={{ maxWidth: 'auto' }}>
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <div className="modal-title h4">
+                                            <img alt="" src={helpCall} width="20" />
+                                            {t(requestTypes.HELP) + '!'}
+                                        </div>
+                                    </div>
+                                    <Request callback={requestCallback} request={requests[0]} />
+                                </div>
                             </Popup>
                         }
                     );

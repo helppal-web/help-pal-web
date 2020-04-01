@@ -1,6 +1,6 @@
 module.exports = {
     "serverUrl": "http://localhost:3000",
-    "categories": ["Supermarket", "Medicine", "Walk the dog", "MAIL", "DELIVERY"],
+    "categories": ["Supermarket", "Medicine", "Walk the dog", "Mail", "Delivery"],
     "priorities": ["High", "Medium", "Low", "None"],
     "languages": [
         {
