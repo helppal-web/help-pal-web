@@ -1,43 +1,18 @@
 import React, { useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import './Profile.scss';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
-import Request from '../../components/Request/Request';
+import { cancelRequest, acceptRequest } from '../../actions';
+import Request, { responseTypes } from '../../components/Request/Request';
 import { CardDeck, Tabs, Tab } from 'react-bootstrap';
 import GeneralInfo from "../../components/GeneralInfo/GeneralInfo"
 
 
-export default function Profile() {
-
-    // TODO: Remove - hardcoded!!!!
-    const requests = [
-        {
-            category: 'Supermarket',
-            urgency: 'Whenever',
-            forAFriend: false,
-            name: 'Omer Fishman',
-            friendsName: 'Yosi LoOmer',
-            friendsPhoneNumber: '0522424395',
-            address: 'King George 68, Tel-Aviv, Israel',
-            comments: "Take your Time"
-        },
-        {
-            category: 'Medicine',
-            urgency: 'Urgent',
-            forAFriend: false,
-            name: 'Omer Fishman',
-            friendsName: 'Yosi LoOmer',
-            friendsPhoneNumber: '0522424395',
-            address: 'King George 68, Tel-Aviv, Israel',
-            comments: "Be fast please!!"
-        }
-    ]
+function Profile({ requests }) {
 
     const { t } = useTranslation();
     const [currentTab, setTab] = useState('generalInfo');
-
-
 
     return (
         <div className="container">
@@ -45,15 +20,15 @@ export default function Profile() {
                 id="profile-tab-control"
                 activeKey={currentTab}
                 onSelect={(k) => setTab(k)}>
-                <Tab eventKey="generalInfo" title="General Info">
+                <Tab eventKey="generalInfo" title={t('General Info')}>
                     <GeneralInfo></GeneralInfo>
                 </Tab>
-                <Tab eventKey="myRequests" title="My Requests">
+                <Tab eventKey="myRequests" title={t('My Requests')}>
                     <CardDeck className="row mx-auto mt-4" >
-                        {requests.map((request) => <Request request={request} />)}
+                        {requests.map((request, index) => <Request key={index} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)}
                     </CardDeck>
                 </Tab>
-                <Tab eventKey="history" title="History">
+                <Tab eventKey="history" title={t('My History')}>
                     TODO: history.... :)
                 </Tab>
             </Tabs>
@@ -61,9 +36,43 @@ export default function Profile() {
         </div>
     )
 
+    function requestCallback(responseType, request) {
+
+        switch (responseType) {
+            case responseTypes.CREATED:
+                break;
+            case responseTypes.UPDATED:
+                break;
+            case responseTypes.DIFFERENT:
+                break;
+            case responseTypes.IRRELEVANT:
+                cancelRequest(request);
+                break;
+            case responseTypes.ACCEPTED:
+                acceptRequest(request);
+                break;
+
+            default:
+                //Close popup
+                break;
+        }
+    }
 }
 
 
+const mapStateToProps = (store) => {
+    const { requests } = store;
+    return {
+        requests: requests.requests
+    }
+}
 
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch,
+        cancelRequest: bindActionCreators(cancelRequest, dispatch),
+        acceptRequest: bindActionCreators(acceptRequest, dispatch)
+    }
+}
 
-
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

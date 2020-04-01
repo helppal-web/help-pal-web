@@ -17,10 +17,11 @@ export default (props) => {
     };
 
 
-    function handleLanguageMenuItemClick(lang) {
+    const handleLanguageMenuItemClick = (lang) => {
         if(lang !== i18n.language) {
-            sessionStorage.setItem('lang', `${lang}`);
+            localStorage.setItem('i18nextLng', `${lang}`);
             i18n.changeLanguage(lang);
+            document.body.style.direction = i18n.dir();
         }
         handleClose();
     };
@@ -30,7 +31,7 @@ export default (props) => {
             <IconButton
                 edge="end"
                 aria-label="account of current user"
-                aria-controls="profile-menu"
+                aria-controls="languages-menu"
                 aria-haspopup="true"
                 onClick={handleClick}
                 color="inherit"
