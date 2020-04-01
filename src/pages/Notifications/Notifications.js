@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     itemText: {
         textAlign: 'start',
     },
-    demo: {
+    listContainer: {
         backgroundColor: theme.palette.background.paper,
     },
     title: {
