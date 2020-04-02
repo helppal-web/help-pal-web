@@ -9,7 +9,9 @@ export const responseTypes = {
     UPDATED: 'UPDATED',
     ACCEPTED: 'ACCEPTED',
     DIFFERENT: 'DIFFERENT',
-    IRRELEVANT: 'IRRELEVANT'
+    IRRELEVANT: 'IRRELEVANT',
+    REOPEN: 'REOPEN',
+    REJECT: 'REJECT'
 }
 
 export const requestStatuses = {
@@ -37,13 +39,13 @@ export function statusToColor(status) {
     switch (status) {
         case requestStatuses.ASSIGNED:
         case requestStatuses.IN_DISPUTE:
+        case requestStatuses.IN_PROGRESS:
         case requestStatuses.OPEN:
             return '#0cc5c59e';
 
         case requestStatuses.DELIVERED:
             return '#23c119ad';
 
-        case requestStatuses.CLOSED:
         case requestStatuses.CLOSED:
         case requestStatuses.DISMISSED:
             return '#efefef';

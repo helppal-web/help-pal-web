@@ -20,7 +20,7 @@
   "Badge": "תג",
   "Done": "סיום",
   "Notifications": "התראות",
-  "See all notifications":"לראות כל ההתראות",
+  "See all notifications": "לראות כל ההתראות",
   "Requests Map": "מפת בקשות",
   "Requests History": "היסטוריית בקשות",
   "Priority": "עדיפות",
@@ -55,7 +55,8 @@
   "In Progress": "בתהליך",
   "Delivered": "נשלח",
   "Closed": "סגור",
+  "Close": "סגור בקשה",
+  "Reopen": "פתח בקשה מחדש",
   "In Dispute": "במשלוח",
   "Dismissed": "נדחה"
 }
-
