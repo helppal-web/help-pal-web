@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Select, TextField } from '@material-ui/core';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Config from '../../config/config';
 import Refresh from '@material-ui/icons/Refresh';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import _ from 'lodash';
+
+
+import Axios from "axios";
 import './NewRequest.scss';
 
 export default function NewRequest(props) {
@@ -17,11 +22,47 @@ export default function NewRequest(props) {
         address: undefined,
         comments: undefined,
         previousOnly: false,
-        badgeOnly: false
+        badgeOnly: false,
+        houseNumber : undefined
     });
+
+    const [myLocation, setMyLocation] = useState({
+        lat: null,
+        long: null
+    });
+
+    const [addresses, setAddresses] = useState([]);
+
+
 
     const { t } = useTranslation();
     const { register, handleSubmit, errors } = useForm();
+
+  
+   
+
+    let debouncedFn = undefined;
+    const onAddressChangeHandler = (event) => {
+        event.persist();
+        if (!debouncedFn) {
+            debouncedFn = _.debounce(() => {
+                onPropChangeHandler(event);
+                fetchLocations(event.target.value);
+            }, 500);
+        }
+
+        debouncedFn();
+    }
+
+    const fetchLocations = (query) => {
+        Axios.get(`http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?text=${query}&f=json&category=Address`)
+            .then(response => {
+                if (response.status == 200) {
+                    const { data: { suggestions } } = response;
+                    setAddresses(suggestions);
+                }
+            });
+    }
 
     const onPropChangeHandler = (event) => {
         const { name, value } = event.target;
@@ -33,7 +74,23 @@ export default function NewRequest(props) {
         setRequest({ ...request, [name]: checked })
     }
 
+    useEffect(() => {
+
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+
+            }, err => console.error(err))
+        }
+
+    })
+
+    const secret = 'SQE1XBIDSVQ4DG33WNMAJOEKQXCS2USBRYMCZSOWDEF033NU';
+    const clientID = 'PKIIOVA0NSTPOAIJI3RFBAIWURUY41EBROCBK3NRMBVTRHJO';
+    const apiVersion = '20200401';
+
     function onSubmit() {
+
         // setTimeout(() => {
         props.hide();
         // }, 5000);
@@ -102,18 +159,27 @@ export default function NewRequest(props) {
                     </Col>
                 </Row>
 
+
+
                 <Row className="my-3">
-                    <Col>
+                    <Col sm={8}>
+
+                        <Autocomplete
+                            id="combo-box-demo"
+                            options={addresses}
+                            getOptionLabel={(option) => option.text}
+                            
+                            onChange={(event, value) => setRequest({ ...request, ['address']: value.text })}
+                            renderInput={(params) => <TextField onChange={onAddressChangeHandler}  value={addresses} {...params} label={t('Street')} variant="outlined" />}
+                        />
+                    </Col>
+                    <Col sm={4}>
                         <TextField
-                            required
-                            label={t("Address")}
-                            placeholder={t('Address')}
-                            defaultValue={request.address}
+                            label={t("HouseNumber")}
+                            placeholder={t('HouseNumber')}
                             variant="outlined"
-                            inputProps={{
-                                name: 'address'
-                            }}
-                            ref={register({ required: true })}
+                            name="houseNumber"
+                            ref={register()}
                             onChange={onPropChangeHandler}
                         />
                     </Col>
