@@ -80,5 +80,14 @@
   "Close": "Close",
   "Reopen": "Reopen",
   "In Dispute": "In Dispute",
-  "Dismissed": "Dismissed"
+  "Dismissed": "Dismissed",
+  "Help Please": "Help Please",
+  "Settings": "Settings",
+  "Requester": "Requester",
+  "Active Requests": "Active Requests",
+  "My Favorite Helpers": "My Favorite Helpers",
+  "Requester Tips": "Requester Tips",
+  "Active Responses": "Active Responses",
+  "Responses History": "Responses History",
+  "Helper Tips": "Helper Tips"
 }
