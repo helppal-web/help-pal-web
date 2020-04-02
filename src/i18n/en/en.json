@@ -77,7 +77,8 @@
   "In Progress": "In Progress",
   "Delivered": "Delivered",
   "Closed": "Closed",
+  "Close": "Close",
+  "Reopen": "Reopen",
   "In Dispute": "In Dispute",
   "Dismissed": "Dismissed"
 }
-
