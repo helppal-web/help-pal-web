@@ -16,13 +16,10 @@ export default function MapComponent({ showModal, markers }) {
     const [showFiltersModal, setFiltersModal] = useState(false);
     const { t } = useTranslation();
 
-    let state = {
-        lat: 32.078044,
-        lng: 34.774198,
-        zoom: 13,
-    }
+    const [latLng, setLatLng] = useState({ lat: 32.078044, lng: 34.774198 })
+    const [zoom, setZoom] = useState(13)
 
-    const position = [state.lat, state.lng];
+    const position = Object.values(latLng);
 
     function hideRequestModal() {
         setShowRequestModal(false);
@@ -51,7 +48,7 @@ export default function MapComponent({ showModal, markers }) {
                 </Button>
             </div>
 
-            <Map center={position} zoom={state.zoom}>
+            <Map bounds={[markers.map(marker => marker.position)]} center={position} zoom={zoom} >
                 <TileLayer
                     attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                     url={"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=" + Config.MapBoxKey}
