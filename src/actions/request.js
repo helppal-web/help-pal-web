@@ -52,7 +52,7 @@ export const acceptRequestSuccess = (data) => {
 export const fetchAllRequests = () => {
     return (dispatch) => {
         // TODO: Change according to Backend
-        // return axios.post(Config.serverUrl + '/fetch_requests', { })
+        // return axios.get(Config.serverUrl + '/requests', { })
         //  .then(response => {
         //      // TODO: Change according to Backend
         //      dispatch(fetchRequestsSuccess(response.data));
