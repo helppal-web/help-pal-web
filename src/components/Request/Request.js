@@ -26,12 +26,33 @@ export const requestStatuses = {
     DISMISSED: 'Dismissed'
 }
 
+export function statusToColor(status) {
+    // TODO: Real colors, to actual statuses
+    switch (status) {
+        case requestStatuses.ASSIGNED:
+        case requestStatuses.IN_DISPUTE:
+        case requestStatuses.OPEN:
+            return '#0cc5c59e';
+
+        case requestStatuses.DELIVERED:
+            return '#23c119ad';
+
+        case requestStatuses.CLOSED:
+        case requestStatuses.CLOSED:
+        case requestStatuses.DISMISSED:
+            return '#efefef';
+
+        default:
+            return 'transparent';
+    }
+}
+
 export default function Request({ customClasses = '', request, type = requestTypes.HELP, customCardClasses = '', callback }) {
     const { t } = useTranslation();
 
     return (
         <div className={"col-12 px-2 " + customClasses}>
-            <Card className={customCardClasses}>
+            <Card className={customCardClasses} style={{ backgroundColor: statusToColor(request.status) }}>
                 <Card.Body>
                     <Card.Title className="text-start">
                         {t(request.category)}
