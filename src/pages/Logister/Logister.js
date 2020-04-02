@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Logister.scss';
 import Login from '../../components/Login/Login';
-import { login, register } from '../../actions/logister';
+import { login, register } from '../../actions';
 import Register from '../../components/Register/Register';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
