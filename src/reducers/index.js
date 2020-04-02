@@ -1,11 +1,11 @@
 
 import { combineReducers } from 'redux';
-import state from './usersReducer';
+import user from './usersReducer';
 import requests from './requestsReducer';
 import notifications from './notificationsReduer';
 
 export default combineReducers({
-    state: state,
+    user: user,
     requests: requests,
-    notifications: notifications
+    notifications: notifications,
 });
