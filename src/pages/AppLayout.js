@@ -4,6 +4,9 @@ import Header from '../components/Header/header';
 import { Route } from 'react-router-dom';
 import WebSocketApi from '../helpers/websocket';
 import { Modal } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+
+
 
 
 const AppLayout = ({ children }) => (
@@ -14,6 +17,8 @@ const AppLayout = ({ children }) => (
 );
 
 const AppLayoutRoute = ({ component: Component, ...rest }) => {
+
+    const { t } = useTranslation();
 
     const [notificationsModal, setNotificationsModal] = useState(false);
 
@@ -35,9 +40,9 @@ const AppLayoutRoute = ({ component: Component, ...rest }) => {
                             {t('Notifications')}
                         </Modal.Title>
                     </Modal.Header>
-                    <ModalBody>
+                    <Modal.Body>
 
-                    </ModalBody>
+                    </Modal.Body>
                 </Modal>
             </AppLayout>
         )} />
