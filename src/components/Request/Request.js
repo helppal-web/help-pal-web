@@ -2,36 +2,59 @@ import React from 'react';
 import { Card, Button } from "react-bootstrap";
 import './Request.scss';
 import { useTranslation } from 'react-i18next';
+import { statusToColor, requestTypes, responseTypes, requestStatuses } from '../../helpers/requestHelpers';
 
-export const requestTypes = {
-    HELP: 'Help',
-    HELPER: 'Helper'
-}
-
-export const responseTypes = {
-    CREATED: 'CREATED',
-    UPDATED: 'UPDATED',
-    ACCEPTED: 'ACCEPTED',
-    DIFFERENT: 'DIFFERENT',
-    IRRELEVANT: 'IRRELEVANT'
-}
-
-export const requestStatuses = {
-    OPEN: 'Open',
-    ASSIGNED: 'Assigned',
-    IN_PROGRESS: 'In Progress',
-    DELIVERED: 'Delivered',
-    CLOSED: 'Closed',
-    IN_DISPUTE: 'In Dispute',
-    DISMISSED: 'Dismissed'
-}
-
-export default function Request({ customClasses = '', request, type = requestTypes.HELP, callback }) {
+export default function Request({ customClasses = '', request, type = requestTypes.HELP, customCardClasses = '', callback }) {
     const { t } = useTranslation();
+
+    let actions = [
+        {
+            logic: true,
+            variant: 'helppal',
+            responseType: responseTypes.IRRELEVANT,
+            label: t('Close')
+        },
+        {
+            logic: request.status === requestStatuses.CLOSED,
+            variant: 'helppal',
+            responseType: responseTypes.REOPEN,
+            label: t('Reopen')
+        },
+        {
+            logic: type === requestTypes.HELP,
+            variant: 'helppal',
+            responseType: responseTypes.ACCEPTED,
+            label: t('Help the guy!')
+        },
+        {
+            logic: type === requestTypes.HELP && request.status !== requestStatuses.CLOSED,
+            variant: 'helppal',
+            responseType: responseTypes.REJECT,
+            label: t('Cancel & Close')
+        },
+        {
+            logic: type === requestTypes.Asker,
+            variant: 'helppal',
+            responseType: responseTypes.ACCEPTED,
+            label: t('Accept​ help')
+        },
+        {
+            logic: type === requestTypes.Asker,
+            variant: 'helppal',
+            responseType: responseTypes.DIFFERENT,
+            label: t('Different helper wanted​')
+        },
+        {
+            logic: type === requestTypes.Asker,
+            variant: 'helppal',
+            responseType: responseTypes.IRRELEVANT,
+            label: t('Irrelevant, close call​')
+        }
+    ]
 
     return (
         <div className={"col-12 px-2 " + customClasses}>
-            <Card className="border-none">
+            <Card className={customCardClasses} style={{ backgroundColor: statusToColor(request.status) }}>
                 <Card.Body>
                     <Card.Title className="text-start">
                         {t(request.category)}
@@ -40,14 +63,20 @@ export default function Request({ customClasses = '', request, type = requestTyp
                         {t(request.priority)}
                     </Card.Text>
                     <Card.Text className="text-start border-top pt-4">
-                        <div className="text-muted mb-1">Description</div>
+                        <span className="d-block text-muted mb-1">Description</span>
                         {request.comments}
                     </Card.Text>
-                    <div className="actions-container d-flex justify-content-end mt-3 pt-4">
-                        {type === requestTypes.HELP ? <Button variant="helppal" onClick={() => callback(responseTypes.ACCEPTED, request)}>{t('Help the guy!')}</Button> : ''}
-                        {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.ACCEPTED, request)}>{t('Accept​ help')}</Button> : ''}
-                        {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.DIFFERENT, request)}>{t('Different helper wanted​')}</Button> : ''}
-    {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.IRRELEVANT, request)}>{t('Irrelevant, close call​')}</Button> : ''}
+                    <div className="actions-container d-flex justify-content-between flex-wrap mt-3 pt-4">
+                        {actions.map((action, index) =>
+                            (action.logic ?
+                                <Button
+                                    key={index}
+                                    className="request-action-btn"
+                                    variant={action.variant}
+                                    onClick={() => callback(action.responseType, request)}>
+                                    {action.label}
+                                </Button>
+                                : ''))}
                     </div>
                 </Card.Body>
             </Card>
