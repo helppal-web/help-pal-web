@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './map.scss';
+import './Map.scss';
 import { Modal, Button } from 'react-bootstrap';
 import { Map, TileLayer, Marker, } from 'react-leaflet';
 import NewRequest from '../NewRequest/NewRequest';
@@ -90,3 +90,4 @@ export default function MapComponent({ showModal, markers }) {
         </div>
     )
 }
+

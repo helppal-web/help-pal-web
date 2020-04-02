@@ -20,6 +20,7 @@
   "Badge": "תג",
   "Done": "סיום",
   "Notifications": "התראות",
+  "See all notifications":"לראות כל ההתראות",
   "Requests Map": "מפת בקשות",
   "Requests History": "היסטוריית בקשות",
   "Priority": "עדיפות",
@@ -48,5 +49,13 @@
   "Open only to previous volunteers": "הצג לעוזרים קודמים בלבד",
   "Open only to helpers with badge": "הצג לעוזרים מצטיינים בלבד",
   "Category": "קטגוריה",
-  "Create Request": "צור בקשה"
+  "Create Request": "צור בקשה",
+  "Open": "פנוי",
+  "Assigned": "משויך",
+  "In Progress": "בתהליך",
+  "Delivered": "נשלח",
+  "Closed": "סגור",
+  "In Dispute": "במשלוח",
+  "Dismissed": "נדחה"
 }
+
