@@ -47,7 +47,7 @@ export default function Request({ customClasses = '', request, type = requestTyp
                         {type === requestTypes.HELP ? <Button variant="helppal" onClick={() => callback(responseTypes.ACCEPTED, request)}>{t('Help the guy!')}</Button> : ''}
                         {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.ACCEPTED, request)}>{t('Accept​ help')}</Button> : ''}
                         {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.DIFFERENT, request)}>{t('Different helper wanted​')}</Button> : ''}
-    {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.IRRELEVANT, request)}>{t('Irrelevant, close call​')}</Button> : ''}
+                        {type === requestTypes.Asker ? <Button variant="helppal" onClick={() => callback(responseTypes.IRRELEVANT, request)}>{t('Irrelevant, close call​')}</Button> : ''}
                     </div>
                 </Card.Body>
             </Card>
