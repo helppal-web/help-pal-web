@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 import { cancelRequest, acceptRequest } from '../../actions';
-import Request, { responseTypes, requestTypes } from '../../components/Request/Request';
+import Request from '../../components/Request/Request';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
+import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
 
 class MainPage extends Component {
     render() {

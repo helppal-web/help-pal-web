@@ -2,50 +2,7 @@ import React from 'react';
 import { Card, Button } from "react-bootstrap";
 import './Request.scss';
 import { useTranslation } from 'react-i18next';
-
-export const requestTypes = {
-    HELP: 'Help',
-    HELPER: 'Helper'
-}
-
-export const responseTypes = {
-    CREATED: 'CREATED',
-    UPDATED: 'UPDATED',
-    ACCEPTED: 'ACCEPTED',
-    DIFFERENT: 'DIFFERENT',
-    IRRELEVANT: 'IRRELEVANT'
-}
-
-export const requestStatuses = {
-    OPEN: 'Open',
-    ASSIGNED: 'Assigned',
-    IN_PROGRESS: 'In Progress',
-    DELIVERED: 'Delivered',
-    CLOSED: 'Closed',
-    IN_DISPUTE: 'In Dispute',
-    DISMISSED: 'Dismissed'
-}
-
-export function statusToColor(status) {
-    // TODO: Real colors, to actual statuses
-    switch (status) {
-        case requestStatuses.ASSIGNED:
-        case requestStatuses.IN_DISPUTE:
-        case requestStatuses.OPEN:
-            return '#0cc5c59e';
-
-        case requestStatuses.DELIVERED:
-            return '#23c119ad';
-
-        case requestStatuses.CLOSED:
-        case requestStatuses.CLOSED:
-        case requestStatuses.DISMISSED:
-            return '#efefef';
-
-        default:
-            return 'transparent';
-    }
-}
+import { statusToColor, requestTypes, responseTypes } from '../../helpers/requestHelpers';
 
 export default function Request({ customClasses = '', request, type = requestTypes.HELP, customCardClasses = '', callback }) {
     const { t } = useTranslation();
