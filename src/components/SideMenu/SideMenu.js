@@ -1,9 +1,8 @@
 import React from 'react';
 import './SideMenu.scss';
 import { Map, History, Settings } from '@material-ui/icons';
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 export default function SideMenu({ handleShowNewRequest }) {
