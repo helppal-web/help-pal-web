@@ -26,12 +26,12 @@ export const requestStatuses = {
     DISMISSED: 'Dismissed'
 }
 
-export default function Request({ customClasses = '', request, type = requestTypes.HELP, callback }) {
+export default function Request({ customClasses = '', request, type = requestTypes.HELP, customCardClasses = '', callback }) {
     const { t } = useTranslation();
 
     return (
         <div className={"col-12 px-2 " + customClasses}>
-            <Card className="border-none">
+            <Card className={customCardClasses}>
                 <Card.Body>
                     <Card.Title className="text-start">
                         {t(request.category)}

@@ -32,7 +32,7 @@ class MainPage extends Component {
                                             {t(requestTypes.HELP) + '!'}
                                         </div>
                                     </div>
-                                    <Request callback={requestCallback} request={request} />
+                                    <Request callback={requestCallback} request={request} customCardClasses="border-none" />
                                 </div>
                             </Popup>
                         }
