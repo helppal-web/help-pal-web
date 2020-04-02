@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './Map.scss';
 import { Modal, Button } from 'react-bootstrap';
 import { Map, TileLayer, Marker, } from 'react-leaflet';
 import icon from '../../assets/marker.png';
+import myLocationIcon from '../../assets/myLocation.png';
 import L from 'leaflet';
 import Config from '../../config/config';
 import { useTranslation } from 'react-i18next';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Filters from "../Filters/Filters";
+import Control from 'react-leaflet-control';
 
 export default function MapComponent({ showModal, markers }) {
     const [showFiltersModal, setFiltersModal] = useState(false);
@@ -17,7 +19,9 @@ export default function MapComponent({ showModal, markers }) {
     const [zoom, setZoom] = useState(13)
 
     const position = Object.values(latLng);
+    //const map = mapRef.leafletElement
 
+    const map = useRef();
 
     const myIcon = L.icon({
         iconUrl: icon,
@@ -31,6 +35,9 @@ export default function MapComponent({ showModal, markers }) {
         //call api to get data
     }
 
+    const onHomeButtonClicked = () => {
+        map.current.leafletElement.panTo(latLng)
+    }
 
     return (
         <div className="flex-grow-1">
@@ -42,7 +49,7 @@ export default function MapComponent({ showModal, markers }) {
                 </Button>
             </div>
 
-            <Map bounds={[markers.map(marker => marker.position)]} center={position} zoom={zoom} >
+            <Map ref={map} bounds={[markers.map(marker => marker.position)]} center={position} zoom={zoom} >
                 <TileLayer
                     attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                     url={"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=" + Config.MapBoxKey}
@@ -52,6 +59,12 @@ export default function MapComponent({ showModal, markers }) {
                         {marker.content}
                     </Marker>
                 ) : ''}
+
+                <Control position="bottomleft">
+                    <div className="my-location-container">
+                        <img onClick={() => onHomeButtonClicked()} alt="" src={myLocationIcon} />
+                    </div>
+                </Control>
             </Map>
 
             <Modal show={showFiltersModal} centered={true} onHide={() => setFiltersModal(false)}>
