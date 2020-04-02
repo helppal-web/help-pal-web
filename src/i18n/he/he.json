@@ -58,5 +58,14 @@
   "Close": "סגור בקשה",
   "Reopen": "פתח בקשה מחדש",
   "In Dispute": "במשלוח",
-  "Dismissed": "נדחה"
+  "Dismissed": "נדחה",
+  "Help Please": "עזרה בבקשה",
+  "Settings": "הגדרות",
+  "Requester": "מבקש",
+  "Active Requests": "בקשות פעילות",
+  "My Favorite Helpers": "עוזרים מועדפים",
+  "Requester Tips": "עצות למבקש",
+  "Active Responses": "עזרות פעילות",
+  "Responses History": "היסטוריית עזרות",
+  "Helper Tips": "עצות לעוזר"
 }

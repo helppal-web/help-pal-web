@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import './Map.scss';
 import { Modal, Button } from 'react-bootstrap';
 import { Map, TileLayer, Marker, } from 'react-leaflet';
-import NewRequest from '../NewRequest/NewRequest';
 import icon from '../../assets/marker.png';
-import newCall from '../../assets/newCall.png';
 import L from 'leaflet';
 import Config from '../../config/config';
 import { useTranslation } from 'react-i18next';
@@ -12,21 +10,14 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import Filters from "../Filters/Filters";
 
 export default function MapComponent({ showModal, markers }) {
-    const [showRequestModal, setShowRequestModal] = useState(showModal);
     const [showFiltersModal, setFiltersModal] = useState(false);
     const { t } = useTranslation();
 
-    let state = {
-        lat: 32.078044,
-        lng: 34.774198,
-        zoom: 13,
-    }
+    const [latLng, setLatLng] = useState({ lat: 32.078044, lng: 34.774198 })
+    const [zoom, setZoom] = useState(13)
 
-    const position = [state.lat, state.lng];
+    const position = Object.values(latLng);
 
-    function hideRequestModal() {
-        setShowRequestModal(false);
-    }
 
     const myIcon = L.icon({
         iconUrl: icon,
@@ -44,14 +35,14 @@ export default function MapComponent({ showModal, markers }) {
     return (
         <div className="flex-grow-1">
             <div className="map-actions d-flex justify-content-between">
-                <Button className="mx-5 rounded-circle new-call" variant="helppal" onClick={() => setShowRequestModal(true)}>+</Button>
+                {/* <Button className="mx-5 rounded-circle new-call" variant="helppal" onClick={() => showModal()}>+</Button> */}
                 <Button variant="none" className="mx-2" onClick={() => setFiltersModal(true)}>
                     <FilterListIcon className="filter-icon"></FilterListIcon>
                     {t('Filters')}
                 </Button>
             </div>
 
-            <Map center={position} zoom={state.zoom}>
+            <Map bounds={[markers.map(marker => marker.position)]} center={position} zoom={zoom} >
                 <TileLayer
                     attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                     url={"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=" + Config.MapBoxKey}
@@ -62,19 +53,6 @@ export default function MapComponent({ showModal, markers }) {
                     </Marker>
                 ) : ''}
             </Map>
-
-            <Modal centered show={showRequestModal} onHide={hideRequestModal} dialogClassName="request-modal">
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        <img alt="" src={newCall} width="20" />
-                        {t('New Call')}
-                    </Modal.Title>
-                </Modal.Header>
-
-                <Modal.Body>
-                    <NewRequest hide={hideRequestModal} />
-                </Modal.Body>
-            </Modal>
 
             <Modal show={showFiltersModal} centered={true} onHide={() => setFiltersModal(false)}>
                 <Modal.Header closeButton>
