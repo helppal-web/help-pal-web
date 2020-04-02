@@ -13,14 +13,10 @@ import Control from 'react-leaflet-control';
 
 export default function MapComponent({ showModal, markers }) {
     const [showFiltersModal, setFiltersModal] = useState(false);
+    const [latLng] = useState({ lat: 32.078044, lng: 34.774198 })
+    const [zoom] = useState(13)
     const { t } = useTranslation();
-
-    const [latLng, setLatLng] = useState({ lat: 32.078044, lng: 34.774198 })
-    const [zoom, setZoom] = useState(13)
-
     const position = Object.values(latLng);
-    //const map = mapRef.leafletElement
-
     const map = useRef();
 
     const myIcon = L.icon({
