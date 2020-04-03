@@ -24,7 +24,7 @@ function MyRequests({ requests }) {
     }
 
     let requestsData = localRequests && localRequests.length ? localRequests.sort(sortByStatus).map((request) => <Request key={request.id} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)
-        : <div>No Requests found!</div>
+        : <div>{t('No requests found')}</div>
 
     return (
         <div className="container text-start">
