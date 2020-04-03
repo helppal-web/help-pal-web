@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
-import { cancelRequest, acceptRequest } from '../../actions';
+import { cancelRequest, acceptRequest, createRequest } from '../../actions';
 import Request from '../../components/Request/Request';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
@@ -65,7 +65,7 @@ class MainPage extends Component {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <NewRequest hide={hideRequestModal} />
+                        <NewRequest hide={hideRequestModal} handleSubmit={createRequest} />
                     </Modal.Body>
                 </Modal>
             </div>
@@ -115,7 +115,8 @@ function mapDispatchToProps(dispatch) {
     return {
         dispatch,
         cancelRequest: bindActionCreators(cancelRequest, dispatch),
-        acceptRequest: bindActionCreators(acceptRequest, dispatch)
+        acceptRequest: bindActionCreators(acceptRequest, dispatch),
+        createRequest: bindActionCreators(createRequest, dispatch)
     }
 }
 
