@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import './GeneralInfo.scss'
-
+import {toBase64} from '../../helpers'
 
 
 export default function GenralInfo() {
@@ -11,9 +11,25 @@ export default function GenralInfo() {
     const { t } = useTranslation();
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = () => {
-        
+
+    }
+    function handleFileSelect(evt) {
+        var files = evt.target.files; // FileList object
+
+        // use the 1st file from the list
+        const image = files[0];
+        toBase64(image).then((data) => {
+            console.log(data)
+        })
     }
 
+
+    // const toBase64 = file => new Promise((resolve, reject) => {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onload = () => resolve(reader.result);
+    //     reader.onerror = error => reject(error);
+    // });
 
     return (
         <div className="profile-wrapper">
@@ -50,7 +66,9 @@ export default function GenralInfo() {
                         <div className="upload-photo-wrapper">
                             <CameraAltIcon></CameraAltIcon>
                             <label>{t('UploadPhoto')}</label>
-                            <input type="file" accept="image/*"></input>
+                            <input id="profile-photo-image" onChange={(event) => {
+                                handleFileSelect(event)
+                            }} type="file" accept="image/*"></input>
                         </div>
                     </div>
                     <div className="profile-photo">
