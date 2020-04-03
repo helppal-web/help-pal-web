@@ -18,11 +18,14 @@ function MyRequests({ requests }) {
         return requestStatusCode[a.status] - requestStatusCode[b.status];
     }
 
+    let requestsData = localRequests && localRequests.length ? localRequests.sort(sortByStatus).map((request, index) => <Request key={index} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)
+        : <div>No Requests found!</div>
+
     return (
         <div className="container text-start">
             <TextField className="search-bar mx-4 mt-3" label="Search..." type="search" variant="outlined" onChange={filter} />
             <CardDeck className="row mx-auto mt-4" >
-                {localRequests.sort(sortByStatus).map((request, index) => <Request key={index} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)}
+                {requestsData}
             </CardDeck>
         </div>
     )

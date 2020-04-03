@@ -26,7 +26,7 @@ class MainPage extends Component {
         const markers = [];
         const { requests } = this.props;
 
-        if (requests.length) {
+        if (requests && requests.length) {
             requests.forEach((request) => {
                 if (request && request.location) {
                     markers.push(
