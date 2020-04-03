@@ -1,7 +1,31 @@
 
-import { CANCEL_REQUEST, ACCEPT_REQUEST, FETCH_REQUESTS, FETCH_USER_REQUESTS } from './types';
+import { CANCEL_REQUEST, ACCEPT_REQUEST, FETCH_REQUESTS, FETCH_USER_REQUESTS, CREATE_REQUEST } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
+
+export const createRequest = (request) => {
+    console.log('req action:' , request);
+    return (dispatch) => {
+        // TODO: Change according to Backend
+        return axios.post(`${Config.serverUrl}/create_request`, request)
+            .then(response => {
+                // TODO: Change according to Backend
+                dispatch(createRequestSuccess(response.data));
+            })
+            .catch(error => {
+                alert('An error has occured');
+                throw (error);
+            });
+    }
+}
+
+export const createRequestSuccess = (data) => {
+    // TODO: Update state with response
+    return {
+        type: CREATE_REQUEST,
+        payload: data
+    }
+}
 
 export const cancelRequest = (request) => {
     return (dispatch) => {
