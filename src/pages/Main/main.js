@@ -52,8 +52,7 @@ class MainPage extends Component {
 
 
         return (
-            <div className="d-flex" >
-                <SideMenu handleShowNewRequest={showRequestModal.bind(this)} />
+            <div >
                 <Map markers={markers} showModal={showRequestModal.bind(this)} />
 
                 <Modal centered show={this.state.showNewRequest} onHide={hideRequestModal.bind(this)} dialogClassName="request-modal">
