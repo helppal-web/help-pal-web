@@ -41,6 +41,8 @@ export default function NewRequest(props) {
     }
 
     const parseData = (data, response) => {
+        //TODO: this is done to suit sent data with the server
+        //need to be handled later
         data["location"] = {}
         data.location.lat = response.data[0].lat
         data.location.lon = response.data[0].lon
