@@ -34,6 +34,13 @@ export default function MapComponent({ showModal, markers }) {
     const onHomeButtonClicked = () => {
         map.current.leafletElement.panTo(latLng)
     }
+    
+    const getBounds = () => {
+        if(markers && markers.length) {
+            return markers.map(marker => marker.position)
+        } 
+        return position
+    }
 
     return (
         <div className="flex-grow-1">
@@ -45,7 +52,7 @@ export default function MapComponent({ showModal, markers }) {
                 </Button>
             </div>
 
-            <Map ref={map} bounds={[markers.map(marker => marker.position)]} center={position} zoom={zoom} >
+            <Map ref={map} bounds={[getBounds()]} center={position} zoom={zoom} >
                 <TileLayer
                     attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                     url={"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=" + Config.MapBoxKey}

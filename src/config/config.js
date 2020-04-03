@@ -1,5 +1,5 @@
 module.exports = {
-    "serverUrl": "http://localhost:3000",
+    "serverUrl": "http://helppal.net:8000",
     "categories": ["Supermarket", "Medicine", "Walk the dog", "Mail", "Delivery"],
     "priorities": ["High", "Medium", "Low", "None"],
     "languages": [{
