@@ -1,13 +1,12 @@
-
 import { CANCEL_REQUEST, ACCEPT_REQUEST, FETCH_REQUESTS, FETCH_USER_REQUESTS, SEND_REQUEST, CREATE_REQUEST } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
 
 export const createRequest = (request) => {
-    console.log('req action:' , request);
+    console.log('req action:', request);
     return (dispatch) => {
         // TODO: Change according to Backend
-        return axios.post(`${Config.serverUrl}/create_request`, request)
+        return axios.post(`${Config.serverUrl}/requests`, request)
             .then(response => {
                 // TODO: Change according to Backend
                 dispatch(createRequestSuccess(response.data));
@@ -75,14 +74,14 @@ export const acceptRequestSuccess = (data) => {
 
 export const fetchAllRequests = () => {
     return (dispatch) => {
-        return axios.get(Config.serverUrl + '/requests', { })
-         .then(response => {
-             dispatch(fetchRequestsSuccess(response.data));
-         })
-         .catch(error => {
-             console.error('An error has occured', error);
-             throw (error);
-         });
+        return axios.get(Config.serverUrl + '/requests', {})
+            .then(response => {
+                dispatch(fetchRequestsSuccess(response.data));
+            })
+            .catch(error => {
+                console.error('An error has occured', error);
+                throw (error);
+            });
     }
 }
 
@@ -97,16 +96,16 @@ export const fetchRequestsSuccess = (data) => {
 
 export const addNewRequest = () => {
     return (dispatch) => {
-      //  TODO: Change according to Backend
-        return axios.post(Config.serverUrl + '/requests', { })
-         .then(response => {
-             // TODO: Change according to Backend
-             dispatch(addNewRequestSuccess(response.data));
-         })
-         .catch(error => {
-             console.error('An error has occured', error);
-             throw (error);
-         });
+        //  TODO: Change according to Backend
+        return axios.post(Config.serverUrl + '/requests', {})
+            .then(response => {
+                // TODO: Change according to Backend
+                dispatch(addNewRequestSuccess(response.data));
+            })
+            .catch(error => {
+                console.error('An error has occured', error);
+                throw (error);
+            });
         // const hardCodedRequests = [
         //     {
         //         bagsPhoto: undefined,
@@ -151,8 +150,7 @@ export const fetchUserRequests = (user_id) => {
         //      alert('An error has occured');
         //      throw (error);
         //  });
-        const hardCodedRequests = [
-            {
+        const hardCodedRequests = [{
                 id: 1,
                 location: { lat: 32.078044, lon: 34.774198 },
                 onlyPreviousHelpers: false,
