@@ -47,7 +47,7 @@
     "RequiredField": "Required Field",
     "General Info": "General Info",
     "My Requests": "My Requests",
-    "No requests found":"No requests found",
+    "No requests found": "No requests found",
     "My History": "My History",
     "Filters": "Filters",
     "Filter By": "Filter By",
@@ -89,5 +89,8 @@
     "Requester Tips": "Requester Tips",
     "Active Responses": "Active Responses",
     "Responses History": "Responses History",
-    "Helper Tips": "Helper Tips"
+    "Helper Tips": "Helper Tips",
+    "EditProfile": "Edit Profile",
+    "Points": "Points",
+    "ProfileDetails": "Profile Details"
 }

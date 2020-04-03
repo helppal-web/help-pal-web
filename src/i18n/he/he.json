@@ -10,7 +10,7 @@
     "Logout": "יציאה",
     "General Info": "פרטים כלליים",
     "My Requests": "הבקשות שלי",
-    "No requests found":"לא נמצאו בקשות",
+    "No requests found": "לא נמצאו בקשות",
     "My History": "ההיסטוריה שלי",
     "New Call": "יצירת בקשה חדשה",
     "Filters": "סינונים",
@@ -67,5 +67,8 @@
     "Requester Tips": "עצות למבקש",
     "Active Responses": "עזרות פעילות",
     "Responses History": "היסטוריית עזרות",
-    "Helper Tips": "עצות לעוזר"
+    "Helper Tips": "עצות לעוזר",
+    "EditProfile": "עריכת פרופיל",
+    "Points": "נקודות",
+    "ProfileDetails": "פרטי פרופיל"
 }
