@@ -23,23 +23,15 @@ export default function NewRequest(props) {
         comments: undefined,
         previousOnly: false,
         badgeOnly: false,
-        houseNumber : undefined
-    });
-
-    const [myLocation, setMyLocation] = useState({
+        houseNumber: undefined,
         lat: null,
         long: null
     });
 
+
     const [addresses, setAddresses] = useState([]);
-
-
-
     const { t } = useTranslation();
     const { register, handleSubmit, errors } = useForm();
-
-  
-   
 
     let debouncedFn = undefined;
     const onAddressChangeHandler = (event) => {
@@ -55,7 +47,7 @@ export default function NewRequest(props) {
     }
 
     const fetchLocations = (query) => {
-        Axios.get(`http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?text=${query}&f=json&category=Address`)
+        Axios.get(`${Config.placesAutocompleteURL}?text=${query}&f=json&category=Address`)
             .then(response => {
                 if (response.status == 200) {
                     const { data: { suggestions } } = response;
@@ -74,27 +66,15 @@ export default function NewRequest(props) {
         setRequest({ ...request, [name]: checked })
     }
 
-    useEffect(() => {
 
+    async function onSubmit() {
+        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${request.address} ${request.houseNumber}&format=json`);
+        if (response.status == 200 && response.data.length > 0) {
+            setRequest({ ...request, ['lat']: response.data[0].lat });
+            setRequest({ ...request, ['long']: response.data[0].lon });
+            //now call the server for adding new request.
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-
-            }, err => console.error(err))
         }
-
-    })
-
-    const secret = 'SQE1XBIDSVQ4DG33WNMAJOEKQXCS2USBRYMCZSOWDEF033NU';
-    const clientID = 'PKIIOVA0NSTPOAIJI3RFBAIWURUY41EBROCBK3NRMBVTRHJO';
-    const apiVersion = '20200401';
-
-    function onSubmit() {
-
-        // setTimeout(() => {
-        props.hide();
-        // }, 5000);
-        // props.onSubmit();
     }
     return (
         <div className="new-request-container">
@@ -168,10 +148,11 @@ export default function NewRequest(props) {
                             id="combo-box-demo"
                             options={addresses}
                             getOptionLabel={(option) => option.text}
-                            
+
                             onChange={(event, value) => setRequest({ ...request, ['address']: value.text })}
-                            renderInput={(params) => <TextField onChange={onAddressChangeHandler}  value={addresses} {...params} label={t('Street')} variant="outlined" />}
+                            renderInput={(params) => <TextField name="address" ref={register({ required : true })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Street')} variant="outlined" />}
                         />
+                       
                     </Col>
                     <Col sm={4}>
                         <TextField
@@ -180,6 +161,7 @@ export default function NewRequest(props) {
                             variant="outlined"
                             name="houseNumber"
                             ref={register()}
+                            type="number"
                             onChange={onPropChangeHandler}
                         />
                     </Col>
