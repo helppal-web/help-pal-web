@@ -10,7 +10,7 @@ import { cancelRequest, acceptRequest, createRequest } from '../../actions';
 import Request from '../../components/Request/Request';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
-import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
+import { responseTypes, requestTypes } from '../../helpers';
 import newCall from '../../assets/newCall.png';
 import NewRequest from '../../components/NewRequest/NewRequest';
 

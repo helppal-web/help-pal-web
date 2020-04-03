@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import './MyRequests.scss';
 import { cancelRequest, acceptRequest } from '../../actions';
 import Request from '../../components/Request/Request';
-import { responseTypes, requestStatusCode } from '../../helpers/requestHelpers';
+import { responseTypes, requestStatusCode } from '../../helpers';
 import { CardDeck } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 
