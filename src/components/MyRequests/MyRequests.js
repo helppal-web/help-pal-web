@@ -11,13 +11,11 @@ import TextField from '@material-ui/core/TextField';
 
 function MyRequests({ requests }) {
 
-    console.log(requests)
     const [localRequests, setLocalRequests] = useState({})
 
     useEffect( () => { if(localRequests !== requests) {
         setLocalRequests(requests)
     }}, [requests])
-    console.log(localRequests)
 
     const { t } = useTranslation();
 
