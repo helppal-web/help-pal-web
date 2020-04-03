@@ -40,13 +40,26 @@ export default function NewRequest(props) {
             });
     }
 
+    const parseData = (data, response) => {
+        //TODO: this is done to suit sent data with the server
+        //need to be handled later
+        data["location"] = {}
+        data.location.lat = response.data[0].lat
+        data.location.lon = response.data[0].lon
+        delete data.houseNumber
+        delete data.lat
+        delete data.lon
+        delete data.badgeOnly
+        data.priority = data.priority.toUpperCase()
+        data.category = data.category.toUpperCase()
+        return data;
+    }
+
     async function onSubmit(data) {
         const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address} ${data.houseNumber}&format=json`);
         if (response.status == 200 && response.data.length > 0) {
-            data['lat'] = response.data[0].lat
-            data['lon'] = response.data[0].lon
-
-            props.handleSubmit(data);
+            const parsedData = parseData(data, response)
+            props.handleSubmit(parsedData);
         } else {
             errors.address = t('Address Not Valid')
         }
@@ -165,13 +178,13 @@ export default function NewRequest(props) {
                             as={
                                 <Form.Check
                                     type="checkbox"
-                                    id="previousOnly"
-                                    name="previousOnly"
+                                    id="onlyPreviousHelpers"
+                                    name="onlyPreviousHelpers"
                                     label={t('Open only to previous volunteers')}
                                     value="true"
                                     className="text-start" />
                             }
-                            name="previousOnly"
+                            name="onlyPreviousHelpers"
                             control={control}
                             defaultValue={false}
                         ></Controller>
@@ -203,14 +216,14 @@ export default function NewRequest(props) {
                             multiline
                             rows="6"
                             inputProps={{
-                                name: 'comments'
+                                name: 'description'
                             }}
                             inputRef={register()}
                             variant="outlined"
                         />
                     </Col>
                     <FormHelperText className="text-danger">
-                        {errors.comments && errors.comments.message}
+                        {errors.description && errors.description.message}
                     </FormHelperText>
                 </Row>
 

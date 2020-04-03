@@ -20,6 +20,10 @@ class MainPage extends Component {
         showNewRequest: false
     }
 
+    onNewRequestSubmitted = (data) =>{
+        this.props.onCreateRequest(data)
+    }
+
     render() {
 
         const { t } = this.props;
@@ -65,7 +69,7 @@ class MainPage extends Component {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <NewRequest hide={hideRequestModal} handleSubmit={createRequest} />
+                        <NewRequest hide={hideRequestModal} handleSubmit={this.onNewRequestSubmitted} />
                     </Modal.Body>
                 </Modal>
             </div>
@@ -116,7 +120,7 @@ function mapDispatchToProps(dispatch) {
         dispatch,
         cancelRequest: bindActionCreators(cancelRequest, dispatch),
         acceptRequest: bindActionCreators(acceptRequest, dispatch),
-        createRequest: bindActionCreators(createRequest, dispatch)
+        onCreateRequest: bindActionCreators(createRequest, dispatch)
     }
 }
 
