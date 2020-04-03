@@ -83,7 +83,7 @@ export default function NewRequestModal(props) {
                     <Modal.Header closeButton>
                         <Modal.Title>
                             <img alt="" src={newRequestIcon} />
-                            <span className="app-header-title">{t('New Request')}</span>
+                            <span className="app-modal-header-title">{t('New Request')}</span>
                         </Modal.Title>
                     </Modal.Header>
 
