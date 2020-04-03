@@ -61,7 +61,7 @@ export default function SideMenu({ handleShowNewRequest }) {
     return (
         <>
             <nav className="menu-sidebar">
-                <Button variant="helppal" onClick={() => handleShowNewRequest(true)}>{t('Help Please')}</Button>
+                <Button variant="helppal" onClick={() => handleShowNewRequest(true)}>{t('new Request')}</Button>
                 <ul className="menu-list list-unstyled">
                     {routes.map((route, index) =>
                         <li key={index} className={"menu-list-item " + (location.pathname === route.route ? 'active' : '')}>

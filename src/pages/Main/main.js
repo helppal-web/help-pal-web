@@ -11,7 +11,7 @@ import Request from '../../components/Request/Request';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
 import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
-import newCall from '../../assets/newCall.png';
+import newRequestIcon from '../../assets/New-request-ic.svg';
 import NewRequest from '../../components/NewRequest/NewRequest';
 
 class MainPage extends Component {
@@ -63,8 +63,8 @@ class MainPage extends Component {
                 <Modal centered show={this.state.showNewRequest} onHide={hideRequestModal.bind(this)} dialogClassName="request-modal">
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            <img alt="" src={newCall} width="20" />
-                            {t('New Call')}
+                            <img alt="" src={newRequestIcon}  />
+                            <span className="app-header-title">{t('New Request')}</span>
                         </Modal.Title>
                     </Modal.Header>
 

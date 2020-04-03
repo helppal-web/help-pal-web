@@ -4,11 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Select, TextField, FormHelperText, Checkbox, FormControlLabel } from '@material-ui/core';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Config from '../../config/config';
-import Refresh from '@material-ui/icons/Refresh';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import _ from 'lodash';
-
-
+import resetIcon from '../../assets/Reset-ic.svg'
 import Axios from "axios";
 import './NewRequest.scss';
 
@@ -44,12 +42,21 @@ export default function NewRequest(props) {
         //TODO: this is done to suit sent data with the server
         //need to be handled later
         data["location"] = {}
+        data["ownerProfile"] = {}
+
         data.location.lat = response.data[0].lat
         data.location.lon = response.data[0].lon
         delete data.houseNumber
-        delete data.lat
-        delete data.lon
         delete data.badgeOnly
+        data.ownerProfile.name = data.name
+        data.ownerProfile.phoneNumber = data.phoneNumber
+        data.ownerProfile.address = data.address
+
+
+        delete data.name
+        delete data.phoneNumber
+        delete data.address
+
         data.priority = data.priority.toUpperCase()
         data.category = data.category.toUpperCase()
         return data;
@@ -67,6 +74,62 @@ export default function NewRequest(props) {
     return (
         <div className="new-request-container">
             <form onSubmit={handleSubmit(onSubmit)}>
+                <Row className="my-3">
+                    <Col>
+                        <TextField
+                            required
+                            label={t("Name")}
+                            placeholder={t('Name')}
+                            variant="outlined"
+                            name="name"
+                            inputRef={register({ required: t('Name is required') })}
+                        />
+                        <FormHelperText className="text-danger">
+                            {errors.name && errors.name.message}
+                        </FormHelperText>
+                    </Col>
+                    <Col>
+                        <TextField
+                            required
+                            label={t("Phone number")}
+                            placeholder={t('Phone number')}
+                            variant="outlined"
+                            name="phoneNumber"
+                            inputRef={register({ required: t('Phone number is required') })}
+                        />
+                        <FormHelperText className="text-danger">
+                            {errors.phoneNumber && errors.phoneNumber.message}
+                        </FormHelperText>
+                    </Col>
+                </Row>
+                <Row className="my-3">
+                    <Col sm={8}>
+
+                        <Autocomplete
+                            id="combo-box-demo"
+                            options={addresses}
+                            getOptionLabel={(option) => option.text}
+                            renderInput={(params) => <TextField required name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Address')} variant="outlined" />}
+                        />
+                        <FormHelperText className="text-danger">
+                            {errors.address && errors.address.message}
+                        </FormHelperText>
+                    </Col>
+                    <Col sm={4}>
+                        <TextField
+                            required
+                            label={t("House Number")}
+                            placeholder={t('House Number')}
+                            variant="outlined"
+                            name="houseNumber"
+                            inputRef={register({ required: t('House Number is required') })}
+                            type="number"
+                        />
+                        <FormHelperText className="text-danger">
+                            {errors.houseNumber && errors.houseNumber.message}
+                        </FormHelperText>
+                    </Col>
+                </Row>
                 <Row className="my-3">
                     <Col>
                         <Controller
@@ -108,68 +171,6 @@ export default function NewRequest(props) {
                             {errors.category && errors.category.message}
                         </FormHelperText>
                     </Col>
-                </Row>
-
-                <Row className="my-3">
-                    <Col>
-                        <TextField
-                            required
-                            label={t("Name")}
-                            placeholder={t('Name')}
-                            variant="outlined"
-                            name="name"
-                            inputRef={register({ required: t('Name is required') })}
-                        />
-                        <FormHelperText className="text-danger">
-                            {errors.name && errors.name.message}
-                        </FormHelperText>
-                    </Col>
-                    <Col>
-                        <TextField
-                            required
-                            label={t("Phone number")}
-                            placeholder={t('Phone number')}
-                            variant="outlined"
-                            name="phoneNumber"
-                            inputRef={register({ required: t('Phone number is required') })}
-                        />
-                        <FormHelperText className="text-danger">
-                            {errors.phoneNumber && errors.phoneNumber.message}
-                        </FormHelperText>
-                    </Col>
-                </Row>
-
-
-
-                <Row className="my-3">
-                    <Col sm={8}>
-
-                        <Autocomplete
-                            id="combo-box-demo"
-                            options={addresses}
-                            getOptionLabel={(option) => option.text}
-                            renderInput={(params) => <TextField required name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Street')} variant="outlined" />}
-                        />
-                        <FormHelperText className="text-danger">
-                            {errors.address && errors.address.message}
-                        </FormHelperText>
-                    </Col>
-                    <Col sm={4}>
-                        <TextField
-                            required
-                            label={t("House Number")}
-                            placeholder={t('House Number')}
-                            variant="outlined"
-                            name="houseNumber"
-                            inputRef={register({ required: t('House Number is required') })}
-                            type="number"
-                        />
-                        <FormHelperText className="text-danger">
-                            {errors.houseNumber && errors.houseNumber.message}
-                        </FormHelperText>
-                    </Col>
-                    {/* TODO: General form errors!! */}
-                    {/* {errors.address && <p>{t('Address is required')}</p>} */}
                 </Row>
 
                 <Row className="my-3">
@@ -230,12 +231,12 @@ export default function NewRequest(props) {
                 <Row className="my-3 request-actions">
                     <Col className="text-start">
                         <Button variant="link" type="reset">
-                            <Refresh className="refresh-icon" />
+                            <img src={resetIcon}></img>
                             {t('Reset')}
                         </Button>
                     </Col>
                     <Col className="text-end">
-                        <Button variant="helppal" type="submit">{t('Create Request')}</Button>
+                        <Button variant="helppal" type="submit">{t('open a request')}</Button>
                     </Col>
                 </Row>
             </form>
