@@ -64,7 +64,7 @@ export default function Request({ customClasses = '', request, type = requestTyp
                     </Card.Text>
                     <Card.Text className="text-start border-top pt-4">
                         <span className="d-block text-muted mb-1">Description</span>
-                        {request.comments}
+                        {request.description}
                     </Card.Text>
                     <div className="actions-container d-flex justify-content-between flex-wrap mt-3 pt-4">
                         {actions.map((action, index) =>

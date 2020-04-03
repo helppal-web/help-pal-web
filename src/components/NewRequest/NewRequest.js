@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Select, TextField } from '@material-ui/core';
+import { Select, TextField, FormHelperText, Checkbox, FormControlLabel } from '@material-ui/core';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Config from '../../config/config';
 import Refresh from '@material-ui/icons/Refresh';
@@ -14,31 +14,15 @@ import './NewRequest.scss';
 
 export default function NewRequest(props) {
 
-    const [request, setRequest] = useState({
-        category: undefined,
-        priority: undefined,
-        name: undefined,
-        phoneNumber: undefined,
-        address: undefined,
-        comments: undefined,
-        previousOnly: false,
-        badgeOnly: false,
-        houseNumber: undefined,
-        lat: null,
-        long: null
-    });
-
-
     const [addresses, setAddresses] = useState([]);
     const { t } = useTranslation();
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors, control } = useForm();
 
     let debouncedFn = undefined;
     const onAddressChangeHandler = (event) => {
         event.persist();
         if (!debouncedFn) {
             debouncedFn = _.debounce(() => {
-                onPropChangeHandler(event);
                 fetchLocations(event.target.value);
             }, 500);
         }
@@ -56,24 +40,15 @@ export default function NewRequest(props) {
             });
     }
 
-    const onPropChangeHandler = (event) => {
-        const { name, value } = event.target;
-        setRequest({ ...request, [name]: value === "" ? undefined : value })
-    }
-
-    const onCheckedChangedHandler = (event) => {
-        const { name, checked } = event.target;
-        setRequest({ ...request, [name]: checked })
-    }
-
-
-    async function onSubmit() {
-        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${request.address} ${request.houseNumber}&format=json`);
+    async function onSubmit(data) {
+        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address} ${data.houseNumber}&format=json`);
         if (response.status == 200 && response.data.length > 0) {
-            setRequest({ ...request, ['lat']: response.data[0].lat });
-            setRequest({ ...request, ['long']: response.data[0].lon });
-            //now call the server for adding new request.
+            data['lat'] = response.data[0].lat
+            data['lon'] = response.data[0].lon
 
+            props.handleSubmit(data);
+        } else {
+            errors.address = t('Address Not Valid')
         }
     }
     return (
@@ -81,33 +56,44 @@ export default function NewRequest(props) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Row className="my-3">
                     <Col>
-                        <Select
-                            native
-                            value={request.priority}
-                            ref={register({ required: true, validate: value => value !== undefined })}
+                        <Controller
+                            as={
+                                <Select required native>
+                                    <option aria-label="None" value={undefined}>{t('Priority')}</option>
+                                    {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
+                                        {t(priority)}
+                                    </option>) : ''}
+                                </Select>
+                            }
                             name="priority"
-                            onChange={onPropChangeHandler}
+                            rules={{ required: t('Priority is required') }}
+                            control={control}
                         >
-                            <option aria-label="None" value={undefined}>{t('Priority')}</option>
-                            {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
-                                {t(priority)}
-                            </option>) : ''}
-                        </Select>
+                        </Controller>
+                        <FormHelperText className="text-danger">
+                            {errors.priority && errors.priority.message}
+                        </FormHelperText>
+
                         {/* TODO: Add whenever in hours..? */}
                     </Col>
                     <Col>
-                        <Select
-                            native
-                            value={request.category}
-                            ref={register({ required: true, validate: value => value !== undefined })}
+                        <Controller
+                            as={
+                                <Select required native>
+                                    <option aria-label="None" value={undefined}>{t('Category')}</option>
+                                    {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
+                                        {t(category)}
+                                    </option>) : ''}
+                                </Select>
+                            }
                             name="category"
-                            onChange={onPropChangeHandler}
+                            rules={{ required: t('Category is required') }}
+                            control={control}
                         >
-                            <option aria-label="None" value={undefined}>{t('Category')}</option>
-                            {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
-                                {t(category)}
-                            </option>) : ''}
-                        </Select>
+                        </Controller>
+                        <FormHelperText className="text-danger">
+                            {errors.category && errors.category.message}
+                        </FormHelperText>
                     </Col>
                 </Row>
 
@@ -117,25 +103,26 @@ export default function NewRequest(props) {
                             required
                             label={t("Name")}
                             placeholder={t('Name')}
-                            defaultValue={request.name}
                             variant="outlined"
                             name="name"
-                            ref={register({ required: true })}
-                            onChange={onPropChangeHandler}
+                            inputRef={register({ required: t('Name is required') })}
                         />
+                        <FormHelperText className="text-danger">
+                            {errors.name && errors.name.message}
+                        </FormHelperText>
                     </Col>
                     <Col>
                         <TextField
                             required
                             label={t("Phone number")}
                             placeholder={t('Phone number')}
-                            defaultValue={request.phoneNumber}
                             variant="outlined"
                             name="phoneNumber"
-                            ref={register({ required: true })}
-                            onChange={onPropChangeHandler}
+                            inputRef={register({ required: t('Phone number is required') })}
                         />
-
+                        <FormHelperText className="text-danger">
+                            {errors.phoneNumber && errors.phoneNumber.message}
+                        </FormHelperText>
                     </Col>
                 </Row>
 
@@ -148,22 +135,25 @@ export default function NewRequest(props) {
                             id="combo-box-demo"
                             options={addresses}
                             getOptionLabel={(option) => option.text}
-
-                            onChange={(event, value) => setRequest({ ...request, ['address']: value.text })}
-                            renderInput={(params) => <TextField name="address" ref={register({ required : true })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Street')} variant="outlined" />}
+                            renderInput={(params) => <TextField required name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Street')} variant="outlined" />}
                         />
-                       
+                        <FormHelperText className="text-danger">
+                            {errors.address && errors.address.message}
+                        </FormHelperText>
                     </Col>
                     <Col sm={4}>
                         <TextField
-                            label={t("HouseNumber")}
-                            placeholder={t('HouseNumber')}
+                            required
+                            label={t("House Number")}
+                            placeholder={t('House Number')}
                             variant="outlined"
                             name="houseNumber"
-                            ref={register()}
+                            inputRef={register({ required: t('House Number is required') })}
                             type="number"
-                            onChange={onPropChangeHandler}
                         />
+                        <FormHelperText className="text-danger">
+                            {errors.houseNumber && errors.houseNumber.message}
+                        </FormHelperText>
                     </Col>
                     {/* TODO: General form errors!! */}
                     {/* {errors.address && <p>{t('Address is required')}</p>} */}
@@ -171,29 +161,41 @@ export default function NewRequest(props) {
 
                 <Row className="my-3">
                     <Col>
-                        <Form.Check
-                            type="checkbox"
+                        <Controller
+                            as={
+                                <Form.Check
+                                    type="checkbox"
+                                    id="previousOnly"
+                                    name="previousOnly"
+                                    label={t('Open only to previous volunteers')}
+                                    value="true"
+                                    className="text-start" />
+                            }
                             name="previousOnly"
-                            label={t('Open only to previous volunteers')}
-                            value={request.previousOnly}
-                            checked={request.previousOnly}
-                            onChange={onCheckedChangedHandler}
-                            className="text-start" />
+                            control={control}
+                            defaultValue={false}
+                        ></Controller>
+                        {/* TODO: Add option to release to public after x hours */}
                     </Col>
                     <Col>
-                        <Form.Check
-                            type="checkbox"
+                        <Controller
+                            as={
+                                <Form.Check
+                                    type="checkbox"
+                                    id="badgeOnly"
+                                    name="badgeOnly"
+                                    label={t('Open only to helpers with badge')}
+                                    value="true"
+                                    className="text-start" />
+                            }
                             name="badgeOnly"
-                            label={t('Open only to helpers with badge')}
-                            value={request.badgeOnly}
-                            checked={request.badgeOnly}
-                            onChange={onCheckedChangedHandler}
-                            className="text-start" />
+                            control={control}
+                            defaultValue={false}
+                        ></Controller>
+
                     </Col>
                 </Row>
-                {/* TODO: Add option to release to public after x hours */}
 
-                {/* <input type="text" name="comments" placeholder={t("Description")} /> */}
                 <Row className="my-3">
                     <Col>
                         <TextField
@@ -203,11 +205,13 @@ export default function NewRequest(props) {
                             inputProps={{
                                 name: 'comments'
                             }}
-                            defaultValue={request.comments}
+                            inputRef={register()}
                             variant="outlined"
-                            onChange={onPropChangeHandler}
                         />
                     </Col>
+                    <FormHelperText className="text-danger">
+                        {errors.comments && errors.comments.message}
+                    </FormHelperText>
                 </Row>
 
                 <Row className="my-3 request-actions">
@@ -222,6 +226,6 @@ export default function NewRequest(props) {
                     </Col>
                 </Row>
             </form>
-        </div>
+        </div >
     );
 }

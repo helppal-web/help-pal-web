@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -11,18 +11,26 @@ import TextField from '@material-ui/core/TextField';
 
 function MyRequests({ requests }) {
 
-    const [localRequests, setLocalRequests] = useState(requests)
+    const [localRequests, setLocalRequests] = useState({})
+
+    useEffect( () => { if(localRequests !== requests) {
+        setLocalRequests(requests)
+    }}, [requests])
+
     const { t } = useTranslation();
 
     function sortByStatus(a, b) {
         return requestStatusCode[a.status] - requestStatusCode[b.status];
     }
 
+    let requestsData = localRequests && localRequests.length ? localRequests.sort(sortByStatus).map((request) => <Request key={request.id} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)
+        : <div>{t('No requests found')}</div>
+
     return (
         <div className="container text-start">
             <TextField className="search-bar mx-4 mt-3" label="Search..." type="search" variant="outlined" onChange={filter} />
             <CardDeck className="row mx-auto mt-4" >
-                {localRequests.sort(sortByStatus).map((request, index) => <Request key={index} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)}
+                {requestsData}
             </CardDeck>
         </div>
     )
