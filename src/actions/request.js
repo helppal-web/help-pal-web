@@ -91,8 +91,8 @@ export const fetchAllRequests = () => {
 export const fetchRequestsSuccess = (data) => {
     return {
         type: FETCH_REQUESTS,
-        requests: data.requests,
-        count: data.count
+        requests: data,
+        count: data.length
     }
 };
 
