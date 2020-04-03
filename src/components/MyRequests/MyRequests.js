@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -11,14 +11,21 @@ import TextField from '@material-ui/core/TextField';
 
 function MyRequests({ requests }) {
 
-    const [localRequests, setLocalRequests] = useState(requests)
+    console.log(requests)
+    const [localRequests, setLocalRequests] = useState({})
+
+    useEffect( () => { if(localRequests !== requests) {
+        setLocalRequests(requests)
+    }}, [requests])
+    console.log(localRequests)
+
     const { t } = useTranslation();
 
     function sortByStatus(a, b) {
         return requestStatusCode[a.status] - requestStatusCode[b.status];
     }
 
-    let requestsData = localRequests && localRequests.length ? localRequests.sort(sortByStatus).map((request, index) => <Request key={index} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)
+    let requestsData = localRequests && localRequests.length ? localRequests.sort(sortByStatus).map((request) => <Request key={request.id} request={request} customClasses={'col-sm-4'} callback={requestCallback} />)
         : <div>No Requests found!</div>
 
     return (
