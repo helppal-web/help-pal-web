@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import coloredLogo from '../../assets/helppal-logo-colored.svg';
 import logisterImage from '../../assets/logister-image.png';
 
-function Logister({ logister, login, currentUser }) {
+function Logister({ logister, login, currentUser, fetchUserById }) {
     const [key, setKey] = useState(logister);
     const { t } = useTranslation();
     const history = useHistory();
@@ -20,9 +20,10 @@ function Logister({ logister, login, currentUser }) {
     const user = getUserFromStorage();
     if (user && user.id) {
         if (!currentUser) {
-            fetchUserById(user.id);
+            fetchUserById(user.id).then((res) => {
+                history.push('/');
+            });
         }
-        history.push('/');
     }
 
     return (
@@ -36,12 +37,12 @@ function Logister({ logister, login, currentUser }) {
                                 id="logister-tab-control"
                                 activeKey={key}
                                 onSelect={(k) => setKey(k)}>
-                                
+
                                 {/* TODO TODO TODO!!!!!!! looks awful*/}
                                 <Nav.Link eventKey="login">{t('Sign in')}</Nav.Link>
                                 and go to HelpPal
                                 <Nav.Link eventKey="register">{t('Sign up')}</Nav.Link>
-                                
+
                                 <Tab.Content>
                                     <Tab.Pane eventKey="login">
                                         <Login onSubmit={login} />

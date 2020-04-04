@@ -55,15 +55,16 @@ export default function Login({ onSubmit }) {
                         <Form.Check
                             type="checkbox"
                             name="rememberMe"
+                            id="rememberMe"
                             label={t('Remember me')}
                             value={rememberMe}
                             checked={rememberMe}
                             ref={register}
                             onChange={(event) => setRememberMe(event.target.checked)}
                         />
+                        {errors.submitError && <p>{errors.submitError.message}</p>}
                     </div>
                     <div>
-                        {errors.submitError && <p>{errors.submitError.message}</p>}
                         <Button className="px-4" variant="helppal" type="submit">{t('Login')}</Button>
                     </div>
                 </div>

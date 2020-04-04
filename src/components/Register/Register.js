@@ -55,6 +55,8 @@ export default function Register({ onSubmit }) {
                 <div className="d-flex justify-content-end mt-5">
                     <div>
                         {errors.submitError && <p>{errors.submitError.message}</p>}
+                    </div>
+                    <div>
                         <Button className="px-4" variant="helppal" type="submit">{t('Register')}</Button>
                     </div>
                 </div>

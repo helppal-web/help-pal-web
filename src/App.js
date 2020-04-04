@@ -31,12 +31,14 @@ class App extends React.Component {
         this.resize();
         document.body.style.direction = this.props.i18n.dir();
 
-        const { currentUser } = this.props;
+        const { currentUser, fetchUserById } = this.props;
         const user = getUserFromStorage();
 
         if (user && user.id) {
             if (!currentUser) {
-                fetchUserById(user.id);
+                fetchUserById(user.id).then().catch((err) => {
+                    history.push('/login');
+                });
             }
         } else {
             history.push('/login');
