@@ -20,7 +20,7 @@ class ActiveRequest extends Component {
 
         this.actions = [
             {
-                icon: () => <img src={CancelButton} />,
+                icon: () => <img alt="cancel" src={CancelButton} />,
                 tooltip: 'Cancel',
                 onClick: (event, rowData) => console.log(rowData)
             }

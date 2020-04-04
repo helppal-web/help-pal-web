@@ -18,7 +18,7 @@ export default function ProfileCard(props) {
 
     let imgSrc = user.image;
     let imgClass = "profile-card-img";
-    if (imgSrc == "" || imgSrc == null) {
+    if (imgSrc === "" || imgSrc === null) {
         imgSrc = noProfileImage;
         imgClass = "profile-card-img no-image";
     }
@@ -29,7 +29,7 @@ export default function ProfileCard(props) {
                 <div className="profile-card-header mb-4">
                     <div className="profile-card-img-wrapper">
                         <div className={imgClass}>
-                            <img src={imgSrc}></img>
+                            <img alt="profile" src={imgSrc}></img>
                         </div>
                         <div className="ml-2 mr-2">
                             <div className="profile-card-name">{user.name}</div>

@@ -42,10 +42,10 @@ export default function GenralInfo() {
             <div className="profile-card-inner">
                 <div className="d-flex mb-2">
                     <div className="profile-card-img">
-                        <img></img>
+                        <img alt=""></img>
                     </div>
                     <div className="upload-photo-wrapper">
-                        <img src={PlusIcon}></img>
+                        <img alt="" src={PlusIcon}></img>
                         <label>{t('UploadPhoto')}</label>
                         <input id="profile-photo-image" onChange={(event) => {
                             handleFileSelect(event)

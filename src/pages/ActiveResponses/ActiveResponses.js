@@ -5,7 +5,6 @@ import { withTranslation } from 'react-i18next';
 import CancelButton from "../../assets/Cancel-bt.png"
 import FinishButton from "../../assets/Finish-bt.png"
 import './ActiveResponses.scss';
-import { Button } from 'react-bootstrap';
 import { statusToColor } from '../../helpers';
 
 class ActiveResponses extends Component {
@@ -15,23 +14,13 @@ class ActiveResponses extends Component {
         this.data = []
 
         this.actions = [
-            // {
-            //     icon: () => <Button variant="outline-danger">{this.translate('CANCEL')}</Button>,
-            //     tooltip: 'Cancel Response',
-            //     onClick: (event, rowData) => console.log(rowData)
-            // },
-            // {
-            //     icon: () => <Button variant="helppal">{this.translate('FINISH')}</Button>,
-            //     tooltip: 'Finish Response',
-            //     onClick: (event, rowData) => console.log(rowData)
-            // }
             {
-                icon: () => <img src={CancelButton} />,
+                icon: () => <img alt="cancel" src={CancelButton} />,
                 tooltip: 'Cancel',
                 onClick: (event, rowData) => console.log(rowData)
             },
             {
-                icon: () => <img src={FinishButton} />,
+                icon: () => <img alt="finish" src={FinishButton} />,
                 tooltip: 'Finish',
                 onClick: (event, rowData) => console.log(rowData)
             }

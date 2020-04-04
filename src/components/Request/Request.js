@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from "react-bootstrap";
 import './Request.scss';
 import { useTranslation } from 'react-i18next';
-import { statusToColor, requestTypes, responseTypes, requestStatuses } from '../../helpers';
+import { requestTypes, responseTypes, requestStatuses } from '../../helpers';
 
 export default function Request({ customClasses = '', request, type = requestTypes.HELP, customCardClasses = '', callback }) {
     const { t } = useTranslation();

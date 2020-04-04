@@ -1,7 +1,5 @@
 
 import { FETCH_SEEKERS } from './types';
-import * as Config from '../config/config';
-import axios from 'axios';
 export * from './request';
 export * from './notifications';
 export * from './user';

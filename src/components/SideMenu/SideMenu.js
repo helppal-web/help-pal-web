@@ -34,7 +34,7 @@ function SideMenu(props) {
     let requesterRoutes = [
         {
             route: '/app/requests/active',
-            icon: <img className="menu-icon" src={ActiveRequestsIcon}></img>,
+            icon: <img alt="active-requests-ic" className="menu-icon" src={ActiveRequestsIcon}></img>,
             text: t('Active Requests')
         },
         {
@@ -57,7 +57,7 @@ function SideMenu(props) {
     let helperRoutes = [
         {
             route: '/app/responses/active',
-            icon: <img className="menu-icon" src={ActiveResponsesIcon}></img>,
+            icon: <img alt="active-responsers-ic" className="menu-icon" src={ActiveResponsesIcon}></img>,
             text: t('Active Responses')
         },
         {
