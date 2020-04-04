@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-function Logister({ logister }) {
+function Logister({ logister, login }) {
     const [key, setKey] = useState(logister);
     const { t } = useTranslation();
 
