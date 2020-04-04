@@ -8,8 +8,6 @@ import { useTranslation } from 'react-i18next';
 import SideMenu from "../components/SideMenu/SideMenu";
 
 
-
-
 const AppLayout = ({ children }) => (
     <div>
         <Header />
@@ -61,4 +59,4 @@ const AppLayoutRoute = ({ component: Component, ...rest }) => {
     )
 };
 
-export default AppLayoutRoute; 
+export default AppLayoutRoute;

@@ -5,7 +5,8 @@ import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { Button, Modal } from 'react-bootstrap';
 import newCall from '../../assets/newCall.png';
-import NewRequest from "../../components/NewRequest/NewRequest";
+import NewRequestModal from "../../components/NewRequestModal/NewRequestModal";
+import ActiveRequestsIcon from '../../assets/sidemenu/ActiveRequests.svg'
 
 
 
@@ -29,23 +30,23 @@ export default function SideMenu() {
 
     let requesterRoutes = [
         {
-            route: '/app/active',
-            icon: <History className="history-icon" />,
+            route: '/app/requests/active',
+            icon: <img className="menu-icon" src={ActiveRequestsIcon}></img>,
             text: t('Active Requests')
         },
         {
             route: '/app/requests/history',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Requests History')
         },
         {
             route: '/app/favorite',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('My Favorite Helpers')
         },
         {
             route: '/app/tips',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Requester Tips')
         }
     ]
@@ -53,17 +54,17 @@ export default function SideMenu() {
     let helperRoutes = [
         {
             route: '/app/history',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Active Responses')
         },
         {
             route: '/app/responses/history',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Responses History')
         },
         {
             route: '/app/tips',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Helper Tips')
         }
     ]
@@ -108,18 +109,8 @@ export default function SideMenu() {
                 </ul>
             </nav>
 
-            <Modal centered show={showNewRequestModal} onHide={()=> setNewRequestModal(false)} dialogClassName="request-modal">
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        <img alt="" src={newCall} width="20" />
-                        {t('New Call')}
-                    </Modal.Title>
-                </Modal.Header>
-
-                <Modal.Body>
-                    <NewRequest hide={!showNewRequestModal} handleSubmit={onNewRequestSubmitted} />
-                </Modal.Body>
-            </Modal>
+            <NewRequestModal></NewRequestModal>
+           
         </>
     )
 }

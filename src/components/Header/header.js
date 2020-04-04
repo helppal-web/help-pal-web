@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './header.scss';
-import HelpPal_logo from '../../assets/logo.JPG';
+import HelpPalLogo from '../../assets/HelpPal-Logo.svg';
+import profile_placeholder from '../../assets/profile_placeholder.svg';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,11 +10,12 @@ import UserProfile from "./UserProfileMenu/UserProfileMenu";
 import LanguagesMenu from './LanguagesMenu/LanguagesMenu'
 import NotificationsMenu from './NotificationsMenu/NotificationsMenu'
 import * as Config from '../../config/config';
+import { connect } from 'react-redux';
 
 
 class Header extends Component {
     render() {
-        const { t } = this.props;
+        const { t, currentUser } = this.props;
         return (
             <div className="app-bar" >
                 <AppBar className="helppal-bar">
@@ -22,12 +24,17 @@ class Header extends Component {
                             <div className="app-logo-wrapper">
                                 <h1>
                                     <Link to='/'>
-                                        <img height="60" alt='HelpPal' src={HelpPal_logo} />
-                                        <span className="logo-text text-white mx-2">{t('HelpPal')}</span>
+                                        <img height="60" alt='HelpPal' src={HelpPalLogo} />
                                     </Link >
                                 </h1>
                             </div>
                             <div className="user-actions-wrapper">
+                                {currentUser ?
+                                    <>
+                                        <img width="45" height="45" src={currentUser.image ? currentUser.image : profile_placeholder} className="rounded-circle mx-2" alt="" />
+                                        {currentUser.name}
+                                    </>
+                                    : ''}
                                 <NotificationsMenu></NotificationsMenu>
                                 <LanguagesMenu languages={Config.languages}></LanguagesMenu>
                                 <UserProfile></UserProfile>
@@ -42,4 +49,12 @@ class Header extends Component {
     }
 }
 
-export default withTranslation()(Header);
+const mapStateToProps = (store) => {
+    const { user } = store;
+
+    return {
+        currentUser: user.currentUser
+    }
+}
+
+export default connect(mapStateToProps)(withTranslation()(Header));

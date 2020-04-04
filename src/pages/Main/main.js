@@ -21,12 +21,10 @@ class MainPage extends Component {
     }
 
 
-
     render() {
 
-        const { t } = this.props;
+        const { t, requests } = this.props;
         const markers = [];
-        const { requests } = this.props;
 
         if (requests && requests.length) {
             requests.forEach((request) => {
@@ -61,14 +59,6 @@ class MainPage extends Component {
     }
 }
 
-function hideRequestModal() {
-    this.setState({ showNewRequest: false })
-}
-
-function showRequestModal() {
-    this.setState({ showNewRequest: true })
-}
-
 function requestCallback(responseType, request) {
 
     switch (responseType) {
@@ -92,9 +82,10 @@ function requestCallback(responseType, request) {
 }
 
 const mapStateToProps = (store) => {
-    const { requests } = store;
+    const { requests, user } = store;
     return {
-        requests: requests.requests
+        requests: requests.requests,
+        currentUser: user.currentUser
     }
 }
 
