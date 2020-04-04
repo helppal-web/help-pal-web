@@ -2,21 +2,16 @@ import React, { Component, } from 'react';
 import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
-import { statusToColor } from '../../helpers';
 import CancelButton from "../../assets/Cancel-bt.png"
+import { statusToColor } from '../../helpers';
+
+
 class ActiveRequest extends Component {
 
     constructor(props) {
         super(props);
         this.data = []
         this.title = 'Active Requests'
-        this.columns = [
-            { title: "DATE", field: "created" },
-            { title: "CATEGORY", field: "category" },
-            { title: "PRIORITY", field: "priority" },
-            { title: "DESCRIPTION", field: "description" },
-            { title: "STATUS", field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
-        ];
 
         this.actions = [
             {

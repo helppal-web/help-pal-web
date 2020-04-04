@@ -4,6 +4,7 @@ import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelButton from "../../assets/Cancel-bt.png"
 import FinishButton from "../../assets/Finish-bt.png"
+import { statusToColor } from '../../helpers';
 
 
 class ActiveResponses extends Component {
@@ -47,7 +48,7 @@ class ActiveResponses extends Component {
             { title: this.props.t("CATEGORY"), field: "category" },
             { title: this.props.t("PRIORITY"), field: "priority" },
             { title: this.props.t("DESCRIPTION"), field: "description" },
-            { title: this.props.t("STATUS"), field: "status" }
+            { title: "STATUS", field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
         ];
         return (
             <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
