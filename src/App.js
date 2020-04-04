@@ -12,8 +12,8 @@ import ActiveResponses from './pages/ActiveResponses/ActiveResponses';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUserFromStorage } from './helpers';
-import { fetchUserById } from './actions';
 import RequestsHistory from "./pages/RequestsHistory/RequestsHistory";
+import * as actions from './actions';
 
 export const APP_PATHS = {
     app: '/app',
@@ -35,12 +35,16 @@ class App extends React.Component {
         this.resize();
         document.body.style.direction = this.props.i18n.dir();
 
-        const { currentUser, fetchUserById } = this.props;
+        const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications} = this.props;
         const user = getUserFromStorage();
 
         if (user && user.id) {
+
             if (!currentUser) {
-                fetchUserById(user.id).then().catch((err) => {
+                fetchUserById(user.id).then(() => {
+                    fetchAllRequests();
+                    fetchNotifications();
+                }).catch((err) => {
                     history.push('/login');
                 });
             }
@@ -86,7 +90,9 @@ const mapStateToProps = (store) => {
 function mapDispatchToProps(dispatch) {
     return {
         dispatch,
-        fetchUserById: bindActionCreators(fetchUserById, dispatch)
+        fetchUserById: bindActionCreators(actions.fetchUserById, dispatch),
+        fetchAllRequests: bindActionCreators(actions.fetchAllRequests, dispatch),
+        fetchNotifications: bindActionCreators(actions.fetchNotifications, dispatch)
     }
 }
 

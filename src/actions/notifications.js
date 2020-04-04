@@ -1,6 +1,4 @@
 import { FETCH_NOTIFICATIONS } from './types';
-import * as Config from '../config/config';
-import axios from 'axios';
 
 export const fetchNotifications = () => {
     return (dispatch) => {

@@ -16,7 +16,7 @@ export default function Login({ onSubmit }) {
         onSubmit(data).then(() => {
             history.push('/app');
         }).catch((err) => {
-            if (err.wrongPass || err.response && err.response.status === 404) {
+            if (err.wrongPass || (err.response && err.response.status === 404)) {
                 setError('submitError', 'invalid', 'Email or Password is incorrect');
             } else {
                 setError('submitError', 'invalid', 'An error has occured');

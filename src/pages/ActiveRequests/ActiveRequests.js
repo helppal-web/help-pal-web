@@ -2,25 +2,20 @@ import React, { Component, } from 'react';
 import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
-import { statusToColor } from '../../helpers';
 import CancelButton from "../../assets/Cancel-bt.png"
+import { statusToColor } from '../../helpers';
+
+
 class ActiveRequest extends Component {
 
     constructor(props) {
         super(props);
         this.data = []
         this.title = 'Active Requests'
-        this.columns = [
-            { title: "DATE", field: "created" },
-            { title: "CATEGORY", field: "category" },
-            { title: "PRIORITY", field: "priority" },
-            { title: "DESCRIPTION", field: "description" },
-            { title: "STATUS", field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
-        ];
 
         this.actions = [
             {
-                icon: () => <img src={CancelButton} />,
+                icon: () => <img alt="cancel" src={CancelButton} />,
                 tooltip: 'Cancel',
                 onClick: (event, rowData) => console.log(rowData)
             }
@@ -33,6 +28,7 @@ class ActiveRequest extends Component {
         this.data = [];
         this.props.requests.forEach((request) => {
             if (request.ownerProfile && this.props.currentUser && request.ownerProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+                                //let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
                 const { created, category, priority, description, status } = request;
                 this.data.push({ created, category, priority, description, status })
             }

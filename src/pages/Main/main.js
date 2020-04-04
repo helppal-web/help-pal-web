@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import './main.scss';
 import Map from '../../components/Map/Map';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
-import { cancelRequest, acceptRequest, createRequest } from '../../actions';
+import { cancelRequest, acceptRequest } from '../../actions';
 import Request from '../../components/Request/Request';
 import helpCall from '../../assets/Helper-icon.svg';
 import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
 
 class MainPage extends Component {
 
-    state = {
-        showNewRequest: false
-    }
-
-    onNewRequestSubmitted = (data) =>{
-        this.props.onCreateRequest(data)
-    }
 
 
     render() {
@@ -93,14 +85,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-
-function mapDispatchToProps(dispatch) {
-    return {
-        dispatch,
-        cancelRequest: bindActionCreators(cancelRequest, dispatch),
-        acceptRequest: bindActionCreators(acceptRequest, dispatch),
-        onCreateRequest: bindActionCreators(createRequest, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(MainPage));
+export default connect(mapStateToProps, null)(withTranslation()(MainPage));

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Select, TextField, FormHelperText, Checkbox, FormControlLabel } from '@material-ui/core';
+import { Select, TextField, FormHelperText} from '@material-ui/core';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Config from '../../config/config';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -35,7 +35,7 @@ export default function NewRequestModal(props) {
     const fetchLocations = (query) => {
         Axios.get(`${Config.placesAutocompleteURL}?text=${query}&f=json&category=Address`)
             .then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     const { data: { suggestions } } = response;
                     setAddresses(suggestions);
                 }
@@ -68,7 +68,7 @@ export default function NewRequestModal(props) {
 
     async function onSubmit(data) {
         const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address} ${data.houseNumber}&format=json`);
-        if (response.status == 200 && response.data.length > 0) {
+        if (response.status === 200 && response.data.length > 0) {
             const parsedData = parseData(data, response)
             props.handleSubmit(parsedData);
         } else {
@@ -82,7 +82,7 @@ export default function NewRequestModal(props) {
 
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            <img alt="" src={newRequestIcon} />
+                            <img alt="new-request-icon" src={newRequestIcon} />
                             <span className="app-modal-header-title">{t('New Request')}</span>
                         </Modal.Title>
                     </Modal.Header>
@@ -245,7 +245,7 @@ export default function NewRequestModal(props) {
                     <Modal.Footer>
                         <Col className="text-start">
                             <Button variant="link" type="reset">
-                                <img src={resetIcon}></img>
+                                <img alt="reset-icon"src={resetIcon}></img>
                             </Button>
                             {t('Reset')}
                         </Col>

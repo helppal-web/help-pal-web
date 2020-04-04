@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 
 class Header extends Component {
     render() {
-        const { t, currentUser } = this.props;
+        const {  currentUser } = this.props;
         return (
             <div className="app-bar" >
                 <AppBar className="helppal-bar">
