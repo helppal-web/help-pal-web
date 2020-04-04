@@ -77,9 +77,15 @@
   "YearOfBirth": "שנת לידה",
   "FINISH": "סיים",
   "CANCEL": "בטל",
+  "No records to display": "אין רשומות להציג",
+  "First Page": "דף ראשון",
+  "Last Page": "דף אחרון",
+  "Next Page": "הדף הבא",
+  "Previous Page": "הדף הקודם",
   "DATE": "תאריך",
   "CATEGORY": "קטגוריה",
-  "PRIORITY": "עדיפות",
+  "PRIORITY": "חשיבות",
   "DESCRIPTION": "תיאור",
-  "STATUS": "סטטוס"
+  "STATUS": "סטטוס",
+  "Search": "חיפוש"
 }

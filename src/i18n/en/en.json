@@ -99,9 +99,15 @@
   "YearOfBirth": "Year Of Birth",
   "FINISH": "FINISH",
   "CANCEL": "CANCEL",
+  "No records to display": "No records to display",
+  "First Page": "First Page",
+  "Last Page": "Last Page",
+  "Next Page": "Next Page",
+  "Previous Page": "Previous Page",
   "DATE": "DATE",
-  "CATEGORY": "CATEGORY",
-  "PRIORITY": "PRIORITY",
-  "DESCRIPTION": "DESCRIPTION",
-  "STATUS": "STATUS"
+  "CATEGORY":"CATEGORY",
+  "PRIORITY":"PRIORITY",
+  "DESCRIPTION":"DESCRIPTION",
+  "STATUS":"STATUS",
+  "Search":"Search"
 }

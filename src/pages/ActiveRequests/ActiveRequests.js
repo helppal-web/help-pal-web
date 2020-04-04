@@ -1,9 +1,9 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, } from 'react';
 import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
-import CancelIcon from '@material-ui/icons/Cancel';
 import { statusToColor } from '../../helpers';
+import CancelButton from "../../assets/Cancel-bt.png"
 class ActiveRequest extends Component {
 
     constructor(props) {
@@ -20,29 +20,37 @@ class ActiveRequest extends Component {
 
         this.actions = [
             {
-            icon: () => <CancelIcon />,
-            tooltip: 'Save User',
-            onClick: (event, rowData) => console.log(rowData)
-          }
+                icon: () => <img src={CancelButton} />,
+                tooltip: 'Cancel',
+                onClick: (event, rowData) => console.log(rowData)
+            }
         ];
     }
-    
+
 
 
     parseData = () => {
         this.data = [];
         this.props.requests.forEach((request) => {
-            const { created, category, priority, description, status } = request;
-            this.data.push({ created, category, priority, description, status })
+            if (request.ownerProfile && this.props.currentUser && request.ownerProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+                const { created, category, priority, description, status } = request;
+                this.data.push({ created, category, priority, description, status })
+            }
         });
-
     }
 
     render() {
         this.parseData();
-        console.log(this.data)
+        this.title = this.props.t('Active Requests')
+        this.columns = [
+            { title: this.props.t("DATE"), field: "created" },
+            { title: this.props.t("CATEGORY"), field: "category" },
+            { title: this.props.t("PRIORITY"), field: "priority" },
+            { title: this.props.t("DESCRIPTION"), field: "description" },
+            { title: this.props.t("STATUS"), field: "status" }
+        ];
         return (
-           <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
         )
     }
 }
@@ -50,9 +58,10 @@ class ActiveRequest extends Component {
 
 
 const mapStateToProps = (store) => {
-    const { requests } = store;
+    const { requests, user } = store;
     return {
-        requests: requests.requests
+        requests: requests.requests,
+        currentUser: user.currentUser
     }
 }
 
