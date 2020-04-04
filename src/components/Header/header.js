@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './header.scss';
-import HelpPal_logo from '../../assets/logo.JPG';
+import HelpPalLogo from '../../assets/HelpPal-Logo.svg';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,8 +22,7 @@ class Header extends Component {
                             <div className="app-logo-wrapper">
                                 <h1>
                                     <Link to='/'>
-                                        <img height="60" alt='HelpPal' src={HelpPal_logo} />
-                                        <span className="logo-text text-white mx-2">{t('HelpPal')}</span>
+                                        <img height="60" alt='HelpPal' src={HelpPalLogo} />
                                     </Link >
                                 </h1>
                             </div>
