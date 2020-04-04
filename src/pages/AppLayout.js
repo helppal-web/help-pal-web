@@ -29,15 +29,15 @@ const AppLayoutRoute = ({ component: Component, ...rest }) => {
 
     }
 
-    const showNewRequestModalHandler = () =>{
-        
+    const showNewRequestModalHandler = () => {
+
     }
 
     return (
         <Route {...rest} render={matchProps => (
             <AppLayout>
-                <div className="d-flex" >
-                <SideMenu handleShowNewRequest={showNewRequestModalHandler} />
+                <div className="d-flex" style={{ paddingTop: '130px' }} >
+                    <SideMenu handleShowNewRequest={showNewRequestModalHandler} />
                     <div className="flex-grow-1">
                         <Component {...matchProps} />
                     </div>
