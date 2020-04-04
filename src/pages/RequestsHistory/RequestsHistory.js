@@ -9,11 +9,11 @@ export default function RequestsHistory() {
 
     const { t } = useTranslation();
     const tableColumns = [
-        { title: t('Date'), field: "created" },
-        { title: t('Category'), field: "category" },
-        { title: "Priority", field: "priority" },
-        { title: "Description", field: "description" },
-        { title: "Status", field: "status" }
+        { title: t('DATE'), field: "created" },
+        { title: t('CATEGORY'), field: "category" },
+        { title: t("PRIORITY"), field: "priority" },
+        { title: "DESCRIPTION", field: "description" },
+        { title: "STATUS", field: "status" }
     ]
 
     const requests = useSelector(state => state.requests.requests);

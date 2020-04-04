@@ -8,6 +8,7 @@ import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
 import Notifications from './pages/Notifications/Notifications';
 import ActiveRequests from './pages/ActiveRequests/ActiveRequests'
+import ActiveResponses from './pages/ActiveResponses/ActiveResponses'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUserFromStorage } from './helpers';
@@ -18,6 +19,7 @@ export const APP_PATHS = {
     app: '/app',
     profile: '/app/profile',
     activeRequests: '/app/requests/active',
+    activeResponses: '/app/responses/active',
     notifications: '/notifications',
     login: '/login',
     register: '/register',
@@ -60,6 +62,7 @@ class App extends React.Component {
                     <AppLayout exact path={APP_PATHS.profile} component={Profile} />
                     <AppLayout exact path={APP_PATHS.activeRequests} component={ActiveRequests} />
                     <AppLayout exact path={APP_PATHS.requestsHistory} component={RequestsHistory}></AppLayout>
+                    <AppLayout exact path={APP_PATHS.activeResponses} component={ActiveResponses} />
                     <AppLayout exact path={APP_PATHS.notifications} component={Notifications} />
                     <Route exact path={APP_PATHS.login} render={() => < Logister logister={'login'} />} />
                     <Route exact path={APP_PATHS.register} render={() => < Logister logister={'register'} />} />
