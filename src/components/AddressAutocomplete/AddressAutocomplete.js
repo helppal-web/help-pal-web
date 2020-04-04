@@ -5,10 +5,6 @@ import { TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import axios from "axios"
 
-
-
-
-
 export default function AddressAutocomplete(props) {
 
     const [locations, setLocations] = useState([]);
@@ -38,15 +34,24 @@ export default function AddressAutocomplete(props) {
             });
     }
 
+    const onChangeHandler = (value) => {
+        if (value !== null) {
+            setAddress(value.text);
+            props.onSelectedValueChanged(value.text);
+        }
+        else { setAddress("") }
+    }
+
 
     return (
 
         <Autocomplete
-            id="combo-box-demo"
+            id="autocomplete-address"
             options={locations}
             getOptionLabel={(option) => option.text}
-            onChange={(event, value) => { setAddress(value.text); props.onSelectedValueChanged(value.text) }}
-            renderInput={(params) => <TextField name="address" onChange={onAddressChangeHandler} value={address} {...params} label={t('Street')} variant="outlined" />}
+            onChange={(event, value) => { onChangeHandler(value) }}
+            renderInput={(params) => <TextField style={{border : 'none'}} name="address" onChange={onAddressChangeHandler}
+                value={address} {...params} label={t('Street')} variant="outlined" />}
         />
     )
 
