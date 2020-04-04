@@ -3,19 +3,22 @@ import './SideMenu.scss';
 import { Map, History, Settings } from '@material-ui/icons';
 import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
-import { Button, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import NewRequestModal from "../../components/NewRequestModal/NewRequestModal";
 import ActiveRequestsIcon from '../../assets/sidemenu/ActiveRequests.svg'
 import ActiveResponsesIcon from '../../assets/sidemenu/ActiveResponses.svg'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {createRequest } from '../../actions';
 
 
 
-export default function SideMenu() {
+function SideMenu(props) {
     const { t } = useTranslation();
     const location = useLocation();
     const [showNewRequestModal, setNewRequestModal] = useState(false);
-    const onNewRequestSubmitted = () => {
-
+    const onNewRequestSubmitted = (data) => {
+        props.onCreateRequest(data)
     }
 
 
@@ -109,8 +112,18 @@ export default function SideMenu() {
                 </ul>
             </nav>
 
-            <NewRequestModal></NewRequestModal>
+            <NewRequestModal handleSubmit={onNewRequestSubmitted} hide={() => setNewRequestModal(false)} isOpened={showNewRequestModal}></NewRequestModal>
            
         </>
     )
 }
+
+
+const mapDispatchToProps=(dispatch) => {
+    return {
+        dispatch,
+        onCreateRequest: bindActionCreators(createRequest, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SideMenu)
