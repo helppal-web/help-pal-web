@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import MaterialTable from "material-table";
+import { useTranslation } from 'react-i18next';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -37,22 +38,28 @@ const tableIcons = {
 };
 
 export default function Table({ title, columns, data, actions }) {
+  const { t } = useTranslation();
 
   return (
     <div style={{ maxWidth: "80%" }}>
       <MaterialTable icons={tableIcons}
         localization={{
           pagination: {
-            labelDisplayedRows: '{from}-{to} of {count}'
+            labelDisplayedRows: '{from}-{to} of {count}',
+            firstTooltip: t('First Page'),
+            lastTooltip: t('Last Page'),
+            nextTooltip: t('Next Page'),
+            previousTooltip: t('Previous Page'),
           },
           toolbar: {
-            nRowsSelected: '{0} row(s) selected'
+            nRowsSelected: '{0} row(s) selected',
+            searchTooltip: t('Search')
           },
           header: {
             actions: ''
           },
           body: {
-            emptyDataSourceMessage: 'No records to display',
+            emptyDataSourceMessage: t('No records to display'),
             filterRow: {
               filterTooltip: 'Filter'
             }

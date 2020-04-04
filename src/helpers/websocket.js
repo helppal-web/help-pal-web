@@ -4,7 +4,7 @@ class WebSocketApi {
 
     constructor(callbackHandler) {
         this.callbackHandler = callbackHandler;
-        this.connect();
+        //this.connect();
     }
 
     connect() {

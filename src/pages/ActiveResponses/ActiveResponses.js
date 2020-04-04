@@ -4,7 +4,7 @@ import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-class ActiveRequest extends Component {
+class ActiveResponses extends Component {
 
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ class ActiveRequest extends Component {
     parseData = () => {
         this.data = [];
         this.props.requests.forEach((request) => {
-            if(request.ownerProfile && this.props.currentUser && request.ownerProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+            if(request.responderProfile && this.props.currentUser && request.responderProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
                 const { created, category, priority, description, status } = request;
                 this.data.push({ created, category, priority, description, status })
             }
@@ -57,4 +57,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect(mapStateToProps)((withTranslation())(ActiveRequest));
+export default connect(mapStateToProps)((withTranslation())(ActiveResponses));
