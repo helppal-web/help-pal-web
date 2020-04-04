@@ -2,6 +2,7 @@
 // User
 export const CREATE_USER = 'CREATE_USER';
 export const EDIT_USER = 'EDIT_USER';
+export const FETCH_USER = 'FETCH_USER';
 export const LOGGED_IN_USER = 'LOGGED_IN_USER';
 
 // Seekers
