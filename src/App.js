@@ -8,6 +8,10 @@ import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
 import Notifications from './pages/Notifications/Notifications';
 import ActiveRequests from './pages/ActiveRequests/ActiveRequests'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getUserFromStorage } from './helpers';
+import { fetchUserById } from './actions';
 
 export const APP_PATHS = {
     app: '/app',
@@ -27,6 +31,16 @@ class App extends React.Component {
         this.resize();
         document.body.style.direction = this.props.i18n.dir();
 
+        const { currentUser } = this.props;
+        const user = getUserFromStorage();
+
+        if (user && user.id) {
+            if (!currentUser) {
+                fetchUserById(user.id);
+            }
+        } else {
+            history.push('/login');
+        }
     }
 
     resize() {
@@ -54,4 +68,18 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapStateToProps = (store) => {
+    const { user } = store;
+    return {
+        currentUser: user.currentUser
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch,
+        fetchUserById: bindActionCreators(fetchUserById, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

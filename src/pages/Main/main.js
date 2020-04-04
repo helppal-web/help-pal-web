@@ -32,9 +32,8 @@ class MainPage extends Component {
 
     render() {
 
-        const { t } = this.props;
+        const { t, requests } = this.props;
         const markers = [];
-        const { requests } = this.props;
 
         if (requests && requests.length) {
             requests.forEach((request) => {
@@ -94,9 +93,10 @@ function requestCallback(responseType, request) {
 }
 
 const mapStateToProps = (store) => {
-    const { requests } = store;
+    const { requests, user } = store;
     return {
-        requests: requests.requests
+        requests: requests.requests,
+        currentUser: user.currentUser
     }
 }
 
