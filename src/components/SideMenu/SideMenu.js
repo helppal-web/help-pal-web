@@ -4,7 +4,6 @@ import { Map, History, Settings } from '@material-ui/icons';
 import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { Button, Modal } from 'react-bootstrap';
-import newCall from '../../assets/newCall.png';
 import NewRequestModal from "../../components/NewRequestModal/NewRequestModal";
 import ActiveRequestsIcon from '../../assets/sidemenu/ActiveRequests.svg'
 

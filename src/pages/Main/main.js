@@ -52,7 +52,7 @@ class MainPage extends Component {
 
 
         return (
-            <div >
+            <div>
                 <Map markers={markers} showModal={showRequestModal.bind(this)} />
             </div>
         );
