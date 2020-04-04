@@ -96,5 +96,9 @@
     "FullName": "Full Name",
     "DontWorry": "Don’t worry, we don’t share this information until there is a match.",
     "SaveChanges": "Save Changes",
-    "YearOfBirth": "Year Of Birth"
+    "YearOfBirth": "Year Of Birth",
+    "Date": "Date",
+    "Category": "Category",
+    "Status": "Status"
+
 }

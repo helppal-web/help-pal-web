@@ -39,7 +39,6 @@ class ActiveRequest extends Component {
 
     render() {
         this.parseData();
-        console.log(this.data)
         return (
            <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
         )

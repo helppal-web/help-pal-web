@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUserFromStorage } from './helpers';
 import { fetchUserById } from './actions';
+import RequestsHistory from "./pages/RequestsHistory/RequestsHistory";
 
 export const APP_PATHS = {
     app: '/app',
@@ -19,7 +20,8 @@ export const APP_PATHS = {
     activeRequests: '/app/requests/active',
     notifications: '/notifications',
     login: '/login',
-    register: '/register'
+    register: '/register',
+    requestsHistory: '/app/requests/history'
 }
 class App extends React.Component {
     state = {
@@ -57,6 +59,7 @@ class App extends React.Component {
                     <AppLayout exact path={APP_PATHS.app} component={Main} />
                     <AppLayout exact path={APP_PATHS.profile} component={Profile} />
                     <AppLayout exact path={APP_PATHS.activeRequests} component={ActiveRequests} />
+                    <AppLayout exact path={APP_PATHS.requestsHistory} component={RequestsHistory}></AppLayout>
                     <AppLayout exact path={APP_PATHS.notifications} component={Notifications} />
                     <Route exact path={APP_PATHS.login} render={() => < Logister logister={'login'} />} />
                     <Route exact path={APP_PATHS.register} render={() => < Logister logister={'register'} />} />
