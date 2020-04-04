@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import './main.scss';
 import Map from '../../components/Map/Map';
-import { Modal } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 import { cancelRequest, acceptRequest, createRequest } from '../../actions';
 import Request from '../../components/Request/Request';
-import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
 import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
-import newCall from '../../assets/newCall.png';
-import NewRequest from '../../components/NewRequest/NewRequest';
 
 class MainPage extends Component {
 
@@ -23,6 +19,8 @@ class MainPage extends Component {
     onNewRequestSubmitted = (data) =>{
         this.props.onCreateRequest(data)
     }
+
+
 
     render() {
 
@@ -58,19 +56,6 @@ class MainPage extends Component {
         return (
             <div >
                 <Map markers={markers} showModal={showRequestModal.bind(this)} />
-
-                <Modal centered show={this.state.showNewRequest} onHide={hideRequestModal.bind(this)} dialogClassName="request-modal">
-                    <Modal.Header closeButton>
-                        <Modal.Title>
-                            <img alt="" src={newCall} width="20" />
-                            {t('New Call')}
-                        </Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        <NewRequest hide={hideRequestModal} handleSubmit={this.onNewRequestSubmitted} />
-                    </Modal.Body>
-                </Modal>
             </div>
         );
     }

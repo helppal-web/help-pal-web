@@ -41,7 +41,7 @@
     "ProfilePhoto": "Profile Photo",
     "UploadProfilePhotoText": "This is the first photo pet owners will see. Build trust! Well-lit, clear frontal face photos (no sunglasses) are recommended.",
     "UploadPhoto": "Upload Photo",
-    "Lanugages": "Lanugages",
+    "Languages": "Languages",
     "Hebrew": "Hebrew",
     "English": "English",
     "RequiredField": "Required Field",
@@ -92,5 +92,9 @@
     "Helper Tips": "Helper Tips",
     "EditProfile": "Edit Profile",
     "Points": "Points",
-    "ProfileDetails": "Profile Details"
+    "ProfileDetails": "Profile Details",
+    "FullName": "Full Name",
+    "DontWorry": "Don’t worry, we don’t share this information until there is a match.",
+    "SaveChanges": "Save Changes",
+    "YearOfBirth": "Year Of Birth"
 }

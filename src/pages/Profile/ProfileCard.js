@@ -11,7 +11,6 @@ export default function ProfileCard(props) {
     const user = props.user;
     let language = user.language;
     if (language !== "" && language !== undefined) {
-        debugger;
         language = language.charAt(0).toUpperCase() + language.toLowerCase().slice(1);
         language = t(language);
     }
@@ -38,7 +37,7 @@ export default function ProfileCard(props) {
                         </div>
                     </div>
                     <div>
-                        <a className="link-edit-profile"> {t('EditProfile')}</a>
+                        <a onClick={()=> props.onEditProfileClick()} className="link-edit-profile"> {t('EditProfile')}</a>
                     </div>
                 </div>
                 <div className="mb-2">
@@ -49,7 +48,7 @@ export default function ProfileCard(props) {
                 <div className="mb-2 text">{user.phoneNumber}</div>
                 <div className="label"> {t('Address')}</div>
                 <div className="mb-2 text">{user.address}</div>
-                <div className="label"> {t('Lanugages')}</div>
+                <div className="label"> {t('Languages')}</div>
                 <div>
                     {language}
                 </div>
