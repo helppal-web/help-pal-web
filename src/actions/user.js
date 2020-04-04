@@ -33,7 +33,6 @@ export const fetchUserById = (id) => {
                 dispatch(fetchUserSuccess(response.data));
             })
             .catch(error => {
-                alert('An error has occured');
                 throw (error);
             });
     }

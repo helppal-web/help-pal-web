@@ -7,8 +7,8 @@ import Logister from './pages/Logister/Logister';
 import Main from './pages/Main/main';
 import Profile from './pages/Profile/Profile';
 import Notifications from './pages/Notifications/Notifications';
-import ActiveRequests from './pages/ActiveRequests/ActiveRequests'
-import ActiveResponses from './pages/ActiveResponses/ActiveResponses'
+import ActiveRequests from './pages/ActiveRequests/ActiveRequests';
+import ActiveResponses from './pages/ActiveResponses/ActiveResponses';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUserFromStorage } from './helpers';
@@ -35,12 +35,14 @@ class App extends React.Component {
         this.resize();
         document.body.style.direction = this.props.i18n.dir();
 
-        const { currentUser } = this.props;
+        const { currentUser, fetchUserById } = this.props;
         const user = getUserFromStorage();
 
         if (user && user.id) {
             if (!currentUser) {
-                fetchUserById(user.id);
+                fetchUserById(user.id).then().catch((err) => {
+                    history.push('/login');
+                });
             }
         } else {
             history.push('/login');

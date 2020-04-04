@@ -29,3 +29,14 @@
   //TODO: Mobile
   max-width: 50%;
 }
+
+.leaflet-popup-content {
+  .modal-header {
+    img {
+      margin-inline-end: 0.5rem;
+    }
+
+    font-size: 1.3rem;
+    color: $secondary-text-color;
+  }
+}

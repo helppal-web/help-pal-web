@@ -9,7 +9,7 @@ export default function Request({ customClasses = '', request, type = requestTyp
 
     let actions = [
         {
-            logic: true,
+            logic: false/*TODO*/,
             variant: 'helppal',
             responseType: responseTypes.IRRELEVANT,
             label: t('Close')
@@ -24,10 +24,10 @@ export default function Request({ customClasses = '', request, type = requestTyp
             logic: type === requestTypes.HELP,
             variant: 'helppal',
             responseType: responseTypes.ACCEPTED,
-            label: t('Help the guy!')
+            label: t("I'LL HELP")
         },
         {
-            logic: type === requestTypes.HELP && request.status !== requestStatuses.CLOSED,
+            logic: false /*TODO*/ && type === requestTypes.HELP && request.status !== requestStatuses.CLOSED,
             variant: 'helppal',
             responseType: responseTypes.REJECT,
             label: t('Cancel & Close')
@@ -53,9 +53,10 @@ export default function Request({ customClasses = '', request, type = requestTyp
     ]
 
     return (
-        <div className={"col-12 px-2 " + customClasses}>
-            <Card className={customCardClasses} style={{ backgroundColor: statusToColor(request.status) }}>
-                <Card.Body>
+        <div className={"col-12 px-0 " + customClasses}>
+            {/* TODO: Remove style={{ backgroundColor: statusToColor(request.status) }} */}
+            <Card className={customCardClasses}>
+                <Card.Body className='px-0 pb-0'>
                     <Card.Title className="text-start">
                         {t(request.category)}
                     </Card.Title>
@@ -66,12 +67,12 @@ export default function Request({ customClasses = '', request, type = requestTyp
                         <span className="d-block text-muted mb-1">Description</span>
                         {request.description}
                     </Card.Text>
-                    <div className="actions-container d-flex justify-content-between flex-wrap mt-3 pt-4">
+                    <div className="actions-container d-flex justify-content-end flex-wrap mt-3 pt-4">
                         {actions.map((action, index) =>
                             (action.logic ?
                                 <Button
                                     key={index}
-                                    className="request-action-btn"
+                                    className="request-action-btn px-4"
                                     variant={action.variant}
                                     onClick={() => callback(action.responseType, request)}>
                                     {action.label}

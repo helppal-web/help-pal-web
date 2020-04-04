@@ -1,10 +1,12 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelButton from "../../assets/Cancel-bt.png"
 import FinishButton from "../../assets/Finish-bt.png"
-
+import './ActiveResponses.scss';
+import { Button } from 'react-bootstrap';
+import { statusToColor } from '../../helpers';
 
 class ActiveResponses extends Component {
 
@@ -13,6 +15,16 @@ class ActiveResponses extends Component {
         this.data = []
 
         this.actions = [
+            // {
+            //     icon: () => <Button variant="outline-danger">{this.translate('CANCEL')}</Button>,
+            //     tooltip: 'Cancel Response',
+            //     onClick: (event, rowData) => console.log(rowData)
+            // },
+            // {
+            //     icon: () => <Button variant="helppal">{this.translate('FINISH')}</Button>,
+            //     tooltip: 'Finish Response',
+            //     onClick: (event, rowData) => console.log(rowData)
+            // }
             {
                 icon: () => <img src={CancelButton} />,
                 tooltip: 'Cancel',
@@ -30,10 +42,17 @@ class ActiveResponses extends Component {
 
     parseData = () => {
         this.data = [];
-        this.props.requests.forEach((request) => {
-            if (request.responderProfile && this.props.currentUser && request.responderProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+        const { requests, currentUser } = this.props;
+        requests.forEach((request) => {
+            // request.responderProfile - Saif
+            // request.ownerProfile - Omer
+            if (currentUser && request.responderProfile && request.responderProfile.id !== currentUser.id && request.status === 'IN_PROGRESS') {
                 const { created, category, priority, description, status } = request;
-                this.data.push({ created, category, priority, description, status })
+                let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
+                let statusTranslated = this.translate(status);
+                let categoryTranslated = this.translate(category);
+                let priorityTranslated = this.translate(priority);
+                this.data.push({ created: createdFormat, category: categoryTranslated, priority: priorityTranslated, description, status: statusTranslated })
             }
         });
     }
@@ -46,10 +65,12 @@ class ActiveResponses extends Component {
             { title: this.props.t("CATEGORY"), field: "category" },
             { title: this.props.t("PRIORITY"), field: "priority" },
             { title: this.props.t("DESCRIPTION"), field: "description" },
-            { title: this.props.t("STATUS"), field: "status" }
+            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
         ];
         return (
-            <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            <div className="active-responses-container px-5">
+                <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            </div>
         )
     }
 }
