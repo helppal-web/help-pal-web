@@ -31,7 +31,7 @@ class Header extends Component {
                             <div className="user-actions-wrapper">
                                 {currentUser ?
                                     <>
-                                        <img width="45" height="45" src={currentUser.image ? currentUser.image : profile_placeholder} class="rounded-circle mx-2" alt="" />
+                                        <img width="45" height="45" src={currentUser.image ? currentUser.image : profile_placeholder} className="rounded-circle mx-2" alt="" />
                                         {currentUser.name}
                                     </>
                                     : ''}
