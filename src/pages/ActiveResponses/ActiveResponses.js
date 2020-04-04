@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelButton from "../../assets/Cancel-bt.png"
-class ActiveRequest extends Component {
+import FinishButton from "../../assets/Finish-bt.png"
+
+
+class ActiveResponses extends Component {
 
     constructor(props) {
         super(props);
@@ -11,19 +14,24 @@ class ActiveRequest extends Component {
 
         this.actions = [
             {
-            icon: () => <img src={CancelButton} />,
-            tooltip: 'Cancel',
-            onClick: (event, rowData) => console.log(rowData)
-          }
+                icon: () => <img src={CancelButton} />,
+                tooltip: 'Cancel',
+                onClick: (event, rowData) => console.log(rowData)
+            },
+            {
+                icon: () => <img src={FinishButton} />,
+                tooltip: 'Finish',
+                onClick: (event, rowData) => console.log(rowData)
+            }
         ];
     }
-    
+
 
 
     parseData = () => {
         this.data = [];
         this.props.requests.forEach((request) => {
-            if(request.ownerProfile && this.props.currentUser && request.ownerProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+            if (request.responderProfile && this.props.currentUser && request.responderProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
                 const { created, category, priority, description, status } = request;
                 this.data.push({ created, category, priority, description, status })
             }
@@ -32,7 +40,7 @@ class ActiveRequest extends Component {
 
     render() {
         this.parseData();
-        this.title = this.props.t('Active Requests')
+        this.title = this.props.t('Active Responses')
         this.columns = [
             { title: this.props.t("DATE"), field: "created" },
             { title: this.props.t("CATEGORY"), field: "category" },
@@ -41,7 +49,7 @@ class ActiveRequest extends Component {
             { title: this.props.t("STATUS"), field: "status" }
         ];
         return (
-           <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
         )
     }
 }
@@ -56,4 +64,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-export default connect(mapStateToProps)((withTranslation())(ActiveRequest));
+export default connect(mapStateToProps)((withTranslation())(ActiveResponses));

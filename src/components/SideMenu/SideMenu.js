@@ -7,6 +7,7 @@ import { Button, Modal } from 'react-bootstrap';
 import newCall from '../../assets/newCall.png';
 import NewRequestModal from "../../components/NewRequestModal/NewRequestModal";
 import ActiveRequestsIcon from '../../assets/sidemenu/ActiveRequests.svg'
+import ActiveResponsesIcon from '../../assets/sidemenu/ActiveResponses.svg'
 
 
 
@@ -53,8 +54,8 @@ export default function SideMenu() {
 
     let helperRoutes = [
         {
-            route: '/app/history',
-            icon: <History className="menu-icon history-icon" />,
+            route: '/app/responses/active',
+            icon: <img className="menu-icon" src={ActiveResponsesIcon}></img>,
             text: t('Active Responses')
         },
         {
