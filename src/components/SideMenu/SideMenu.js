@@ -52,7 +52,7 @@ export default function SideMenu() {
 
     let helperRoutes = [
         {
-            route: '/app/history',
+            route: '/app/responses/active',
             icon: <History className="menu-icon history-icon" />,
             text: t('Active Responses')
         },
