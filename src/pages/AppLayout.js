@@ -31,17 +31,19 @@ const AppLayoutRoute = ({ component: Component, ...rest }) => {
     return (
         <Route {...rest} render={matchProps => (
             <AppLayout>
-                <Component {...matchProps} />
-                <Modal centered show={notificationsModal} onHide={setNotificationsModal(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>
-                            {t('Notifications')}
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
+                <div className="app-container">
+                    <Component {...matchProps} />
+                    <Modal centered show={notificationsModal} onHide={setNotificationsModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>
+                                {t('Notifications')}
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
 
-                    </Modal.Body>
-                </Modal>
+                        </Modal.Body>
+                    </Modal>
+                </div>
             </AppLayout >
         )} />
     )
