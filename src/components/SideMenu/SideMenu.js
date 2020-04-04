@@ -21,22 +21,22 @@ export default function SideMenu({ handleShowNewRequest }) {
     let requesterRoutes = [
         {
             route: '/app/requests/active',
-            icon: <img src={ActiveRequestsIcon}></img>,
+            icon: <img className="menu-icon" src={ActiveRequestsIcon}></img>,
             text: t('Active Requests')
         },
         {
             route: '/app/requests/history',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Requests History')
         },
         {
             route: '/app/favorite',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('My Favorite Helpers')
         },
         {
             route: '/app/tips',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Requester Tips')
         }
     ]
@@ -44,17 +44,17 @@ export default function SideMenu({ handleShowNewRequest }) {
     let helperRoutes = [
         {
             route: '/app/history',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Active Responses')
         },
         {
             route: '/app/responses/history',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Responses History')
         },
         {
             route: '/app/tips',
-            icon: <History className="history-icon" />,
+            icon: <History className="menu-icon history-icon" />,
             text: t('Helper Tips')
         }
     ]
