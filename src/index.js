@@ -12,8 +12,8 @@ import rootReducer from './reducers';
 import i18n from "./i18n/i18n";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-store.dispatch(actions.fetchAllRequests());
-store.dispatch(actions.fetchNotifications());
+// store.dispatch(actions.fetchAllRequests());
+// store.dispatch(actions.fetchNotifications());
 
 
 ReactDOM.render(
