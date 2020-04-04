@@ -59,6 +59,10 @@ class MainPage extends Component {
     }
 }
 
+function showRequestModal() {
+    this.setState({ showNewRequest: true })
+}
+
 function requestCallback(responseType, request) {
 
     switch (responseType) {
