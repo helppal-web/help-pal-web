@@ -23,7 +23,7 @@ export default function SideMenu() {
         {
             route: '/app',
             icon: <Map className="map-icon" />,
-            text: t('Requests Map')
+            text: t('Help Map')
         }
     ];
 
