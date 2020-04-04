@@ -2,8 +2,9 @@ import React, { Component, } from 'react';
 import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
-import CancelIcon from '@material-ui/icons/Cancel';
-import DoneIcon from '@material-ui/icons/Done';
+import CancelButton from "../../assets/Cancel-bt.png"
+import FinishButton from "../../assets/Finish-bt.png"
+
 
 class ActiveResponses extends Component {
 
@@ -13,12 +14,12 @@ class ActiveResponses extends Component {
 
         this.actions = [
             {
-                icon: () => <CancelIcon />,
+                icon: () => <img src={CancelButton} />,
                 tooltip: 'Cancel',
                 onClick: (event, rowData) => console.log(rowData)
             },
             {
-                icon: () => <DoneIcon />,
+                icon: () => <img src={FinishButton} />,
                 tooltip: 'Finish',
                 onClick: (event, rowData) => console.log(rowData)
             }

@@ -2,8 +2,7 @@ import React, { Component, } from 'react';
 import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
-import CancelIcon from '@material-ui/icons/Cancel';
-
+import CancelButton from "../../assets/Cancel-bt.png"
 class ActiveRequest extends Component {
 
     constructor(props) {
@@ -12,7 +11,7 @@ class ActiveRequest extends Component {
 
         this.actions = [
             {
-            icon: () => <CancelIcon />,
+            icon: () => <img src={CancelButton} />,
             tooltip: 'Cancel',
             onClick: (event, rowData) => console.log(rowData)
           }
