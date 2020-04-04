@@ -7,10 +7,8 @@ import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 import { cancelRequest, acceptRequest, createRequest } from '../../actions';
 import Request from '../../components/Request/Request';
-import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
 import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
-import NewRequestModal from '../../components/NewRequestModal/NewRequestModal';
 
 class MainPage extends Component {
 
@@ -22,13 +20,6 @@ class MainPage extends Component {
         this.props.onCreateRequest(data)
     }
 
-    hideRequestModal = () => {
-        this.setState({ showNewRequest: false })
-    }
-    
-    showRequestModal = () => {
-        this.setState({ showNewRequest: true })
-    }
 
     render() {
 
@@ -61,13 +52,15 @@ class MainPage extends Component {
 
 
         return (
-            <div className="d-flex" >
-                <SideMenu handleShowNewRequest={this.showRequestModal.bind(this)} />
-                <Map markers={markers} showModal={this.showRequestModal.bind(this)} />
-                <NewRequestModal handleSubmit={this.onNewRequestSubmitted} hide={this.hideRequestModal} isOpened={this.state.showNewRequest}></NewRequestModal>
+            <div >
+                <Map markers={markers} showModal={showRequestModal.bind(this)} />
             </div>
         );
     }
+}
+
+function showRequestModal() {
+    this.setState({ showNewRequest: true })
 }
 
 function requestCallback(responseType, request) {

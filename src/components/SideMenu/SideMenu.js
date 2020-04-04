@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SideMenu.scss';
 import { Map, History, Settings } from '@material-ui/icons';
 import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
+import newCall from '../../assets/newCall.png';
+import NewRequestModal from "../../components/NewRequestModal/NewRequestModal";
 import ActiveRequestsIcon from '../../assets/sidemenu/ActiveRequests.svg'
 
-export default function SideMenu({ handleShowNewRequest }) {
+
+
+export default function SideMenu() {
     const { t } = useTranslation();
     const location = useLocation();
+    const [showNewRequestModal, setNewRequestModal] = useState(false);
+    const onNewRequestSubmitted = () => {
+
+    }
+
+
 
     let routes = [
         {
@@ -40,7 +50,7 @@ export default function SideMenu({ handleShowNewRequest }) {
             text: t('Requester Tips')
         }
     ]
-    
+
     let helperRoutes = [
         {
             route: '/app/history',
@@ -62,7 +72,7 @@ export default function SideMenu({ handleShowNewRequest }) {
     return (
         <>
             <nav className="menu-sidebar">
-                <Button variant="helppal" onClick={() => handleShowNewRequest(true)}>{t('new Request')}</Button>
+                <Button variant="helppal" onClick={() => setNewRequestModal(true)}>{t('Help Please')}</Button>
                 <ul className="menu-list list-unstyled">
                     {routes.map((route, index) =>
                         <li key={index} className={"menu-list-item " + (location.pathname === route.route ? 'active' : '')}>
@@ -98,6 +108,9 @@ export default function SideMenu({ handleShowNewRequest }) {
                     </li>
                 </ul>
             </nav>
+
+            <NewRequestModal></NewRequestModal>
+           
         </>
     )
 }
