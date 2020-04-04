@@ -7,7 +7,7 @@ export const createRequest = (request) => {
     console.log('req action:' , request);
     return (dispatch) => {
         // TODO: Change according to Backend
-        return axios.post(`${Config.serverUrl}/create_request`, request)
+        return axios.post(`${Config.serverUrl}/requests`, request)
             .then(response => {
                 // TODO: Change according to Backend
                 dispatch(createRequestSuccess(response.data));

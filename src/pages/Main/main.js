@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './main.scss';
 import Map from '../../components/Map/Map';
-import { Modal } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
@@ -10,14 +9,25 @@ import { cancelRequest, acceptRequest, createRequest } from '../../actions';
 import Request from '../../components/Request/Request';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import helpCall from '../../assets/helpCall.png';
-import { responseTypes, requestTypes } from '../../helpers';
-import newCall from '../../assets/newCall.png';
-import NewRequest from '../../components/NewRequest/NewRequest';
+import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
+import NewRequestModal from '../../components/NewRequestModal/NewRequestModal';
 
 class MainPage extends Component {
 
     state = {
         showNewRequest: false
+    }
+
+    onNewRequestSubmitted = (data) =>{
+        this.props.onCreateRequest(data)
+    }
+
+    hideRequestModal = () => {
+        this.setState({ showNewRequest: false })
+    }
+    
+    showRequestModal = () => {
+        this.setState({ showNewRequest: true })
     }
 
     render() {
@@ -52,32 +62,12 @@ class MainPage extends Component {
 
         return (
             <div className="d-flex" >
-                <SideMenu handleShowNewRequest={showRequestModal.bind(this)} />
-                <Map markers={markers} showModal={showRequestModal.bind(this)} />
-
-                <Modal centered show={this.state.showNewRequest} onHide={hideRequestModal.bind(this)} dialogClassName="request-modal">
-                    <Modal.Header closeButton>
-                        <Modal.Title>
-                            <img alt="" src={newCall} width="20" />
-                            {t('New Call')}
-                        </Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        <NewRequest hide={hideRequestModal} handleSubmit={createRequest} />
-                    </Modal.Body>
-                </Modal>
+                <SideMenu handleShowNewRequest={this.showRequestModal.bind(this)} />
+                <Map markers={markers} showModal={this.showRequestModal.bind(this)} />
+                <NewRequestModal handleSubmit={this.onNewRequestSubmitted} hide={this.hideRequestModal} isOpened={this.state.showNewRequest}></NewRequestModal>
             </div>
         );
     }
-}
-
-function hideRequestModal() {
-    this.setState({ showNewRequest: false })
-}
-
-function showRequestModal() {
-    this.setState({ showNewRequest: true })
 }
 
 function requestCallback(responseType, request) {
@@ -116,7 +106,7 @@ function mapDispatchToProps(dispatch) {
         dispatch,
         cancelRequest: bindActionCreators(cancelRequest, dispatch),
         acceptRequest: bindActionCreators(acceptRequest, dispatch),
-        createRequest: bindActionCreators(createRequest, dispatch)
+        onCreateRequest: bindActionCreators(createRequest, dispatch)
     }
 }
 
