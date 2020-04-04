@@ -33,7 +33,7 @@ class ActiveRequest extends Component {
 
     render() {
         this.parseData();
-        this.title = this.props.t('Active Responses')
+        this.title = this.props.t('Active Requests')
         this.columns = [
             { title: this.props.t("DATE"), field: "created" },
             { title: this.props.t("CATEGORY"), field: "category" },
