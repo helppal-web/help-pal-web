@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
 import * as Config from "../../config/config";
-
+import AddressAutocomplete from "../AddressAutocomplete/AddressAutocomplete";
+import axios from "axios";
 import PlusIcon from "../../assets/plus-icon.svg";
 import { toBase64 } from '../../helpers'
 import { Row, Col } from 'react-bootstrap';
@@ -35,6 +36,10 @@ export default function GenralInfo() {
         return years;
     }
 
+    const onSelectedAddressHandler = (value)=>{
+       
+    }
+
     const currnetYear = new Date().getFullYear();
 
     return (
@@ -63,22 +68,20 @@ export default function GenralInfo() {
                         <Col sm={6}>
                             <label htmlFor=""> {(t('FullName'))}</label>
                             <label className="required-symbol"> *</label>
-                            <input name="fullName" type="text" ref={register({ required: true })}></input>
+                            <input name="fullName" className="textbox" type="text" ref={register({ required: true })}></input>
                             {errors.fullName && <p className="text-danger"> {t('RequiredField')}</p>}
                         </Col>
                         <Col sm={6}>
                             <label > {t('PhoneNumber')}</label>
                             <label className="required-symbol"> *</label>
-                            <input name="phoneNumber" type="text" ref={register({ required: true })}></input>
+                            <input name="phoneNumber" className="textbox" type="text" ref={register({ required: true })}></input>
                             {errors.phoneNumber && <p className="text-danger"> {t('RequiredField')}</p>}
                         </Col>
                     </Row>
 
                     <Row className="mb-3">
                         <Col sm={12}>
-                            <label> {t('Street')} </label>
-                            <input name="street" type="text" ref={register({ required: true })}></input>
-                            {errors.street && <p className="text-danger"> {t('RequiredField')}</p>}
+                            <AddressAutocomplete onSelectedValueChanged={onSelectedAddressHandler}></AddressAutocomplete>
                         </Col>
                     </Row>
 
@@ -120,7 +123,7 @@ export default function GenralInfo() {
                     </Row>
 
 
-                    <div className="seprator mb-5"></div>
+                    <div className="seprator mb-3"></div>
 
                     <div className="d-flex justify-content-end">
                         <input type="submit" value={t('SaveChanges')}></input>

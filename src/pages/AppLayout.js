@@ -36,7 +36,7 @@ const AppLayoutRoute = ({ component: Component, ...rest }) => {
     return (
         <Route {...rest} render={matchProps => (
             <AppLayout>
-                <div className="d-flex" style={{ paddingTop: '130px' }} >
+                <div className="d-flex" style={{ paddingTop: '80px' }} >
                     <SideMenu handleShowNewRequest={showNewRequestModalHandler} />
                     <div className="flex-grow-1 pl-5 app-layout-container">
                         <Component {...matchProps} />
