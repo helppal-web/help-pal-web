@@ -13,7 +13,7 @@ class ActiveRequest extends Component {
         this.actions = [
             {
             icon: () => <CancelIcon />,
-            tooltip: 'Save User',
+            tooltip: 'Cancel',
             onClick: (event, rowData) => console.log(rowData)
           }
         ];

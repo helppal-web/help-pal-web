@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelIcon from '@material-ui/icons/Cancel';
+import DoneIcon from '@material-ui/icons/Done';
 
 class ActiveResponses extends Component {
 
@@ -12,19 +13,24 @@ class ActiveResponses extends Component {
 
         this.actions = [
             {
-            icon: () => <CancelIcon />,
-            tooltip: 'Save User',
-            onClick: (event, rowData) => console.log(rowData)
-          }
+                icon: () => <CancelIcon />,
+                tooltip: 'Cancel',
+                onClick: (event, rowData) => console.log(rowData)
+            },
+            {
+                icon: () => <DoneIcon />,
+                tooltip: 'Finish',
+                onClick: (event, rowData) => console.log(rowData)
+            }
         ];
     }
-    
+
 
 
     parseData = () => {
         this.data = [];
         this.props.requests.forEach((request) => {
-            if(request.responderProfile && this.props.currentUser && request.responderProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+            if (request.responderProfile && this.props.currentUser && request.responderProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
                 const { created, category, priority, description, status } = request;
                 this.data.push({ created, category, priority, description, status })
             }
@@ -42,7 +48,7 @@ class ActiveResponses extends Component {
             { title: this.props.t("STATUS"), field: "status" }
         ];
         return (
-           <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
         )
     }
 }
