@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import WebSocketApi from '../helpers/websocket';
 import { Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import SideMenu from "../components/SideMenu/SideMenu";
 
 
 const AppLayout = ({ children }) => (
@@ -28,22 +29,31 @@ const AppLayoutRoute = ({ component: Component, ...rest }) => {
 
     }
 
+    const showNewRequestModalHandler = () =>{
+        
+    }
+
     return (
         <Route {...rest} render={matchProps => (
             <AppLayout>
-                <div className="app-container">
-                    <Component {...matchProps} />
-                    <Modal centered show={notificationsModal} onHide={setNotificationsModal(false)}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>
-                                {t('Notifications')}
-                            </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
+                <div className="d-flex" >
+                <SideMenu handleShowNewRequest={showNewRequestModalHandler} />
+                    <div className="flex-grow-1">
+                        <Component {...matchProps} />
+                    </div>
 
-                        </Modal.Body>
-                    </Modal>
                 </div>
+
+                <Modal centered show={notificationsModal} onHide={setNotificationsModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            {t('Notifications')}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+
+                    </Modal.Body>
+                </Modal>
             </AppLayout >
         )} />
     )
