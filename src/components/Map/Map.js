@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './Map.scss';
 import { Modal, Button } from 'react-bootstrap';
 import { Map, TileLayer, Marker, } from 'react-leaflet';
-import icon from '../../assets/marker.png';
+import icon from '../../assets/marker.svg';
 import myLocationIcon from '../../assets/myLocation.png';
 import L from 'leaflet';
 import Config from '../../config/config';
@@ -19,12 +19,10 @@ export default function MapComponent({ showModal, markers }) {
     const position = Object.values(latLng);
     const map = useRef();
 
-    const myIcon = L.icon({
+    const markerIcon = L.icon({
         iconUrl: icon,
         iconSize: [45, 45],
         iconAnchor: [32, 64],
-        // shadowUrl: null,
-        // shadowSize: null,
     });
 
     const onFiltersChangeHandler = (filters) => {
@@ -58,7 +56,7 @@ export default function MapComponent({ showModal, markers }) {
                     url={"https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=" + Config.MapBoxKey}
                 />
                 {markers.length ? markers.map((marker, index) =>
-                    <Marker icon={myIcon} key={index} position={marker.position}>
+                    <Marker icon={markerIcon} key={index} position={marker.position}>
                         {marker.content}
                     </Marker>
                 ) : ''}

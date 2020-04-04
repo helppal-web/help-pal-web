@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="51px" height="87px" viewBox="0 0 51 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Request-map-ic</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="100%" gradientTransform="translate(0.500000,0.000000),scale(0.500000,1.000000),rotate(90.000000),translate(-0.500000,-0.000000)" id="radialGradient-1">
+            <stop stop-color="#000000" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <path d="M21.6,70.2 C22.9880601,56.9748207 43.2,35.1 43.2,21.645 C43.2,8.19 33.5293506,-6.39488462e-15 21.6,-6.39488462e-15 C9.6706494,-6.39488462e-15 5.45554922e-16,7.16691948 0,21.645 C5.42001734e-16,36.1230805 20.2794026,57.0232904 21.6,70.2 Z" id="path-2"></path>
+        <filter x="-16.2%" y="-7.1%" width="132.4%" height="119.9%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Web-V1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HelpPal-Main-1.4" transform="translate(-555.000000, -474.000000)">
+            <g id="Request-map-ic" transform="translate(559.000000, 476.000000)">
+                <g id="Group">
+                    <ellipse id="Oval-10-Copy-5" fill-opacity="0.2" fill="url(#radialGradient-1)" cx="21.6" cy="76.5" rx="16.2" ry="8.1"></ellipse>
+                    <g id="Group-16">
+                        <g id="Oval-1-Copy-19">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <path stroke-opacity="0.2" stroke="#000000" stroke-width="1.8" d="M21.6,0.9 C15.6115406,0.9 10.2026914,2.76057426 6.41763655,6.55351462 C2.97585088,10.0024707 0.9,15.0373531 0.9,21.645 C0.9,29.2554591 6.65867207,38.6479524 12.1546307,47.7313508 C16.0787891,54.2169699 19.8788146,60.551718 21.6020352,66.0027725 C23.3724023,60.3546808 27.3070733,53.6864223 31.3185389,46.9423213 C36.7275398,37.8486754 42.3,28.6105028 42.3,21.645 C42.3,15.3883303 40.1338749,10.3098585 36.5779551,6.74653066 C32.8056943,2.96641097 27.485621,0.9 21.6,0.9 Z" stroke-linejoin="square" fill="#584EC8" fill-rule="evenodd"></path>
+                        </g>
+                        <g id="Group-15" transform="translate(9.900000, 9.000000)" fill="#FFFFFF">
+                            <path d="M12.6803236,5.56200622 C12.6803236,7.43185067 11.1950638,8.9476368 9.36337947,8.9476368 C7.53169511,8.9476368 6.04684339,7.43185067 6.04684339,5.56200622 C6.04684339,3.69216177 7.53169511,2.1759591 9.36337947,2.1759591 C11.1950638,2.1759591 12.6803236,3.69216177 12.6803236,5.56200622" id="Fill-4"></path>
+                            <path d="M11.9718465,33.8683854 C16.1979002,27.5103311 21.0445802,16.121733 17.4999507,1.14148689e-13 C17.4999507,1.14148689e-13 16.5479971,18.7121903 -1.34292575e-14,11.7618173 C-1.34292575e-14,11.7618173 12.2333991,22.2581884 8.40273467,34.8026828 L12.8462728,26.3456876 C12.8462728,26.3456876 12.3900859,30.251159 11.9718465,33.8683854" id="Fill-6"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
