@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelIcon from '@material-ui/icons/Cancel';
+import { statusToColor } from '../../helpers';
 class ActiveRequest extends Component {
 
     constructor(props) {
@@ -14,7 +15,7 @@ class ActiveRequest extends Component {
             { title: "CATEGORY", field: "category" },
             { title: "PRIORITY", field: "priority" },
             { title: "DESCRIPTION", field: "description" },
-            { title: "STATUS", field: "status" }
+            { title: "STATUS", field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
         ];
 
         this.actions = [
