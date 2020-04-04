@@ -4,6 +4,7 @@ import { Map, History, Settings } from '@material-ui/icons';
 import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
+import ActiveRequestsIcon from '../../assets/sidemenu/ActiveRequests.svg'
 
 export default function SideMenu({ handleShowNewRequest }) {
     const { t } = useTranslation();
@@ -19,8 +20,8 @@ export default function SideMenu({ handleShowNewRequest }) {
 
     let requesterRoutes = [
         {
-            route: '/app/active',
-            icon: <History className="history-icon" />,
+            route: '/app/requests/active',
+            icon: <img src={ActiveRequestsIcon}></img>,
             text: t('Active Requests')
         },
         {

@@ -82,12 +82,4 @@ const mapStateToProps = (store) => {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        dispatch,
-        cancelRequest: bindActionCreators(cancelRequest, dispatch),
-        acceptRequest: bindActionCreators(acceptRequest, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyRequests);
+export default connect(mapStateToProps)(MyRequests);
