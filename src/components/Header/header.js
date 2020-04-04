@@ -23,7 +23,7 @@ class Header extends Component {
                         <div className="toolbar align-items-center mx-4">
                             <div className="app-logo-wrapper">
                                 <h1>
-                                    <Link to='/'>
+                                    <Link className="app-link" to='/'>
                                         <img height="60" alt='HelpPal' src={HelpPalLogo} />
                                     </Link >
                                 </h1>
