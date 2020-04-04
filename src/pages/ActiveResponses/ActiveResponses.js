@@ -32,6 +32,7 @@ class ActiveResponses extends Component {
         this.data = [];
         this.props.requests.forEach((request) => {
             if (request.responderProfile && this.props.currentUser && request.responderProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+                //let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
                 const { created, category, priority, description, status } = request;
                 this.data.push({ created, category, priority, description, status })
             }
