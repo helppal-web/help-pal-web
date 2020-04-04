@@ -15,13 +15,13 @@ export const responseTypes = {
 }
 
 export const requestStatuses = {
-    OPEN: 'Open',
-    ASSIGNED: 'Assigned',
-    IN_PROGRESS: 'In Progress',
-    DELIVERED: 'Delivered',
-    CLOSED: 'Closed',
-    IN_DISPUTE: 'In Dispute',
-    DISMISSED: 'Dismissed'
+    OPEN: 'OPEN',
+    ASSIGNED: 'ASSIGNED',
+    IN_PROGRESS: 'IN_PROGRESS',
+    DELIVERED: 'DELIVERED',
+    CLOSED: 'CLOSED',
+    IN_DISPUTE: 'IN_DISPUTE',
+    DISMISSED: 'DISMISSED'
 }
 
 export const requestStatusCode = {
