@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 import { cancelRequest, acceptRequest, createRequest } from '../../actions';
 import Request from '../../components/Request/Request';
-import helpCall from '../../assets/helpCall.png';
+import helpCall from '../../assets/Helper-icon.svg';
 import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
 
 class MainPage extends Component {
@@ -35,7 +35,7 @@ class MainPage extends Component {
                             position: request.location,
                             content: <Popup style={{ maxWidth: 'auto' }}>
                                 <div className="modal-content border-none">
-                                    <div className="modal-header">
+                                    <div className="modal-header px-0">
                                         <div className="modal-title h4">
                                             <img alt="" src={helpCall} width="20" />
                                             {t(requestTypes.HELP) + '!'}
