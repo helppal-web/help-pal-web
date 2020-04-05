@@ -26,10 +26,10 @@ export default (state = initState, action) => {
 				requests: action.requests
 			}
 
-		case FETCH_USER_REQUESTS:
+		case UPDATE_REQUEST:
 			return {
 				...state,
-				myRequests: action.myRequests
+				requests: state.requests.map(request => item._id === contact._id ? contact : item),
 			}
 
 		default:
