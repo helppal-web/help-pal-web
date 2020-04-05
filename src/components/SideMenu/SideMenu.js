@@ -11,6 +11,7 @@ import ActiveResponsesIcon from '../../assets/sidemenu/ActiveResponses.svg'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createRequest } from '../../actions';
+import { APP_PATHS } from '../../App';
 
 
 
@@ -23,10 +24,9 @@ function SideMenu(props) {
     }
 
 
-
     let routes = [
         {
-            route: '/app',
+            route: APP_PATHS.app,// '/app'
             icon: <img alt="" className="menu-icon map-icon" src={HelpMenuIcon}></img>,
             text: t('Help Map')
         }
@@ -34,12 +34,12 @@ function SideMenu(props) {
 
     let requesterRoutes = [
         {
-            route: '/app/requests/active',
+            route: APP_PATHS.activeRequests,// '/app/requests/active'
             icon: <img alt="active-requests-ic" className="menu-icon" src={ActiveRequestsIcon}></img>,
             text: t('Active Requests')
         },
         {
-            route: '/app/requests/history',
+            route: APP_PATHS.requestsHistory,// '/app/requests/history'
             icon: <History className="menu-icon history-icon" />,
             text: t('Requests History')
         },
@@ -49,7 +49,7 @@ function SideMenu(props) {
             text: t('My Favorite Helpers')
         },
         {
-            route: '/app/tips',
+            route: APP_PATHS.requesterTips,// '/app/requester/tips'
             icon: <History className="menu-icon history-icon" />,
             text: t('Requester Tips')
         }
@@ -57,7 +57,7 @@ function SideMenu(props) {
 
     let helperRoutes = [
         {
-            route: '/app/responses/active',
+            route: APP_PATHS.activeResponses,// '/app/responses/active'
             icon: <img alt="active-responsers-ic" className="menu-icon" src={ActiveResponsesIcon}></img>,
             text: t('Active Responses')
         },
@@ -67,7 +67,7 @@ function SideMenu(props) {
             text: t('Responses History')
         },
         {
-            route: '/app/tips',
+            route: APP_PATHS.helperTips,// '/app/helper/tips'
             icon: <History className="menu-icon history-icon" />,
             text: t('Helper Tips')
         }

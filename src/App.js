@@ -14,11 +14,14 @@ import { bindActionCreators } from 'redux';
 import { getUserFromStorage } from './helpers';
 import RequestsHistory from "./pages/RequestsHistory/RequestsHistory";
 import * as actions from './actions';
+import FAQs from './pages/FAQs/FAQs';
 
 export const APP_PATHS = {
     app: '/app',
     profile: '/app/profile',
     activeRequests: '/app/requests/active',
+    requesterTips: '/app/requester/tips',
+    helperTips: '/app/helper/tips',
     activeResponses: '/app/responses/active',
     notifications: '/notifications',
     login: '/login',
@@ -35,7 +38,7 @@ class App extends React.Component {
         this.resize();
         document.body.style.direction = this.props.i18n.dir();
 
-        const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications} = this.props;
+        const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications } = this.props;
         const user = getUserFromStorage();
 
         if (user && user.id) {
@@ -70,6 +73,8 @@ class App extends React.Component {
                     <AppLayout exact path={APP_PATHS.requestsHistory} component={RequestsHistory}></AppLayout>
                     <AppLayout exact path={APP_PATHS.activeResponses} component={ActiveResponses} />
                     <AppLayout exact path={APP_PATHS.notifications} component={Notifications} />
+                    <AppLayout exact path={APP_PATHS.requesterTips} component={FAQs} />
+                    <AppLayout exact path={APP_PATHS.helperTips} component={FAQs} />
                     <Route exact path={APP_PATHS.login} render={() => < Logister logister={'login'} />} />
                     <Route exact path={APP_PATHS.register} render={() => < Logister logister={'register'} />} />
                 </Switch>
