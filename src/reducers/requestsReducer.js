@@ -1,7 +1,7 @@
 import {
 	FETCH_REQUESTS,
-	FETCH_USER_REQUESTS,
-	CREATE_REQUEST
+	CREATE_REQUEST,
+	UPDATE_REQUEST
 } from '../actions/types';
 
 const initState = {
@@ -29,7 +29,7 @@ export default (state = initState, action) => {
 		case UPDATE_REQUEST:
 			return {
 				...state,
-				requests: state.requests.map(request => item._id === contact._id ? contact : item),
+				requests: state.requests.map(request => request.id === action.request ? action.request : request),
 			}
 
 		default:

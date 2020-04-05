@@ -10,7 +10,8 @@ import HelpMenuIcon from '../../assets/sidemenu/help-map-icon.svg'
 import ActiveResponsesIcon from '../../assets/sidemenu/ActiveResponses.svg'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createRequest } from '../../actions';
+//import { createRequest } from '../../actions';
+import * as actions from '../../actions';
 
 
 
@@ -123,7 +124,7 @@ function SideMenu(props) {
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatch,
-        onCreateRequest: bindActionCreators(createRequest, dispatch)
+        onCreateRequest: bindActionCreators(actions.createRequest, dispatch)
     }
 }
 
