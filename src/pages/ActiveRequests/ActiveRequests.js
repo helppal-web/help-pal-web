@@ -29,8 +29,9 @@ class ActiveRequest extends Component {
         this.props.requests.forEach((request) => {
             if (request.ownerProfile && this.props.currentUser && request.ownerProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
                 //let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
-                const { created, category, priority, description, status } = request;
-                this.data.push({ created, category, priority, description, status })
+                const { created, category, priority, description, status} = request;
+                const { name, phoneNumber} = request.destProfile;
+                this.data.push({ created, category, priority, description, status, name, phoneNumber})
             }
         });
     }
@@ -43,7 +44,12 @@ class ActiveRequest extends Component {
             { title: this.props.t("CATEGORY"), field: "category" },
             { title: this.props.t("PRIORITY"), field: "priority" },
             { title: this.props.t("DESCRIPTION"), field: "description" },
-            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
+            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) },
+            { title: this.props.t("DESCRIPTION"), field: "description" },
+            { title: this.props.t("Name"), field: "name" },
+            { title: this.props.t("Phone number"), field: "phoneNumber" },
+
+
         ];
         return (
             <>

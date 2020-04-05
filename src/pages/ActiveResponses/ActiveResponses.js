@@ -36,7 +36,8 @@ class ActiveResponses extends Component {
             if (request.responderProfile && this.props.currentUser && request.responderProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
                 //let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
                 const { created, category, priority, description, status } = request;
-                this.data.push({ created, category, priority, description, status })
+                const { name, phoneNumber} = request.ownerProfile;
+                this.data.push({ created, category, priority, description, status, name, phoneNumber})
             }
         });
     }
@@ -49,7 +50,9 @@ class ActiveResponses extends Component {
             { title: this.props.t("CATEGORY"), field: "category" },
             { title: this.props.t("PRIORITY"), field: "priority" },
             { title: this.props.t("DESCRIPTION"), field: "description" },
-            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
+            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) },
+            { title: this.props.t("Name"), field: "name" },
+            { title: this.props.t("Phone number"), field: "phoneNumber" },
         ];
         return (
             <>

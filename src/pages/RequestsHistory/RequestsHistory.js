@@ -15,13 +15,11 @@ function RequestsHistory(props) {
         { title: t('CATEGORY'), field: "category" },
         { title: t("PRIORITY"), field: "priority" },
         { title: "DESCRIPTION", field: "description" },
-        { title: "STATUS", field: "status" }
+        { title: "STATUS", field: "status" },
+        { title: t("Name"), field: "destProfile.name" },
+        { title: t("Phone number"), field: "destProfile.phoneNumber" },
     ]
 
-    const fn = (state) => {
-        return state.requests.requests.filter(request => request.ownerProfile && props.currentUser && request.ownerProfile.email === props.currentUser.email && request.status === 'CLOSED'
-       )
-    }
     const requests = useSelector(state => state.requests.requests.filter(request => request.ownerProfile && props.currentUser && request.ownerProfile.email === props.currentUser.email && request.status === 'CLOSED'
     ));
 
