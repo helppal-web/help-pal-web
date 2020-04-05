@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Filters from "../Filters/Filters";
 import Control from 'react-leaflet-control';
+import ActionsBar from '../ActionsBar/ActionsBar';
 
-export default function MapComponent({ showModal, markers }) {
-    const [showFiltersModal, setFiltersModal] = useState(false);
+export default function MapComponent({ markers }) {
     const [latLng] = useState({ lat: 32.078044, lng: 34.774198 })
     const [zoom] = useState(13)
     const { t } = useTranslation();
@@ -32,23 +32,17 @@ export default function MapComponent({ showModal, markers }) {
     const onHomeButtonClicked = () => {
         map.current.leafletElement.panTo(latLng)
     }
-    
+
     const getBounds = () => {
-        if(markers && markers.length) {
+        if (markers && markers.length) {
             return markers.map(marker => marker.position)
-        } 
+        }
         return position
     }
 
     return (
         <div className="flex-grow-1">
-            <div className="map-actions d-flex justify-content-between">
-                {/* <Button className="mx-5 rounded-circle new-call" variant="helppal" onClick={() => showModal()}>+</Button> */}
-                <Button variant="none" className="mx-2" onClick={() => setFiltersModal(true)}>
-                    <FilterListIcon className="filter-icon"></FilterListIcon>
-                    {t('Filters')}
-                </Button>
-            </div>
+            <ActionsBar showFilter={true} filtersChanged={onFiltersChangeHandler.bind(this)} />
 
             <Map ref={map} bounds={[getBounds()]} center={position} zoom={zoom} >
                 <TileLayer
@@ -68,17 +62,6 @@ export default function MapComponent({ showModal, markers }) {
                 </Control>
             </Map>
 
-            <Modal show={showFiltersModal} centered={true} onHide={() => setFiltersModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        <FilterListIcon className="filter-icon" />
-                        {t('Filter By')}
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Filters onChange={onFiltersChangeHandler}></Filters>
-                </Modal.Body>
-            </Modal>
         </div>
     )
 }

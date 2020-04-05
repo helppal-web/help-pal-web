@@ -42,7 +42,7 @@ export default function Table({ title, columns, data, actions }) {
   const { t } = useTranslation();
 
   return (
-    <div className="table-container" style={{ maxWidth: "80%" }}>
+    <div className="table-container" style={{ maxWidth: "80%", paddingInlineStart: '3rem', paddingTop: '2rem' }}>
       <MaterialTable icons={tableIcons}
         localization={{
           pagination: {

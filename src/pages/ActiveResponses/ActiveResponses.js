@@ -5,6 +5,7 @@ import { withTranslation } from 'react-i18next';
 import CancelButton from "../../assets/Cancel-bt.png"
 import FinishButton from "../../assets/Finish-bt.png"
 import { statusToColor } from '../../helpers';
+import ActionsBar from '../../components/ActionsBar/ActionsBar';
 
 
 class ActiveResponses extends Component {
@@ -51,7 +52,10 @@ class ActiveResponses extends Component {
             { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
         ];
         return (
-            <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            <>
+                <ActionsBar />
+                <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            </>
         )
     }
 }
