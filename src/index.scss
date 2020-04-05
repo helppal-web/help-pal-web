@@ -9,7 +9,8 @@ body {
 }
 
 .btn.btn-helppal {
-  background-color: $main-color;
+  border-radius: 4px;
+  background: linear-gradient(0deg, #342aa4 0%, #584ec8 100%, #584ec8 100%);
   color: $main-text-color;
 }
 
