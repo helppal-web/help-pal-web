@@ -1,0 +1,8 @@
+
+//disable RTL direction of table footer.
+//its not working correctly
+.table-container{ 
+    .MuiTableFooter-root {
+        direction: ltr;
+      }
+}

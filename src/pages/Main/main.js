@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
 import './main.scss';
 import Map from '../../components/Map/Map';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 import { cancelRequest, acceptRequest } from '../../actions';
-import Request, { responseTypes, requestTypes } from '../../components/Request/Request';
-import SideMenu from '../../components/SideMenu/SideMenu';
-import helpCall from '../../assets/helpCall.png';
+import Request from '../../components/Request/Request';
+import helpCall from '../../assets/Helper-icon.svg';
+import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
 
 class MainPage extends Component {
+
+
+
     render() {
 
-        const { t } = this.props;
+        const { t, requests } = this.props;
         const markers = [];
-        const { seekers } = this.props;
-        const { requests } = this.props;
 
-        if (seekers.length) {
-            seekers.forEach((seeker) => {
-                if (seeker && seeker.coords) {
+        if (requests && requests.length) {
+            requests.forEach((request) => {
+                if (request && request.location) {
                     markers.push(
                         {
-                            name: seeker.name,
-                            position: seeker.coords,
+                            name: request.name,
+                            position: request.location,
                             content: <Popup style={{ maxWidth: 'auto' }}>
-                                <div className="modal-content">
-                                    <div className="modal-header">
+                                <div className="modal-content border-none">
+                                    <div className="modal-header px-0">
                                         <div className="modal-title h4">
                                             <img alt="" src={helpCall} width="20" />
                                             {t(requestTypes.HELP) + '!'}
                                         </div>
                                     </div>
-                                    <Request callback={requestCallback} request={requests[0]} />
+                                    <Request callback={requestCallback} request={request} customCardClasses="border-none" />
                                 </div>
                             </Popup>
                         }
@@ -44,12 +44,15 @@ class MainPage extends Component {
 
 
         return (
-            <div className="d-flex" >
-                <SideMenu />
-                <Map markers={markers} />
+            <div>
+                <Map markers={markers} showModal={showRequestModal.bind(this)} />
             </div>
         );
     }
+}
+
+function showRequestModal() {
+    this.setState({ showNewRequest: true })
 }
 
 function requestCallback(responseType, request) {
@@ -75,20 +78,11 @@ function requestCallback(responseType, request) {
 }
 
 const mapStateToProps = (store) => {
-    const { state, requests } = store;
+    const { requests, user } = store;
     return {
-        seekers: state.seekers,
-        requests: requests.requests
+        requests: requests.requests,
+        currentUser: user.currentUser
     }
 }
 
-
-function mapDispatchToProps(dispatch) {
-    return {
-        dispatch,
-        cancelRequest: bindActionCreators(cancelRequest, dispatch),
-        acceptRequest: bindActionCreators(acceptRequest, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(MainPage));
+export default connect(mapStateToProps, null)(withTranslation()(MainPage));

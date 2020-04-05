@@ -1,15 +1,16 @@
 import {
 	CREATE_USER,
 	EDIT_USER,
-	FETCH_SEEKERS,
-	LOGGED_IN_USER
+	LOGGED_IN_USER,
+	FETCH_USER
 } from '../actions/types';
+import { persistUser } from '../helpers';
 
 const initState = {
 	users: [],
 	seekers: [],
 	isLoading: true,
-	currentUser: {}
+	currentUser: null
 }
 
 export default (state = initState, action) => {
@@ -22,17 +23,24 @@ export default (state = initState, action) => {
 				user: action.user
 			}
 
-		case FETCH_SEEKERS:
-			return {
-				...state,
-				seekers: action.seekers,
-				isLoading: false
-			}
-
 		case LOGGED_IN_USER:
+			const { user, rememberMe } = action;
+
+			if (user) {
+				persistUser(user, rememberMe);
+				return {
+					...state,
+					currentUser: user
+				}
+			}
+			return state;
+
+		case FETCH_USER:
+			const userObj = action.user;
+
 			return {
 				...state,
-				currentUser: action.user
+				currentUser: userObj
 			}
 
 		default:

@@ -4,8 +4,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { Menu, MenuItem } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useTranslation } from 'react-i18next';
-import history from "../../../helpers/history";	
-import {APP_PATHS} from '../../../App'	
+import history from "../../../helpers/history";
+import { APP_PATHS } from '../../../App'
+import { clearStorage } from '../../../helpers';
 
 export default () => {
 
@@ -22,8 +23,19 @@ export default () => {
     };
 
     const handleProfileMenuItemClick = () => {
-        history.push(`${APP_PATHS.profile}`);	
+        history.push(`${APP_PATHS.profile}`);
         handleClose();
+    }
+
+    const handleLogout = () => {
+        const removed = clearStorage();
+        if (removed) {
+            // Forces refresh - completely clears state, storage was cleared above.
+            setTimeout(() => {
+                window.location.href = '/login';
+            });
+        }
+
     }
 
     return (
@@ -46,7 +58,7 @@ export default () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={() => handleProfileMenuItemClick()} >{t('Profile')}</MenuItem>
-                <MenuItem >{t('Logout')}</MenuItem>
+                <MenuItem onClick={handleLogout}>{t('Logout')}</MenuItem>
             </Menu>
         </div>
     )

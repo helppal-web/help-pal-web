@@ -1,21 +1,20 @@
 .App {
     text-align: center;
     position: relative;
-    margin-top: 5rem;
     height: 100vh;
-    .App-intro {
-        font-size: large;
-    }
-    @keyframes App-logo-spin {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
 }
 
-.app-layout {
-    padding: 0.675rem;
+.app-container {
+    margin-top: 5rem;
+}
+
+.app-modal-header-title {
+    color: #342aa4;
+    font-size: 16px;
+}
+
+.app-layout-container {
+    margin-inline-start: 18%;
+    color: #342aa4;
+    font-size: 16px;
 }

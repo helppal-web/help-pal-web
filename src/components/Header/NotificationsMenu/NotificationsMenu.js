@@ -58,7 +58,7 @@ function NotificationsMenu({ notificationsStore }) {
                 <Divider />
                 <div className='menu-bottom-container'>
                     <Link className='link' to={`${APP_PATHS.notifications}`}>
-                        
+
                         <span onClick={() => handleClose()}>{t('See all notifications')}</span>
                     </Link>
                 </div>

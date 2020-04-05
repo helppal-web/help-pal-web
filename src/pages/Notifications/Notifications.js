@@ -1,13 +1,8 @@
 import './Notifications.scss';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import {Typography, List, ListItem, ListItemText,IconButton , Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { connect } from 'react-redux';
 
@@ -17,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     item: {
-        paddingLeft: theme.spacing(4),
+        paddingInlineStart: theme.spacing(4),
     },
     itemText: {
         textAlign: 'start',
