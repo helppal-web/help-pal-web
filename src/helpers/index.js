@@ -3,3 +3,4 @@ export * from './history';
 export * from './requestHelpers';
 export * from './loginHelpers';
 export * from './websocket';
+export * from './locationHelper';

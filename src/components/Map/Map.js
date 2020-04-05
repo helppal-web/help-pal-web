@@ -1,16 +1,14 @@
 import React, { useState, useRef } from 'react';
 import './Map.scss';
-import { Modal, Button } from 'react-bootstrap';
 import { Map, TileLayer, Marker, } from 'react-leaflet';
 import icon from '../../assets/marker.svg';
 import myLocationIcon from '../../assets/myLocation.png';
 import L from 'leaflet';
 import Config from '../../config/config';
 import { useTranslation } from 'react-i18next';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import Filters from "../Filters/Filters";
 import Control from 'react-leaflet-control';
 import ActionsBar from '../ActionsBar/ActionsBar';
+import { getCurrentPosition } from '../../helpers';
 
 export default function MapComponent({ markers }) {
     const [latLng] = useState({ lat: 32.078044, lng: 34.774198 })
@@ -30,7 +28,12 @@ export default function MapComponent({ markers }) {
         const { radius, category, priority, previousCallers, badge } = filters;
 
         if (radius) {
-            //TODO: Needs user's current location
+            //TODO: user's current location
+            // getCurrentPosition().then(res => {
+            //     console.log(res);
+            // }).catch(err => {
+            //     console.log(err);
+            // });
         }
 
         if (category) {
