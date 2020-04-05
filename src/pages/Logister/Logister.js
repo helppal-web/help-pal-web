@@ -9,7 +9,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { getUserFromStorage } from '../../helpers';
 import { useHistory } from 'react-router-dom';
-import coloredLogo from '../../assets/helppal-logo-colored.svg';
+import coloredLogo from '../../assets/helppal-logo.svg';
 import logisterImage from '../../assets/logister-image.png';
 
 function Logister({ logister, login, currentUser, fetchUserById }) {
