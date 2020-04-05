@@ -7,16 +7,16 @@ const requestsEndpoint = '/requests'
 
 export const createRequest = (request) => {
     return (dispatch) => {
-        return axios.post(`${Config.serverUrl}${requestsEndpoint}`, request)
-            .then(response => {
-                dispatch(createRequestSuccess(response.data));
-            })
-            .catch(error => {
-                alert('An error has occured');
-                throw (error);
-            });
-        // requests.push(request)
-        // return dispatch(createRequestSuccess(request));
+        // return axios.post(`${Config.serverUrl}${requestsEndpoint}`, request)
+        //     .then(response => {
+        //         dispatch(createRequestSuccess(response.data));
+        //     })
+        //     .catch(error => {
+        //         alert('An error has occured');
+        //         throw (error);
+        //     });
+        requests.push(request)
+        return dispatch(createRequestSuccess(request));
     }
 }
 
@@ -29,16 +29,16 @@ export const createRequestSuccess = (data) => {
 
 export const fetchAllRequests = () => {
     return (dispatch) => {
-        return axios.get(`${Config.serverUrl}${requestsEndpoint}`, {})
-            .then(response => {
-                dispatch(fetchRequestsSuccess(response.data));
-            })
-            .catch(error => {
-                console.error('An error has occured', error);
-                throw (error);
-            });
-        // const hardCodedRequests = requests;
-        // return dispatch(fetchRequestsSuccess(hardCodedRequests));
+        // return axios.get(`${Config.serverUrl}${requestsEndpoint}`, {})
+        //     .then(response => {
+        //         dispatch(fetchRequestsSuccess(response.data));
+        //     })
+        //     .catch(error => {
+        //         console.error('An error has occured', error);
+        //         throw (error);
+        //     });
+        const hardCodedRequests = requests;
+        return dispatch(fetchRequestsSuccess(hardCodedRequests));
     }
 }
 

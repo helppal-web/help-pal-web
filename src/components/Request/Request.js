@@ -59,10 +59,10 @@ export default function Request({ customClasses = '', request, type = requestTyp
             <Card className={customCardClasses}>
                 <Card.Body className='px-0 pb-0'>
                     <Card.Title className="text-start">
-                        {request.destProfile ?
+                        {request.ownerProfile ?
                             <>
-                                <img width="45" height="45" src={request.destProfile.image ? request.destProfile.image : profile_placeholder} className="rounded-circle mx-2" alt="" />
-                                <span>{request.destProfile.name}</span>
+                                <img width="45" height="45" src={request.ownerProfile.image ? request.ownerProfile.image : profile_placeholder} className="rounded-circle mx-2" alt="" />
+                                <span>{request.ownerProfile.name}</span>
                             </>
                             : ''}
                     </Card.Title>

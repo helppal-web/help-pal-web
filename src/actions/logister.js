@@ -2,31 +2,46 @@
 import { LOGGED_IN_USER } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
-
+import {users} from '../mockData'
 export const login = ({ email, password, rememberMe }) => {
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            axios.get(Config.serverUrl + '/users/email', {
-                params: {
-                    email
-                }
-            }).then(response => {
-                if (response) {
-                    const { data } = response;
-                    if (data.password === password) {
-                        dispatch(loginSuccess(response.data, rememberMe));
-                        return resolve();
-                    }
-                    return reject({ wrongPass: true });
-                } else {
-                    return reject(new Error('An error has occured'));
-                }
-            }).catch(error => {
-                return reject(error);
-            });
-        });
+
+    const getUserByEmail = (email) => {
+        return users.filter((user) => user.email === email)
     }
+    return (dispatch) => {
+
+        return new Promise((resolve, reject) => {
+            const user = getUserByEmail(email);
+            if(user) {
+                dispatch(loginSuccess(user[0], rememberMe));
+            }
+            resolve()
+            // axios.get(Config.serverUrl + '/users/email', {
+            //     params: {
+            //         email
+            //     }
+            // }).then(response => {
+            //     if (response) {
+            //         const { data } = response;
+            //         if (data.password === password) {
+            //             dispatch(loginSuccess(response.data, rememberMe));
+            //             return resolve();
+            //         }
+            //         return reject({ wrongPass: true });
+            //     } else {
+            //         return reject(new Error('An error has occured'));
+            //     }
+            // }).catch(error => {
+            //     return reject(error);
+            // });
+        });
+
+    }
+
+
 }
+
+
 
 export const loginSuccess = (data, rememberMe) => {
     return {

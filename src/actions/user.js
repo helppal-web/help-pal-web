@@ -2,6 +2,7 @@
 import { EDIT_USER, FETCH_USER } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
+import { users } from '../mockData'
 
 export const editUser = user => {
     return (dispatch) => {
@@ -25,16 +26,25 @@ export const editUserSuccess = (user) => {
         user: user
     }
 }
-
+const getUserById = (id) => {
+    return users.filter((user) => user.id === id)
+}
 export const fetchUserById = (id) => {
     return (dispatch) => {
-        return axios.get(`${Config.serverUrl}/users/${id}`)
-            .then(response => {
-                dispatch(fetchUserSuccess(response.data));
-            })
-            .catch(error => {
-                throw (error);
-            });
+        // return axios.get(`${Config.serverUrl}/users/${id}`)
+        //     .then(response => {
+        //         dispatch(fetchUserSuccess(response.data));
+        //     })
+        //     .catch(error => {
+        //         throw (error);
+        //     });
+        return new Promise((resolve, reject) => {
+            const user = getUserById(id);
+            if (user) {
+                dispatch(fetchUserSuccess(user[0]));
+            }
+            resolve();
+        });
     }
 }
 

@@ -29,15 +29,15 @@ class Header extends Component {
                                 </h1>
                             </div>
                             <div className="user-actions-wrapper">
-                                {currentUser ?
+                                {/* {currentUser ?
                                     <>
                                         <img width="45" height="45" src={currentUser.image ? currentUser.image : profile_placeholder} className="rounded-circle mx-2" alt="" />
                                         {currentUser.name}
                                     </>
-                                    : ''}
+                                    : ''} */}
                                 <NotificationsMenu></NotificationsMenu>
                                 <LanguagesMenu languages={Config.languages}></LanguagesMenu>
-                                <UserProfile></UserProfile>
+                                <UserProfile currentUser={currentUser}></UserProfile>
                             </div>
 
                         </div>
