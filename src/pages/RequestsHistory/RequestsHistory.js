@@ -19,7 +19,8 @@ export default function RequestsHistory() {
 
     const requests = useSelector(state => state.requests.requests);
 
-    function onFiltersChangeHandler() {
+    function onFiltersChangeHandler(filters) {
+        const { radius, category, time, previousCallers, badge } = filters;
         
     }
     return (
