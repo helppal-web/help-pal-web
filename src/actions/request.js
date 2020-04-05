@@ -16,14 +16,14 @@ export const createRequest = (request) => {
         //         throw (error);
         //     });
         requests.push(request)
-        return dispatch(createRequestSuccess(request));
+        return dispatch(createRequestSuccess(requests));
     }
 }
 
 export const createRequestSuccess = (data) => {
     return {
         type: CREATE_REQUEST,
-        request: data
+        requests: data
     }
 }
 
