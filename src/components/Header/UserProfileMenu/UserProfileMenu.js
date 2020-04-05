@@ -2,11 +2,13 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import { Menu, MenuItem } from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import UserProfileImage from "../../../assets/profile-pic-header.svg";
+import ArrowDown from "../../../assets/arrow-down.svg";
 import { useTranslation } from 'react-i18next';
 import history from "../../../helpers/history";
 import { APP_PATHS } from '../../../App'
 import { clearStorage } from '../../../helpers';
+import "./UserProfileMenu.scss";
 
 export default () => {
 
@@ -39,17 +41,26 @@ export default () => {
     }
 
     return (
-        <div className="user-profile-wrapper">
-            <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls="profile-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-                color="inherit"
-            >
-                <AccountCircle />
-            </IconButton>
+        <div className="user-profile-menu-wrapper">
+            <div className="d-flex justify-content-center align-items-center">
+                <div>
+                    <IconButton
+                        edge="end"
+                        aria-label="account of current user"
+                        aria-controls="profile-menu"
+                        aria-haspopup="true"
+                        onClick={handleClick}
+                        color="inherit"
+
+                    >
+
+                        <img className="profile-img" src={UserProfileImage}></img>
+                        <label className="profile-name mb-0 ml-2 mr-2"> Test User</label>
+                        <img className="open-menu-img" src={ArrowDown}></img>
+                    </IconButton>
+                </div>
+                
+            </div>
             <Menu
                 anchorEl={anchorEl}
                 id="profile-menu"
@@ -60,6 +71,6 @@ export default () => {
                 <MenuItem onClick={() => handleProfileMenuItemClick()} >{t('Profile')}</MenuItem>
                 <MenuItem onClick={handleLogout}>{t('Logout')}</MenuItem>
             </Menu>
-        </div>
+        </div >
     )
 }
