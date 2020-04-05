@@ -16,7 +16,7 @@ export default (state = initState, action) => {
 		case CREATE_REQUEST: 
 		return {
 			...state,
-			requests: Object.assign({}, action.request)
+			requests: action.requests
 		}
 
 

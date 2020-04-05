@@ -24,7 +24,7 @@ function RequestsHistory(props) {
     ));
 
     function onFiltersChangeHandler(filters) {
-        const { radius, category, time, previousCallers, badge } = filters;
+        const { radius, category, time, previousRequesters, badge } = filters;
 
     }
     return (

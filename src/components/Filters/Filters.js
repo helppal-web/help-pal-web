@@ -75,10 +75,10 @@ export default function Filters({ onChange }) {
                         <Col>
                             <Controller
                                 as={
-                                    <Form.Check className="mb-2" name="previousCallers" type="checkbox" label={t('PreviousCallers')}>
+                                    <Form.Check className="mb-2" name="previousRequesters" type="checkbox" label={t('Previous Requesters')}>
                                     </Form.Check>
                                 }
-                                name="previousCallers"
+                                name="previousRequesters"
                                 control={control}
                                 defaultValue={false}
                             ></Controller>

@@ -25,7 +25,7 @@ export default function MapComponent({ markers }) {
 
     const onFiltersChangeHandler = (filters) => {
         //call api to get data
-        const { radius, category, priority, previousCallers, badge } = filters;
+        const { radius, category, priority, previousRequesters, badge } = filters;
 
         if (radius) {
             //TODO: user's current location
@@ -44,7 +44,7 @@ export default function MapComponent({ markers }) {
 
         }
 
-        if (previousCallers) {
+        if (previousRequesters) {
 
         }
 
