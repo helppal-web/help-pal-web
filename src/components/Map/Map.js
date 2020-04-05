@@ -27,6 +27,27 @@ export default function MapComponent({ markers }) {
 
     const onFiltersChangeHandler = (filters) => {
         //call api to get data
+        const { radius, category, priority, previousCallers, badge } = filters;
+
+        if (radius) {
+            //TODO: Needs user's current location
+        }
+
+        if (category) {
+
+        }
+
+        if (priority) {
+
+        }
+
+        if (previousCallers) {
+
+        }
+
+        if (badge) {
+
+        }
     }
 
     const onHomeButtonClicked = () => {
@@ -42,7 +63,7 @@ export default function MapComponent({ markers }) {
 
     return (
         <div className="flex-grow-1">
-            <ActionsBar showFilter={true} filtersChanged={onFiltersChangeHandler.bind(this)} />
+            <ActionsBar showFilter={true} filtersChanged={onFiltersChangeHandler} />
 
             <Map ref={map} bounds={[getBounds()]} center={position} zoom={zoom} >
                 <TileLayer
