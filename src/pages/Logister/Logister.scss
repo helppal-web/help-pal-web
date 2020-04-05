@@ -1,3 +1,5 @@
+@import "../../assets/styles/colors";
+
 .logister-page {
   display: flex;
   justify-content: center;
@@ -19,7 +21,7 @@
     .logister-form-container {
       .app-logo {
         margin: 1rem 0;
-        margin-inline-start: 1.5rem;
+        // margin-inline-start: 1.5rem;
       }
     }
 

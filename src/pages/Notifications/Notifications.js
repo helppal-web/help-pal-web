@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     item: {
-        paddingLeft: theme.spacing(4),
+        paddingInlineStart: theme.spacing(4),
     },
     itemText: {
         textAlign: 'start',

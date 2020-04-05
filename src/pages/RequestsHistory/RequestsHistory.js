@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from 'react-i18next';
 import Table from "../../components/UI/Table/Table";
 import { useSelector } from "react-redux";
+import ActionsBar from "../../components/ActionsBar/ActionsBar";
 
 
 
@@ -17,7 +18,14 @@ export default function RequestsHistory() {
     ]
 
     const requests = useSelector(state => state.requests.requests);
+
+    function onFiltersChangeHandler() {
+        
+    }
     return (
-        <Table title={t('Requests History')} data={requests} columns={tableColumns}></Table>
+        <>
+            <ActionsBar showFilter={true} filtersChanged={onFiltersChangeHandler.bind(this)} />
+            <Table title={t('Requests History')} data={requests} columns={tableColumns}></Table>
+        </>
     )
 }

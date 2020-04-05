@@ -39,9 +39,24 @@ function Logister({ logister, login, currentUser, fetchUserById }) {
                                 onSelect={(k) => setKey(k)}>
 
                                 {/* TODO TODO TODO!!!!!!! looks awful*/}
-                                <Nav.Link eventKey="login">{t('Sign in')}</Nav.Link>
-                                and go to HelpPal
-                                <Nav.Link eventKey="register">{t('Sign up')}</Nav.Link>
+                                {key === 'login' ?
+                                    <>
+                                        <h3 className="mb-1">{t('Sign in')}</h3>
+                                        {t('and go to HelpPal')}
+                                        <div className="d-flex align-items-center small">
+                                            {t('Not a member?')}
+                                            <Nav.Link className="logister-link px-1" eventKey="register">{t('Sign up')}</Nav.Link>
+                                        </div>
+                                    </> : ''}
+                                {key === 'register' ?
+                                    <>
+                                        <h3 className="mb-1">{t('Sign up')}</h3>
+                                        {t('and go to HelpPal')}
+                                        <div className="d-flex align-items-center small">
+                                            {t('Already a memeber?')}
+                                            <Nav.Link className="logister-link px-1" eventKey="login">{t('Sign in')}</Nav.Link>
+                                        </div>
+                                    </> : ''}
 
                                 <Tab.Content>
                                     <Tab.Pane eventKey="login">

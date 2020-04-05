@@ -4,6 +4,7 @@ import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelButton from "../../assets/Cancel-bt.png"
 import { statusToColor } from '../../helpers';
+import ActionsBar from '../../components/ActionsBar/ActionsBar';
 
 
 class ActiveRequest extends Component {
@@ -28,7 +29,7 @@ class ActiveRequest extends Component {
         this.data = [];
         this.props.requests.forEach((request) => {
             if (request.ownerProfile && this.props.currentUser && request.ownerProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
-                                //let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
+                //let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
                 const { created, category, priority, description, status } = request;
                 this.data.push({ created, category, priority, description, status })
             }
@@ -43,10 +44,13 @@ class ActiveRequest extends Component {
             { title: this.props.t("CATEGORY"), field: "category" },
             { title: this.props.t("PRIORITY"), field: "priority" },
             { title: this.props.t("DESCRIPTION"), field: "description" },
-            { title: this.props.t("STATUS"), field: "status" }
+            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
         ];
         return (
-            <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            <>
+                <ActionsBar />
+                <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
+            </>
         )
     }
 }
