@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './header.scss';
-import HelpPalLogo from '../../assets/HelpPal-Logo.svg';
+import HelpPalLogo from '../../assets/helppal-logo-white.svg';
 import profile_placeholder from '../../assets/profile_placeholder.svg';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
