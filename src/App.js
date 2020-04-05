@@ -37,8 +37,8 @@ class App extends React.Component {
 
         const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications} = this.props;
         const user = getUserFromStorage();
-                     fetchAllRequests();
-                     fetchNotifications();
+        //fetchAllRequests();
+        //fetchNotifications();
         if (user && user.id) {
 
             if (!currentUser) {
