@@ -6,10 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 import NewRequestModal from "../../components/NewRequestModal/NewRequestModal";
 import ActiveRequestsIcon from '../../assets/sidemenu/ActiveRequests.svg'
+import HelpMenuIcon from '../../assets/sidemenu/help-map-icon.svg'
 import ActiveResponsesIcon from '../../assets/sidemenu/ActiveResponses.svg'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {createRequest } from '../../actions';
+import { createRequest } from '../../actions';
 
 
 
@@ -26,7 +27,7 @@ function SideMenu(props) {
     let routes = [
         {
             route: '/app',
-            icon: <Map className="map-icon" />,
+            icon: <img alt="" className="menu-icon map-icon" src={HelpMenuIcon}></img>,
             text: t('Help Map')
         }
     ];
@@ -113,13 +114,13 @@ function SideMenu(props) {
             </nav>
 
             <NewRequestModal handleSubmit={onNewRequestSubmitted} hide={() => setNewRequestModal(false)} isOpened={showNewRequestModal}></NewRequestModal>
-           
+
         </>
     )
 }
 
 
-const mapDispatchToProps=(dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         dispatch,
         onCreateRequest: bindActionCreators(createRequest, dispatch)
