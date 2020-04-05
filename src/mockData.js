@@ -1,6 +1,6 @@
 export const users = [
     { id: 2, name: 'Carl', email: 'carl@gmail.com', phoneNumber: '0505123456', image: undefined, address: '', coords: { lat: 32.086044, lon: 34.794198 }, language: ['hebrew', 'english'], cases: 3, badge: true, birthYear: 1995, score: 81 },
-    { id: 3, name: 'Russel', email: 'russel@gmail.com', phoneNumber: '0505123456', image: '../../../assets/russel.png', address: '', coords: { lat: 32.086044, lon: 34.794198 }, language: ['hebrew', 'english'], cases: 3, badge: true, birthYear: 1995, score: 81 }
+    { id: 3, name: 'Russel', email: 'russel@gmail.com', phoneNumber: '0505123456', image: undefined, address: '', coords: { lat: 32.086044, lon: 34.794198 }, language: ['hebrew', 'english'], cases: 3, badge: true, birthYear: 1995, score: 81 }
 
 ]
 export const requests = [
