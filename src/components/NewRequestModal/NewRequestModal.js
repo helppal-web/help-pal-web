@@ -83,7 +83,7 @@ export default function NewRequestModal(props) {
                     <Modal.Header closeButton>
                         <Modal.Title>
                             <img alt="new-request-icon" src={newRequestIcon} />
-                            <span className="app-modal-header-title">{t('New Request')}</span>
+                            <span className="app-modal-header-title ml-2 mr-2">{t('New Request')}</span>
                         </Modal.Title>
                     </Modal.Header>
 
@@ -245,7 +245,7 @@ export default function NewRequestModal(props) {
                     <Modal.Footer>
                         <Col className="text-start">
                             <Button variant="link" type="reset">
-                                <img alt="reset-icon"src={resetIcon}></img>
+                                <img alt="reset-icon" src={resetIcon}></img>
                             </Button>
                             {t('Reset')}
                         </Col>

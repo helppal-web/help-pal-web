@@ -24,7 +24,6 @@ class ActiveRequest extends Component {
     }
 
 
-
     parseData = () => {
         this.data = [];
         this.props.requests.forEach((request) => {
