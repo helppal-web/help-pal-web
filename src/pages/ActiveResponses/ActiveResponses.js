@@ -48,7 +48,7 @@ class ActiveResponses extends Component {
             { title: this.props.t("CATEGORY"), field: "category" },
             { title: this.props.t("PRIORITY"), field: "priority" },
             { title: this.props.t("DESCRIPTION"), field: "description" },
-            { title: "STATUS", field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
+            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
         ];
         return (
             <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
