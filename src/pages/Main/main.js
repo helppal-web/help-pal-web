@@ -4,7 +4,6 @@ import Map from '../../components/Map/Map';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
-import { cancelRequest, acceptRequest } from '../../actions';
 import Request from '../../components/Request/Request';
 import helpCall from '../../assets/Helper-icon.svg';
 import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
@@ -65,10 +64,8 @@ function requestCallback(responseType, request) {
         case responseTypes.DIFFERENT:
             break;
         case responseTypes.IRRELEVANT:
-            cancelRequest(request);
             break;
         case responseTypes.ACCEPTED:
-            acceptRequest(request);
             break;
 
         default:
