@@ -9,6 +9,11 @@ export default function ActionsBar({ showFilter, filtersChanged }) {
     const [showFiltersModal, setFiltersModal] = useState(false);
     const { t } = useTranslation();
 
+    function onFiltersHide(filters) {
+        setFiltersModal(false);
+        filtersChanged(filters);
+    }
+
     return (
         <>
             <div className="actions-bar d-flex justify-content-between">
@@ -29,7 +34,7 @@ export default function ActionsBar({ showFilter, filtersChanged }) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Filters onChange={filtersChanged}></Filters>
+                    <Filters onChange={onFiltersHide}></Filters>
                 </Modal.Body>
             </Modal>
         </>
