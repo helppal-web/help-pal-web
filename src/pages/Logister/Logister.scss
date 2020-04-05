@@ -1,61 +1,54 @@
 @import "../../assets/styles/colors";
-
 .logister-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  // TODO: Replace - should be image from design
-  background: #e0e3ff;
-
-  .logister-container {
-    width: 65%;
-    min-height: 75%;
-    border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
-    text-align: start;
-    padding: 2rem 2rem;
-    padding-inline-start: 3.5rem;
-
-    .logister-form-container {
-      .app-logo {
-        margin: 1rem 0;
-        // margin-inline-start: 1.5rem;
-      }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    // TODO: Replace - should be image from design
+    background-image: url(../../assets/Login-bg.jpg);
+    .logister-container {
+        width: 65%;
+        min-height: 75%;
+        border-radius: 12px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+        text-align: start;
+        padding: 2rem 2rem;
+        padding-inline-start: 3.5rem;
+        .logister-form-container {
+            .app-logo {
+                margin: 1rem 0;
+                // margin-inline-start: 1.5rem;
+            }
+        }
+        .logister-image {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            max-width: 80%;
+            margin: auto;
+            img {
+                max-width: 100%;
+            }
+        }
+        .form-group {
+            text-align: start;
+        }
+        .login-container,
+        .register-container {
+            .MuiInput-root {
+                width: 100%;
+            }
+        }
+        p {
+            text-align: start;
+        }
+        p {
+            color: #bf1650;
+        }
+        p::before {
+            display: inline;
+            content: "⚠ ";
+        }
     }
-
-    .logister-image {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      max-width: 80%;
-      margin: auto;
-
-      img {
-        max-width: 100%;
-      }
-    }
-
-    .form-group {
-      text-align: start;
-    }
-
-    .login-container,
-    .register-container {
-      .MuiInput-root {
-        width: 100%;
-      }
-    }
-    p {
-      text-align: start;
-    }
-    p {
-      color: #bf1650;
-    }
-    p::before {
-      display: inline;
-      content: "⚠ ";
-    }
-  }
 }
