@@ -54,11 +54,13 @@ export default ({currentUser}) => {
 
                     >
 
+                        {/* <img className="profile-img" src={UserProfileImage}></img>
+                        <label className="profile-name mb-0 ml-2 mr-2"> {currentUser.name}</label> */}
                         {/* <img className="profile-img" src={UserProfileImage}></img> */}
                         {currentUser ?
                                     <>
                                         <img className="profile-img" src={currentUser.image ? currentUser.image : UserProfileImage} alt="" />
-                                        {currentUser.name}
+                                        <label className="profile-name mb-0 ml-2 mr-2">{currentUser.name}ש</label>
                                     </>
                                     : ''}
                         <img className="open-menu-img" src={ArrowDown}></img>
