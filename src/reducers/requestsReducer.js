@@ -1,6 +1,7 @@
 import {
 	FETCH_REQUESTS,
-	FETCH_USER_REQUESTS
+	FETCH_USER_REQUESTS,
+	CREATE_REQUEST
 } from '../actions/types';
 
 const initState = {
@@ -11,6 +12,13 @@ const initState = {
 
 export default (state = initState, action) => {
 	switch (action.type) {
+
+		case CREATE_REQUEST: 
+		return {
+			...state,
+			requests: Object.assign({}, action.request)
+		}
+
 
 		case FETCH_REQUESTS:
 			return {

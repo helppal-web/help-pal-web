@@ -19,7 +19,7 @@ export const createRequest = (request) => {
 export const createRequestSuccess = (data) => {
     return {
         type: CREATE_REQUEST,
-        payload: data
+        request: data
     }
 }
 
