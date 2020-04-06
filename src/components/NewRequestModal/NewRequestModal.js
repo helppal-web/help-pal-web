@@ -12,6 +12,7 @@ import './NewRequestModal.scss';
 import { Modal } from 'react-bootstrap';
 import newRequestIcon from '../../assets/New-request-ic.svg';
 import { useSelector } from 'react-redux';
+import { requestStatuses } from '../../helpers';
 
 export default function NewRequestModal(props) {
 
@@ -67,6 +68,7 @@ export default function NewRequestModal(props) {
 
         data.priority = data.priority.toUpperCase()
         data.category = data.category.toUpperCase()
+        data.status = requestStatuses.OPEN;
         return data;
     }
 
@@ -96,6 +98,7 @@ export default function NewRequestModal(props) {
                             <Row className="my-3">
                                 <Col>
                                     <TextField
+                                        disabled
                                         required
                                         label={t("Name")}
                                         placeholder={t('Name')}
@@ -110,6 +113,7 @@ export default function NewRequestModal(props) {
                                 </Col>
                                 <Col>
                                     <TextField
+                                        disabled
                                         required
                                         label={t("Phone number")}
                                         placeholder={t('Phone number')}
