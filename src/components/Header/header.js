@@ -7,8 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withTranslation } from 'react-i18next';
 import UserProfile from "./UserProfileMenu/UserProfileMenu";
-import LanguagesMenu from './LanguagesMenu/LanguagesMenu'
-import NotificationsMenu from './NotificationsMenu/NotificationsMenu'
+// import NotificationsMenu from './NotificationsMenu/NotificationsMenu'
 import * as Config from '../../config/config';
 import { connect } from 'react-redux';
 
@@ -35,8 +34,7 @@ class Header extends Component {
                                         {currentUser.name}
                                     </>
                                     : ''}
-                                <NotificationsMenu></NotificationsMenu>
-                                <LanguagesMenu languages={Config.languages}></LanguagesMenu>
+                                {/* <NotificationsMenu></NotificationsMenu> */}
                                 <UserProfile></UserProfile>
                             </div>
 
