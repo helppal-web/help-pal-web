@@ -73,7 +73,7 @@ export default function NewRequestModal(props) {
     }
 
     async function onSubmit(data) {
-        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address} ${data.houseNumber}&format=json`);
+        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address}&format=json`);
         if (response.status === 200 && response.data.length > 0) {
             const parsedData = parseData(data, response)
             props.handleSubmit(parsedData);
@@ -82,11 +82,14 @@ export default function NewRequestModal(props) {
         }
     }
 
+
+
     return (
         <Modal centered onHide={hide} show={isOpened} dialogClassName="request-modal">
             {currentUser &&
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                     <div className="new-request-container">
+
                         <Modal.Header closeButton>
                             <Modal.Title>
                                 <img alt="new-request-icon" src={newRequestIcon} />
@@ -96,7 +99,72 @@ export default function NewRequestModal(props) {
 
                         <Modal.Body>
                             <div className="new-request-body">
+                                <Row className="my-3">
+                                    <Col>
+                                        <TextField
+                                            required
+                                            label={t("Name")}
+                                            placeholder={t('Name')}
+                                            variant="outlined"
+                                            name="name"
+                                            defaultValue={currentUser.name}
+                                            inputRef={register({ required: t('Name is required') })}
+                                        />
+                                        <FormHelperText className="text-danger">
+                                            {errors.name && errors.name.message}
+                                        </FormHelperText>
+                                    </Col>
+                                    <Col>
+                                        <TextField
+                                            required
+                                            label={t("Phone number")}
+                                            placeholder={t('Phone number')}
+                                            variant="outlined"
+                                            name="phoneNumber"
+                                            defaultValue={currentUser.phoneNumber}
+                                            inputRef={register({ required: t('Phone number is required') })}
+                                        />
+                                        <FormHelperText className="text-danger">
+                                            {errors.phoneNumber && errors.phoneNumber.message}
+                                        </FormHelperText>
+                                    </Col>
+                                </Row>
+                                <Row className="my-3">
+                                    <Col sm={12}>
 
+                                        <Autocomplete
+                                            id="combo-box-demo"
+                                            options={addresses}
+                                            getOptionLabel={(option) => option.text}
+                                            defaultValue={{ text: currentUser.address }}
+                                            renderInput={(params) => <TextField required name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Address')} variant="outlined" />}
+                                        />
+                                        <FormHelperText className="text-danger">
+                                            {errors.address && errors.address.message}
+                                        </FormHelperText>
+                                    </Col>
+                                </Row>
+                                <Row className="my-3">
+                                    <Col>
+                                        <Controller
+                                            as={
+                                                <Select required native>
+                                                    <option aria-label="None" value={undefined}>{t('Priority')}</option>
+                                                    {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
+                                                        {t(priority)}
+                                                    </option>) : ''}
+                                                </Select>
+                                            }
+                                            name="priority"
+                                            rules={{ required: t('Priority is required') }}
+                                            control={control}
+                                        >
+                                        </Controller>
+                                        <FormHelperText className="text-danger">
+                                            {errors.priority && errors.priority.message}
+                                        </FormHelperText>
+                                    </Col>
+                                </Row>
 
                                 <Row className="my-3">
                                     <Col>
@@ -258,6 +326,7 @@ export default function NewRequestModal(props) {
                                 </Row>
                             </div>
                         </Modal.Body>
+
                         <Modal.Footer>
                             <Col className="text-start">
                                 <Button variant="link" type="reset">
@@ -274,5 +343,5 @@ export default function NewRequestModal(props) {
                 </form>
             }
         </Modal>
-    );
-}
+
+    )}

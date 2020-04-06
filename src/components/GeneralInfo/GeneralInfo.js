@@ -29,15 +29,17 @@ export default function GenralInfo() {
     }
     const getYears = () => {
         const years = [];
-        for (let j = 1900; j < currnetYear; j++) {
+        const maxAge = currnetYear - 100;
+        const minAge = currnetYear - 12;
+        for (let j = maxAge; j <= minAge; j++) {
             years.push(j)
         }
 
         return years;
     }
 
-    const onSelectedAddressHandler = (value)=>{
-       
+    const onSelectedAddressHandler = (value) => {
+
     }
 
     const currnetYear = new Date().getFullYear();
@@ -114,7 +116,7 @@ export default function GenralInfo() {
                         <Col sm={6}>
                             <FormControl className="select-year">
                                 <InputLabel> {t('YearOfBirth')}</InputLabel>
-                                <Select value="1900">
+                                <Select value="1990">
                                     {getYears().map(y => <MenuItem value={y}> {y} </MenuItem>)}
                                 </Select>
                             </FormControl>
