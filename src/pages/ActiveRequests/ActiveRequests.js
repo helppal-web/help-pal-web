@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Table from '../../components/UI/Table/Table';
 import { withTranslation } from 'react-i18next';
 import CancelButton from "../../assets/Cancel-bt.png"
-import { statusToColor } from '../../helpers';
+import { statusToColor, requestStatuses } from '../../helpers';
 import ActionsBar from '../../components/ActionsBar/ActionsBar';
 
 
@@ -11,9 +11,6 @@ class ActiveRequest extends Component {
 
     constructor(props) {
         super(props);
-        this.data = []
-        this.title = 'Active Requests'
-
         this.actions = [
             {
                 icon: () => <img alt="cancel" src={CancelButton} />,
@@ -24,33 +21,48 @@ class ActiveRequest extends Component {
     }
 
 
-    parseData = () => {
-        this.data = [];
-        this.props.requests.forEach((request) => {
-            if (request.ownerProfile && this.props.currentUser && request.ownerProfile.email === this.props.currentUser.email && request.status === 'IN_PROGRESS') {
+    parseData = (user, requests) => {
+        const data = [];
+
+        requests.forEach((request) => {
+            if (request.ownerProfile &&
+                user && request.ownerProfile.id === user.id &&
+                (
+                    request.status === requestStatuses.OPEN ||
+                    request.status === requestStatuses.IN_PROGRESS ||
+                    request.status === requestStatuses.ASSIGNED ||
+                    request.status === requestStatuses.IN_DISPUTE
+                )
+            ) {
                 //let createdFormat = new Intl.DateTimeFormat('en-GB').format(new Date(created));
                 const { created, category, priority, description, status } = request;
-                this.data.push({ created, category, priority, description, status })
+                data.push({ created, category, priority, description, status })
             }
         });
+        return data;
     }
 
     render() {
-        this.parseData();
-        this.title = this.props.t('Active Requests')
-        this.columns = [
-            { title: this.props.t("DATE"), field: "created" },
-            { title: this.props.t("CATEGORY"), field: "category" },
-            { title: this.props.t("PRIORITY"), field: "priority" },
-            { title: this.props.t("DESCRIPTION"), field: "description" },
-            { title: this.props.t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
-        ];
-        return (
-            <>
-                <ActionsBar />
-                <Table title={this.title} data={this.data} columns={this.columns} actions={this.actions}></Table>
-            </>
-        )
+        const { currentUser, requests, t } = this.props;
+        if (requests && currentUser) {
+            let data = this.parseData(currentUser, requests);
+            let title = t('Active Requests')
+            const columns = [
+                { title: t("DATE"), field: "created" },
+                { title: t("CATEGORY"), field: "category" },
+                { title: t("PRIORITY"), field: "priority" },
+                { title: t("DESCRIPTION"), field: "description" },
+                { title: t("STATUS"), field: "status", cellStyle: (rowData) => ({ color: statusToColor(rowData) }) }
+            ];
+            return (
+                <>
+                    <ActionsBar />
+                    <Table title={title} data={data} columns={columns} actions={this.actions}></Table>
+                </>
+            )
+        } else {
+            return ('');
+        }
     }
 }
 
