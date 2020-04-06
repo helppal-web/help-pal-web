@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import './index.scss';
-import * as actions from './actions';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -12,8 +11,6 @@ import rootReducer from './reducers';
 import i18n from "./i18n/i18n";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-// store.dispatch(actions.fetchAllRequests());
-// store.dispatch(actions.fetchNotifications());
 
 
 ReactDOM.render(

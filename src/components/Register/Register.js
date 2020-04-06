@@ -15,7 +15,7 @@ export default function Register({ onSubmit }) {
     const onSubmitHandler = () => {
         onSubmit(user)
         .then(response => {
-            if(response.status == 200){
+            if(response.status === 200){
                 window.alert(t('SignUpSuccessfully'));
             }
             else {

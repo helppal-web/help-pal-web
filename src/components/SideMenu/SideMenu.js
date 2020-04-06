@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SideMenu.scss';
-import { Map, History, Settings } from '@material-ui/icons';
+import { History, Settings } from '@material-ui/icons';
 import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
