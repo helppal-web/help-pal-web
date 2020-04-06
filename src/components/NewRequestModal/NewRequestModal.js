@@ -73,7 +73,7 @@ export default function NewRequestModal(props) {
     }
 
     async function onSubmit(data) {
-        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address} ${data.houseNumber}&format=json`);
+        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address}&format=json`);
         if (response.status === 200 && response.data.length > 0) {
             const parsedData = parseData(data, response)
             props.handleSubmit(parsedData);
@@ -82,11 +82,14 @@ export default function NewRequestModal(props) {
         }
     }
 
+
+
     return (
         <Modal centered onHide={hide} show={isOpened} dialogClassName="request-modal">
             {currentUser &&
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                     <div className="new-request-container">
+
                         <Modal.Header closeButton>
                             <Modal.Title>
                                 <img alt="new-request-icon" src={newRequestIcon} />
@@ -96,19 +99,16 @@ export default function NewRequestModal(props) {
 
                         <Modal.Body>
                             <div className="new-request-body">
-
-
                                 <Row className="my-3">
                                     <Col>
                                         <TextField
-                                            disabled
-                                            // required
+                                            required
                                             label={t("Name")}
                                             placeholder={t('Name')}
                                             variant="outlined"
                                             name="name"
                                             defaultValue={currentUser.name}
-                                            inputRef={register}//({ required: t('Name is required') })}
+                                            inputRef={register({ required: t('Name is required') })}
                                         />
                                         <FormHelperText className="text-danger">
                                             {errors.name && errors.name.message}
@@ -116,14 +116,13 @@ export default function NewRequestModal(props) {
                                     </Col>
                                     <Col>
                                         <TextField
-                                            disabled
-                                            // required
+                                            required
                                             label={t("Phone number")}
                                             placeholder={t('Phone number')}
                                             variant="outlined"
                                             name="phoneNumber"
                                             defaultValue={currentUser.phoneNumber}
-                                            inputRef={register}//({ required: t('Phone number is required') })}
+                                            inputRef={register({ required: t('Phone number is required') })}
                                         />
                                         <FormHelperText className="text-danger">
                                             {errors.phoneNumber && errors.phoneNumber.message}
@@ -131,7 +130,7 @@ export default function NewRequestModal(props) {
                                     </Col>
                                 </Row>
                                 <Row className="my-3">
-                                    <Col sm={8}>
+                                    <Col sm={12}>
 
                                         <Autocomplete
                                             id="combo-box-demo"
@@ -144,21 +143,8 @@ export default function NewRequestModal(props) {
                                             {errors.address && errors.address.message}
                                         </FormHelperText>
                                     </Col>
-                                    <Col sm={4}>
-                                        <TextField
-                                            required
-                                            label={t("House Number")}
-                                            placeholder={t('House Number')}
-                                            variant="outlined"
-                                            name="houseNumber"
-                                            inputRef={register({ required: t('House Number is required') })}
-                                            type="number"
-                                        />
-                                        <FormHelperText className="text-danger">
-                                            {errors.houseNumber && errors.houseNumber.message}
-                                        </FormHelperText>
-                                    </Col>
                                 </Row>
+                               
                                 <Row className="my-3">
                                     <Col>
                                         <Controller
@@ -258,6 +244,7 @@ export default function NewRequestModal(props) {
                                 </Row>
                             </div>
                         </Modal.Body>
+
                         <Modal.Footer>
                             <Col className="text-start">
                                 <Button variant="link" type="reset">
@@ -274,5 +261,5 @@ export default function NewRequestModal(props) {
                 </form>
             }
         </Modal>
-    );
-}
+
+    )}
