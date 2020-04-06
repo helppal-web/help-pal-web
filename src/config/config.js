@@ -3,13 +3,13 @@ module.exports = {
     "categories": ["SUPERMARKET", "MEDICINE", "WALK THE DOG", "MAIL", "DELIVERY"],
     "priorities": ["HIGH", "MEDIUM", "LOW", "NONE"],
     "languages": [{
-        code: 'en',
-        text: 'English',
-    },
-    {
-        code: 'he',
-        text: 'Hebrew',
-    }
+            code: 'en-US',
+            text: 'English',
+        },
+        {
+            code: 'he',
+            text: 'Hebrew',
+        }
     ],
     "MapBoxKey": "pk.eyJ1Ijoib21lcmZpc2htYW4iLCJhIjoiY2s4Z2N4bm5mMDA4dzNmczBxeXo3a3Q2aCJ9.G_b_Djz3LbKZpyULlQIAvQ",
     "placesAutocompleteURL": "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest",

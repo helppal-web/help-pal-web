@@ -1,0 +1,28 @@
+.settings-wrapper {
+    width: 20.8rem;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    text-align: start;
+    .link-wrapper {
+        box-shadow: 0 1px 0 0 #CCCCCC;
+        a {
+            color: #342AA4;
+            font-weight: 600;
+        }
+    }
+    .select {
+        width: 15.8rem;
+    }
+    .btn-save {
+        width: 9.5rem;
+        height: 2rem;
+        border-radius: 2px;
+        background: linear-gradient(90deg, #342AA4 0%, #584EC8 100%, #584EC8 100%);
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+}
