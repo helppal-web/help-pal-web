@@ -95,164 +95,168 @@ export default function NewRequestModal(props) {
                         </Modal.Header>
 
                         <Modal.Body>
-                            <Row className="my-3">
-                                <Col>
-                                    <TextField
-                                        disabled
-                                        // required
-                                        label={t("Name")}
-                                        placeholder={t('Name')}
-                                        variant="outlined"
-                                        name="name"
-                                        defaultValue={currentUser.name}
-                                        inputRef={register}//({ required: t('Name is required') })}
-                                    />
-                                    <FormHelperText className="text-danger">
-                                        {errors.name && errors.name.message}
-                                    </FormHelperText>
-                                </Col>
-                                <Col>
-                                    <TextField
-                                        disabled
-                                        // required
-                                        label={t("Phone number")}
-                                        placeholder={t('Phone number')}
-                                        variant="outlined"
-                                        name="phoneNumber"
-                                        defaultValue={currentUser.phoneNumber}
-                                        inputRef={register}//({ required: t('Phone number is required') })}
-                                    />
-                                    <FormHelperText className="text-danger">
-                                        {errors.phoneNumber && errors.phoneNumber.message}
-                                    </FormHelperText>
-                                </Col>
-                            </Row>
-                            <Row className="my-3">
-                                <Col sm={8}>
+                            <div className="new-request-body">
 
-                                    <Autocomplete
-                                        id="combo-box-demo"
-                                        options={addresses}
-                                        getOptionLabel={(option) => option.text}
-                                        defaultValue={{ text: currentUser.address }}
-                                        renderInput={(params) => <TextField required name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Address')} variant="outlined" />}
-                                    />
-                                    <FormHelperText className="text-danger">
-                                        {errors.address && errors.address.message}
-                                    </FormHelperText>
-                                </Col>
-                                <Col sm={4}>
-                                    <TextField
-                                        required
-                                        label={t("House Number")}
-                                        placeholder={t('House Number')}
-                                        variant="outlined"
-                                        name="houseNumber"
-                                        inputRef={register({ required: t('House Number is required') })}
-                                        type="number"
-                                    />
-                                    <FormHelperText className="text-danger">
-                                        {errors.houseNumber && errors.houseNumber.message}
-                                    </FormHelperText>
-                                </Col>
-                            </Row>
-                            <Row className="my-3">
-                                <Col>
-                                    <Controller
-                                        as={
-                                            <Select required native>
-                                                <option aria-label="None" value={undefined}>{t('Priority')}</option>
-                                                {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
-                                                    {t(priority)}
-                                                </option>) : ''}
-                                            </Select>
-                                        }
-                                        name="priority"
-                                        rules={{ required: t('Priority is required') }}
-                                        control={control}
-                                    >
-                                    </Controller>
-                                    <FormHelperText className="text-danger">
-                                        {errors.priority && errors.priority.message}
-                                    </FormHelperText>
 
-                                    {/* TODO: Add whenever in hours..? */}
-                                </Col>
-                                <Col>
-                                    <Controller
-                                        as={
-                                            <Select required native>
-                                                <option aria-label="None" value={undefined}>{t('Category')}</option>
-                                                {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
-                                                    {t(category)}
-                                                </option>) : ''}
-                                            </Select>
-                                        }
-                                        name="category"
-                                        rules={{ required: t('Category is required') }}
-                                        control={control}
-                                    >
-                                    </Controller>
+                                <Row className="my-3">
+                                    <Col>
+                                        <TextField
+                                            disabled
+                                            // required
+                                            label={t("Name")}
+                                            placeholder={t('Name')}
+                                            variant="outlined"
+                                            name="name"
+                                            defaultValue={currentUser.name}
+                                            inputRef={register}//({ required: t('Name is required') })}
+                                        />
+                                        <FormHelperText className="text-danger">
+                                            {errors.name && errors.name.message}
+                                        </FormHelperText>
+                                    </Col>
+                                    <Col>
+                                        <TextField
+                                            disabled
+                                            // required
+                                            label={t("Phone number")}
+                                            placeholder={t('Phone number')}
+                                            variant="outlined"
+                                            name="phoneNumber"
+                                            defaultValue={currentUser.phoneNumber}
+                                            inputRef={register}//({ required: t('Phone number is required') })}
+                                        />
+                                        <FormHelperText className="text-danger">
+                                            {errors.phoneNumber && errors.phoneNumber.message}
+                                        </FormHelperText>
+                                    </Col>
+                                </Row>
+                                <Row className="my-3">
+                                    <Col sm={8}>
+
+                                        <Autocomplete
+                                            id="combo-box-demo"
+                                            options={addresses}
+                                            getOptionLabel={(option) => option.text}
+                                            defaultValue={{ text: currentUser.address }}
+                                            renderInput={(params) => <TextField required name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Address')} variant="outlined" />}
+                                        />
+                                        <FormHelperText className="text-danger">
+                                            {errors.address && errors.address.message}
+                                        </FormHelperText>
+                                    </Col>
+                                    <Col sm={4}>
+                                        <TextField
+                                            required
+                                            label={t("House Number")}
+                                            placeholder={t('House Number')}
+                                            variant="outlined"
+                                            name="houseNumber"
+                                            inputRef={register({ required: t('House Number is required') })}
+                                            type="number"
+                                        />
+                                        <FormHelperText className="text-danger">
+                                            {errors.houseNumber && errors.houseNumber.message}
+                                        </FormHelperText>
+                                    </Col>
+                                </Row>
+                                <Row className="my-3">
+                                    <Col>
+                                        <Controller
+                                            as={
+                                                <Select required native>
+                                                    <option aria-label="None" value={undefined}>{t('Priority')}</option>
+                                                    {Config.priorities.length ? Config.priorities.map((priority, index) => <option key={index} value={priority}>
+                                                        {t(priority)}
+                                                    </option>) : ''}
+                                                </Select>
+                                            }
+                                            name="priority"
+                                            rules={{ required: t('Priority is required') }}
+                                            control={control}
+                                        >
+                                        </Controller>
+                                        <FormHelperText className="text-danger">
+                                            {errors.priority && errors.priority.message}
+                                        </FormHelperText>
+
+                                        {/* TODO: Add whenever in hours..? */}
+                                    </Col>
+                                    <Col>
+                                        <Controller
+                                            as={
+                                                <Select required native>
+                                                    <option aria-label="None" value={undefined}>{t('Category')}</option>
+                                                    {Config.categories.length ? Config.categories.map((category, index) => <option key={index} value={category}>
+                                                        {t(category)}
+                                                    </option>) : ''}
+                                                </Select>
+                                            }
+                                            name="category"
+                                            rules={{ required: t('Category is required') }}
+                                            control={control}
+                                        >
+                                        </Controller>
+                                        <FormHelperText className="text-danger">
+                                            {errors.category && errors.category.message}
+                                        </FormHelperText>
+                                    </Col>
+                                </Row>
+
+                                <Row className="my-3">
+                                    <Col>
+                                        <Controller
+                                            as={
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id="onlyPreviousHelpers"
+                                                    name="onlyPreviousHelpers"
+                                                    label={t('Open only to previous volunteers')}
+                                                    value="true"
+                                                    className="text-start" />
+                                            }
+                                            name="onlyPreviousHelpers"
+                                            control={control}
+                                            defaultValue={false}
+                                        ></Controller>
+                                        {/* TODO: Add option to release to public after x hours */}
+                                    </Col>
+                                    <Col>
+                                        <Controller
+                                            as={
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id="badgeOnly"
+                                                    name="badgeOnly"
+                                                    label={t('Open only to helpers with badge')}
+                                                    value="true"
+                                                    className="text-start" />
+                                            }
+                                            name="badgeOnly"
+                                            control={control}
+                                            defaultValue={false}
+                                        ></Controller>
+
+                                    </Col>
+                                </Row>
+
+                                <Row className="my-3">
+                                    <Col>
+                                        <TextField
+                                            label={t("Description")}
+                                            multiline
+                                            rows="6"
+                                            inputProps={{
+                                                name: 'description'
+                                            }}
+                                            inputRef={register()}
+                                            variant="outlined"
+                                        />
+                                    </Col>
                                     <FormHelperText className="text-danger">
-                                        {errors.category && errors.category.message}
+                                        {errors.description && errors.description.message}
                                     </FormHelperText>
-                                </Col>
-                            </Row>
-
-                            <Row className="my-3">
-                                <Col>
-                                    <Controller
-                                        as={
-                                            <Form.Check
-                                                type="checkbox"
-                                                id="onlyPreviousHelpers"
-                                                name="onlyPreviousHelpers"
-                                                label={t('Open only to previous volunteers')}
-                                                value="true"
-                                                className="text-start" />
-                                        }
-                                        name="onlyPreviousHelpers"
-                                        control={control}
-                                        defaultValue={false}
-                                    ></Controller>
-                                    {/* TODO: Add option to release to public after x hours */}
-                                </Col>
-                                <Col>
-                                    <Controller
-                                        as={
-                                            <Form.Check
-                                                type="checkbox"
-                                                id="badgeOnly"
-                                                name="badgeOnly"
-                                                label={t('Open only to helpers with badge')}
-                                                value="true"
-                                                className="text-start" />
-                                        }
-                                        name="badgeOnly"
-                                        control={control}
-                                        defaultValue={false}
-                                    ></Controller>
-
-                                </Col>
-                            </Row>
-
-                            <Row className="my-3">
-                                <Col>
-                                    <TextField
-                                        label={t("Description")}
-                                        multiline
-                                        rows="6"
-                                        inputProps={{
-                                            name: 'description'
-                                        }}
-                                        inputRef={register()}
-                                        variant="outlined"
-                                    />
-                                </Col>
-                                <FormHelperText className="text-danger">
-                                    {errors.description && errors.description.message}
-                                </FormHelperText>
-                            </Row>
+                                </Row>
+                            </div>
                         </Modal.Body>
                         <Modal.Footer>
                             <Col className="text-start">
