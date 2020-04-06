@@ -99,13 +99,13 @@ export default function NewRequestModal(props) {
                                 <Col>
                                     <TextField
                                         disabled
-                                        required
+                                        // required
                                         label={t("Name")}
                                         placeholder={t('Name')}
                                         variant="outlined"
                                         name="name"
                                         defaultValue={currentUser.name}
-                                        inputRef={register({ required: t('Name is required') })}
+                                        inputRef={register}//({ required: t('Name is required') })}
                                     />
                                     <FormHelperText className="text-danger">
                                         {errors.name && errors.name.message}
@@ -114,13 +114,13 @@ export default function NewRequestModal(props) {
                                 <Col>
                                     <TextField
                                         disabled
-                                        required
+                                        // required
                                         label={t("Phone number")}
                                         placeholder={t('Phone number')}
                                         variant="outlined"
                                         name="phoneNumber"
                                         defaultValue={currentUser.phoneNumber}
-                                        inputRef={register({ required: t('Phone number is required') })}
+                                        inputRef={register}//({ required: t('Phone number is required') })}
                                     />
                                     <FormHelperText className="text-danger">
                                         {errors.phoneNumber && errors.phoneNumber.message}
