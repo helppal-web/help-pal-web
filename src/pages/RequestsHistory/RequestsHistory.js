@@ -19,10 +19,12 @@ export default function RequestsHistory() {
     ]
 
     const requests = useSelector(state => state.requests.requests);
+    const currentUser = useSelector(state => state.user.currentUser);
+    
     if (requests) {
         requests.filter((request) => (
             request.ownerProfile &&
-            user && request.ownerProfile.id === user.id &&
+            currentUser && request.ownerProfile.id === currentUser.id &&
             (
                 request.status === requestStatuses.CLOSED ||
                 request.status === requestStatuses.DELIVERED
