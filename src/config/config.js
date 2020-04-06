@@ -17,7 +17,7 @@ module.exports = {
     "geolocationToken": "82fc3fc7e92706",
     "fakeRequests": [{
         id: 1,
-        location: { lat: 32.078044, lon: 34.774198 },
+        coord: { lat: 32.078044, lon: 34.774198 },
         onlyPreviousHelpers: false,
         status: 'Assigned',
         destProfile: { id: 2, name: 'Blue Blue', email: 'omerfishman.work@gmail.com', phoneNumber: '0505123456', image: undefined, address: '', coords: { lat: 32.086044, lon: 34.794198 }, language: ['hebrew', 'english'], cases: 3, badge: true, birthYear: 1995, score: 81 },
@@ -35,7 +35,7 @@ module.exports = {
     },
     {
         id: 2,
-        location: { lat: 32.075044, lon: 34.794198 },
+        coord: { lat: 32.075044, lon: 34.794198 },
         onlyPreviousHelpers: false,
         status: 'Assigned',
         ownerProfile: { id: 2, name: 'Blue Blue', email: 'omerfishman.work@gmail.com', phoneNumber: '0505123456', image: undefined, address: '', coords: { lat: 32.086044, lon: 34.794198 }, language: ['hebrew', 'english'], cases: 3, badge: true, birthYear: 1995, score: 81 },
