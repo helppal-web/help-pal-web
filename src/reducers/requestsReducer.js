@@ -29,7 +29,7 @@ export default (state = initState, action) => {
 		case UPDATE_REQUEST:
 			return {
 				...state,
-				requests: state.requests.map(request => request.id === action.request ? action.request : request),
+				requests: state.requests.map(request => request.id === action.request.id ? action.request : request),
 			}
 
 		default:

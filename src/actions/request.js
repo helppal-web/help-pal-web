@@ -51,9 +51,9 @@ export const fetchRequestsSuccess = (data) => {
 };
 
 
-export const updateRequest = () => {
+export const updateRequest = (data) => {
     return (dispatch) => {
-        return axios.put(Config.serverUrl + '/requests', {})
+        return axios.put(Config.serverUrl + '/requests', data)
             .then(response => {
                 dispatch(updateRequestSuccess(response.data));
             })
@@ -67,7 +67,6 @@ export const updateRequest = () => {
 export const updateRequestSuccess = (data) => {
     return {
         type: UPDATE_REQUEST,
-        request: data.requests,
-        count: data.count
+        request: data
     }
 };
