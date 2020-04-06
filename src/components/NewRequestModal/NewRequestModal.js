@@ -71,7 +71,7 @@ export default function NewRequestModal(props) {
     }
 
     async function onSubmit(data) {
-        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address} ${data.houseNumber}&format=json`);
+        const response = await Axios.get(`${Config.geolocationURL}?key=${Config.geolocationToken}&q=${data.address}&format=json`);
         if (response.status === 200 && response.data.length > 0) {
             const parsedData = parseData(data, response)
             props.handleSubmit(parsedData);
@@ -80,11 +80,14 @@ export default function NewRequestModal(props) {
         }
     }
 
+
+
     return (
         <Modal centered onHide={hide} show={isOpened} dialogClassName="request-modal">
             {currentUser &&
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                     <div className="new-request-container">
+                        
                         <Modal.Header closeButton>
                             <Modal.Title>
                                 <img alt="new-request-icon" src={newRequestIcon} />
@@ -124,31 +127,17 @@ export default function NewRequestModal(props) {
                                 </Col>
                             </Row>
                             <Row className="my-3">
-                                <Col sm={8}>
+                                <Col sm={12}>
 
                                     <Autocomplete
                                         id="combo-box-demo"
                                         options={addresses}
                                         getOptionLabel={(option) => option.text}
                                         defaultValue={{ text: currentUser.address }}
-                                        renderInput={(params) => <TextField required name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Address')} variant="outlined" />}
+                                        renderInput={(params) => <TextField required  name="address" inputRef={register({ required: t('Address is required') })} onChange={onAddressChangeHandler} value={addresses} {...params} label={t('Address')} variant="outlined" />}
                                     />
                                     <FormHelperText className="text-danger">
                                         {errors.address && errors.address.message}
-                                    </FormHelperText>
-                                </Col>
-                                <Col sm={4}>
-                                    <TextField
-                                        required
-                                        label={t("House Number")}
-                                        placeholder={t('House Number')}
-                                        variant="outlined"
-                                        name="houseNumber"
-                                        inputRef={register({ required: t('House Number is required') })}
-                                        type="number"
-                                    />
-                                    <FormHelperText className="text-danger">
-                                        {errors.houseNumber && errors.houseNumber.message}
                                     </FormHelperText>
                                 </Col>
                             </Row>
