@@ -13,11 +13,11 @@ const initState = {
 export default (state = initState, action) => {
 	switch (action.type) {
 
-		case CREATE_REQUEST: 
-		return {
-			...state,
-			requests: Object.assign({}, action.request)
-		}
+		case CREATE_REQUEST:
+			return {
+				...state,
+				requests: [...state.requests, action.request]
+			}
 
 
 		case FETCH_REQUESTS:
