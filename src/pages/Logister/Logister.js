@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import coloredLogo from '../../assets/helppal-logo.svg';
 import logisterImage from '../../assets/logister-image.png';
 
-function Logister({ logister, login, currentUser, fetchUserById }) {
+function Logister({ logister, login, register, currentUser, fetchUserById }) {
     const [key, setKey] = useState(logister);
     const { t } = useTranslation();
     const history = useHistory();

@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUserFromStorage } from './helpers';
 import RequestsHistory from "./pages/RequestsHistory/RequestsHistory";
+import Settings from "./pages/Settings/Settings";
 import * as actions from './actions';
 
 export const APP_PATHS = {
@@ -23,7 +24,8 @@ export const APP_PATHS = {
     notifications: '/notifications',
     login: '/login',
     register: '/register',
-    requestsHistory: '/app/requests/history'
+    requestsHistory: '/app/requests/history',
+    settings: "/app/settings"
 }
 class App extends React.Component {
     state = {
@@ -35,10 +37,10 @@ class App extends React.Component {
         this.resize();
         document.body.style.direction = this.props.i18n.dir();
 
-        const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications} = this.props;
+        const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications } = this.props;
         const user = getUserFromStorage();
-        //fetchAllRequests();
-        //fetchNotifications();
+
+    
         if (user && user.id) {
 
             if (!currentUser) {
@@ -71,6 +73,7 @@ class App extends React.Component {
                     <AppLayout exact path={APP_PATHS.requestsHistory} component={RequestsHistory}></AppLayout>
                     <AppLayout exact path={APP_PATHS.activeResponses} component={ActiveResponses} />
                     <AppLayout exact path={APP_PATHS.notifications} component={Notifications} />
+                    <AppLayout exact path={APP_PATHS.settings} component={Settings}></AppLayout>
                     <Route exact path={APP_PATHS.login} render={() => < Logister logister={'login'} />} />
                     <Route exact path={APP_PATHS.register} render={() => < Logister logister={'register'} />} />
                 </Switch>

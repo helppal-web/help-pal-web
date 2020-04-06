@@ -1,4 +1,3 @@
-
 import { LOGGED_IN_USER } from './types';
 import * as Config from '../config/config';
 import axios from 'axios';
@@ -39,15 +38,18 @@ export const loginSuccess = (data, rememberMe) => {
 export const register = (user) => {
     return (dispatch) => {
         // TODO: Change according to Backend
-        return axios.post(`${Config.serverUrl}/register`, user)
-            .then(response => {
-                // TODO: Change according to Backend
-                dispatch(registerSuccess(response.data));
-            })
-            .catch(error => {
-                alert('An error has occured');
-                throw (error);
-            });
+        return new Promise((resolve, reject) => {
+            axios.post(`${Config.serverUrl}/users`, user)
+                .then(response => {
+                    // TODO: Change according to Backend
+                    dispatch(registerSuccess(response.data));
+                    resolve(response);
+                })
+                .catch(error => {
+                    alert('An error has occured');
+                    reject(error);
+                });
+        })
     }
 }
 
