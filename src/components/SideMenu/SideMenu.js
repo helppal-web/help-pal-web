@@ -20,6 +20,7 @@ function SideMenu(props) {
     const location = useLocation();
     const [showNewRequestModal, setNewRequestModal] = useState(false);
     const onNewRequestSubmitted = (data) => {
+        setNewRequestModal(false);
         props.onCreateRequest(data)
     }
 

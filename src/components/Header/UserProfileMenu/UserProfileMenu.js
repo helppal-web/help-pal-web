@@ -2,17 +2,19 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import { Menu, MenuItem } from '@material-ui/core';
-import UserProfileImage from "../../../assets/profile-pic-header.svg";
+import profile_placeholder from '../../../assets/profile_placeholder.svg';
 import ArrowDown from "../../../assets/arrow-down.svg";
 import { useTranslation } from 'react-i18next';
 import history from "../../../helpers/history";
 import { APP_PATHS } from '../../../App'
 import { clearStorage } from '../../../helpers';
 import "./UserProfileMenu.scss";
+import { useSelector } from 'react-redux';
 
 export default () => {
 
     const { t } = useTranslation();
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -53,13 +55,16 @@ export default () => {
                         color="inherit"
 
                     >
-
-                        <img className="profile-img" src={UserProfileImage}></img>
-                        <label className="profile-name mb-0 ml-2 mr-2"> Test User</label>
+                        {currentUser ?
+                            <>
+                                <img width="45" height="45" src={currentUser.image ? currentUser.image : profile_placeholder} className="profile-img" alt="" />
+                                <label className="profile-name mb-0 ml-2 mr-2">{currentUser.name}</label>
+                            </>
+                            : ''}
                         <img className="open-menu-img" src={ArrowDown}></img>
                     </IconButton>
                 </div>
-                
+
             </div>
             <Menu
                 anchorEl={anchorEl}

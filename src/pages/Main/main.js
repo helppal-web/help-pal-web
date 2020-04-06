@@ -19,11 +19,14 @@ class MainPage extends Component {
 
         if (requests && requests.length) {
             requests.forEach((request) => {
-                if (request && request.location) {
+                if (request && request.coord && request.coord.x && request.coord.y) {
+                    const coord = request.coord;
+                    request.coord = { lat: coord.x, lon: coord.y }
+
                     markers.push(
                         {
                             name: request.name,
-                            position: request.location,
+                            position: request.coord,
                             content: <Popup style={{ maxWidth: 'auto' }}>
                                 <div className="modal-content border-none">
                                     <div className="modal-header px-0">

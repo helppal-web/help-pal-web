@@ -16,7 +16,7 @@ export default function Request({ customClasses = '', request, type = requestTyp
             label: t('Close')
         },
         {
-            logic: request.status === requestStatuses.CLOSED,
+            logic: false && request.status === requestStatuses.CLOSED,
             variant: 'helppal',
             responseType: responseTypes.REOPEN,
             label: t('Reopen')
