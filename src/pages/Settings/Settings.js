@@ -10,7 +10,6 @@ export default function Settings() {
     const [mySettings, setSettings] = useState({ langauge: 'en-US', notifications: 'on' });
 
     const onSaveHandler = () => {
-        debugger;
         if (mySettings.langauge !== i18n.language) {
             localStorage.setItem('i18nextLng', mySettings.langauge);
             i18n.changeLanguage(mySettings.langauge);
