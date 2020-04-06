@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import './Register.scss';
@@ -10,10 +10,24 @@ export default function Register({ onSubmit }) {
     const { register, handleSubmit, errors, watch } = useForm();
     const password = useRef({});
     password.current = watch('password');
+    const [user, setUser] = useState({ email: "", password: ""   })
+
+    const onSubmitHandler = () => {
+        onSubmit(user)
+        .then(response => {
+            if(response.status == 200){
+                window.alert(t('SignUpSuccessfully'));
+            }
+            else {
+                window.alert('We are having some issues, please try later');
+            }
+        })
+        .catch(error => console.error(error));
+    }
 
     return (
         <div className="register-container">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmitHandler)}>
 
                 <TextField
                     className="d-block mt-3 mb-2"
@@ -21,6 +35,7 @@ export default function Register({ onSubmit }) {
                     placeholder={t('Enter email')}
                     name="email"
                     variant="standard"
+                    onChange={(event) => setUser({ ...user, email: event.target.value })}
                     inputRef={register({ required: true, minLength: 3 })}
                 />
                 {errors.email && <p>{t('Email address is required')}</p>}
@@ -33,6 +48,7 @@ export default function Register({ onSubmit }) {
                     name="password"
                     variant="standard"
                     type="password"
+                    onChange={(event) => setUser({ ...user, password: event.target.value })}
                     inputRef={register({ required: true, minLength: 4 })}
                 />
                 {errors.password && <p>{t('Password is required')}</p>}
