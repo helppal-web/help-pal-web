@@ -53,7 +53,7 @@ export const fetchRequestsSuccess = (data) => {
 
 export const updateRequest = (data) => {
     return (dispatch) => {
-        return axios.put(Config.serverUrl + '/requests', data)
+        return axios.put(`${Config.serverUrl}${requestsEndpoint}`, data)
             .then(response => {
                 dispatch(updateRequestSuccess(response.data));
             })
