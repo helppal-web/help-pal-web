@@ -28,7 +28,7 @@ export default function AddressAutocomplete(props) {
     const fetchLocations = (query) => {
         axios.get(`${Config.placesAutocompleteURL}?text=${query}&f=json&category=Address`)
             .then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     const { data: { suggestions } } = response;
                     setLocations(suggestions);
                 }

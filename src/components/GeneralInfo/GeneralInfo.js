@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
 import * as Config from "../../config/config";
 import AddressAutocomplete from "../AddressAutocomplete/AddressAutocomplete";
-import axios from "axios";
 import PlusIcon from "../../assets/plus-icon.svg";
 import { toBase64 } from '../../helpers'
 import { Row, Col } from 'react-bootstrap';

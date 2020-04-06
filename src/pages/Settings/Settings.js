@@ -23,7 +23,7 @@ export default function Settings() {
                 <FormControl >
                     <InputLabel> {t('Languages')}</InputLabel>
                     <Select className="select" onChange={(event) => setSettings({ ...mySettings, langauge: event.target.value })} label={t('Language')} value={mySettings.langauge}>
-                        {Config.languages.map(l => <MenuItem value={l.code}> {t(l.text)}</MenuItem>)}
+                        {Config.languages.map(l => <MenuItem key={l.code} value={l.code}> {t(l.text)}</MenuItem>)}
                     </Select>
                 </FormControl>
             </div>
