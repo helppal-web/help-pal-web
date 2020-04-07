@@ -8,12 +8,18 @@ import Config from '../../config/config';
 import { useTranslation } from 'react-i18next';
 import Control from 'react-leaflet-control';
 import ActionsBar from '../ActionsBar/ActionsBar';
-import { requestTypes } from '../../helpers';
+import { requestTypes, getCurrentPosition } from '../../helpers';
 import Request from '../../components/Request/Request';
 import helpCall from '../../assets/Helper-icon.svg';
 
 export default function MapComponent({ requests, requestCallback }) {
     const [latLng] = useState({ lat: 32.078044, lng: 34.774198 })
+
+    const [currentPosition, setCurrentPosition] = useState(undefined);
+    // init currentPosition
+    getCurrentPosition().then((position) => {
+        setCurrentPosition(position);
+    });
     const [zoom] = useState(13)
     const { t } = useTranslation();
     const position = Object.values(latLng);
@@ -87,7 +93,11 @@ export default function MapComponent({ requests, requestCallback }) {
 
     const getBounds = () => {
         let bounds = [];
-        if (requests && requests.length) {
+
+        if (currentPosition) {
+            return Object.values(currentPosition);
+        }
+        else if (requests && requests.length) {
             requests
                 .filter(request => request && request.coord && request.coord.x && request.coord.y)
                 .forEach(request => bounds.push([request.coord.x, request.coord.y]));

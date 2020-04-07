@@ -8,7 +8,7 @@ export function getCurrentPosition() {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
 
-                resolve({ position: { lat, lon } });
+                resolve({ lat, lon });
             }, (err) => {
                 reject('No Location');
             });
