@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import './header.scss';
-import HelpPalLogo from '../../assets/HelpPal-Logo.svg';
-import profile_placeholder from '../../assets/profile_placeholder.svg';
+import HelpPalLogo from '../../assets/helppal-logo-white.svg';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withTranslation } from 'react-i18next';
 import UserProfile from "./UserProfileMenu/UserProfileMenu";
-import LanguagesMenu from './LanguagesMenu/LanguagesMenu'
-import NotificationsMenu from './NotificationsMenu/NotificationsMenu'
-import * as Config from '../../config/config';
+// import NotificationsMenu from './NotificationsMenu/NotificationsMenu'
 import { connect } from 'react-redux';
 
 
 class Header extends Component {
     render() {
-        const {  currentUser } = this.props;
         return (
             <div className="app-bar" >
                 <AppBar className="helppal-bar">
@@ -29,14 +25,7 @@ class Header extends Component {
                                 </h1>
                             </div>
                             <div className="user-actions-wrapper">
-                                {currentUser ?
-                                    <>
-                                        <img width="45" height="45" src={currentUser.image ? currentUser.image : profile_placeholder} className="rounded-circle mx-2" alt="" />
-                                        {currentUser.name}
-                                    </>
-                                    : ''}
-                                <NotificationsMenu></NotificationsMenu>
-                                <LanguagesMenu languages={Config.languages}></LanguagesMenu>
+                                {/* <NotificationsMenu></NotificationsMenu> */}
                                 <UserProfile></UserProfile>
                             </div>
 

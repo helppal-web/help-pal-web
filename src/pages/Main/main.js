@@ -3,11 +3,7 @@ import './main.scss';
 import Map from '../../components/Map/Map';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import { Popup } from 'react-leaflet';
-import { cancelRequest, acceptRequest } from '../../actions';
-import Request from '../../components/Request/Request';
-import helpCall from '../../assets/Helper-icon.svg';
-import { responseTypes, requestTypes } from '../../helpers/requestHelpers';
+import { responseTypes } from '../../helpers/requestHelpers';
 
 class MainPage extends Component {
 
@@ -15,44 +11,15 @@ class MainPage extends Component {
 
     render() {
 
-        const { t, requests } = this.props;
-        const markers = [];
 
-        if (requests && requests.length) {
-            requests.forEach((request) => {
-                if (request && request.location) {
-                    markers.push(
-                        {
-                            name: request.name,
-                            position: request.location,
-                            content: <Popup style={{ maxWidth: 'auto' }}>
-                                <div className="modal-content border-none">
-                                    <div className="modal-header px-0">
-                                        <div className="modal-title h4">
-                                            <img alt="" src={helpCall} width="20" />
-                                            {t(requestTypes.HELP) + '!'}
-                                        </div>
-                                    </div>
-                                    <Request callback={requestCallback} request={request} customCardClasses="border-none" />
-                                </div>
-                            </Popup>
-                        }
-                    );
-                }
-            });
-        }
 
 
         return (
             <div>
-                <Map markers={markers} showModal={showRequestModal.bind(this)} />
+                <Map requests={this.props.requests} requestCallback={requestCallback} />
             </div>
         );
     }
-}
-
-function showRequestModal() {
-    this.setState({ showNewRequest: true })
 }
 
 function requestCallback(responseType, request) {
@@ -65,10 +32,8 @@ function requestCallback(responseType, request) {
         case responseTypes.DIFFERENT:
             break;
         case responseTypes.IRRELEVANT:
-            cancelRequest(request);
             break;
         case responseTypes.ACCEPTED:
-            acceptRequest(request);
             break;
 
         default:

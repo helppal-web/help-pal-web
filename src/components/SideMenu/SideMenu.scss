@@ -2,6 +2,7 @@
 .menu-sidebar {
   height: calc(100vh - 56px);
   width: 18%;
+  max-width: 350px;
   z-index: 999;
   overflow-y: auto;
   position: absolute;

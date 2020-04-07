@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SideMenu.scss';
-import { Map, History, Settings } from '@material-ui/icons';
+import { History, Settings } from '@material-ui/icons';
 import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
@@ -10,7 +10,8 @@ import HelpMenuIcon from '../../assets/sidemenu/help-map-icon.svg'
 import ActiveResponsesIcon from '../../assets/sidemenu/ActiveResponses.svg'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createRequest } from '../../actions';
+//import { createRequest } from '../../actions';
+import * as actions from '../../actions';
 import { APP_PATHS } from '../../App';
 
 
@@ -20,6 +21,7 @@ function SideMenu(props) {
     const location = useLocation();
     const [showNewRequestModal, setNewRequestModal] = useState(false);
     const onNewRequestSubmitted = (data) => {
+        setNewRequestModal(false);
         props.onCreateRequest(data)
     }
 
@@ -123,7 +125,7 @@ function SideMenu(props) {
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatch,
-        onCreateRequest: bindActionCreators(createRequest, dispatch)
+        onCreateRequest: bindActionCreators(actions.createRequest, dispatch)
     }
 }
 

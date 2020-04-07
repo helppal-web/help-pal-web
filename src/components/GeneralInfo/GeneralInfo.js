@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
 import * as Config from "../../config/config";
 import AddressAutocomplete from "../AddressAutocomplete/AddressAutocomplete";
-import axios from "axios";
 import PlusIcon from "../../assets/plus-icon.svg";
 import { toBase64 } from '../../helpers'
 import { Row, Col } from 'react-bootstrap';
@@ -29,15 +28,17 @@ export default function GenralInfo() {
     }
     const getYears = () => {
         const years = [];
-        for (let j = 1900; j < currnetYear; j++) {
+        const maxAge = currnetYear - 100;
+        const minAge = currnetYear - 12;
+        for (let j = maxAge; j <= minAge; j++) {
             years.push(j)
         }
 
         return years;
     }
 
-    const onSelectedAddressHandler = (value)=>{
-       
+    const onSelectedAddressHandler = (value) => {
+
     }
 
     const currnetYear = new Date().getFullYear();
@@ -114,7 +115,7 @@ export default function GenralInfo() {
                         <Col sm={6}>
                             <FormControl className="select-year">
                                 <InputLabel> {t('YearOfBirth')}</InputLabel>
-                                <Select value="1900">
+                                <Select value="1990">
                                     {getYears().map(y => <MenuItem value={y}> {y} </MenuItem>)}
                                 </Select>
                             </FormControl>
