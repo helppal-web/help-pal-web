@@ -11,7 +11,7 @@ class FAQs extends Component {
 
     componentDidMount() {
 
-        const {FAQtype,i18n} = this.props;
+        const { FAQtype, i18n } = this.props;
         fetchFAQs(FAQtype, i18n.language).then(res => {
             this.setState({ FAQs: res })
         });
