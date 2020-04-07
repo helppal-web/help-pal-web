@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { fetchFAQs } from '../../actions';
+import FAQ from '../../components/FAQ/FAQ';
+import ActionsBar from '../../components/ActionsBar/ActionsBar';
+import { withTranslation } from 'react-i18next';
 
-export default class FAQs {
+class FAQs extends Component {
+    state = {
+        FAQs: [],
+    }
+
+    componentDidMount() {
+
+        const {FAQtype,i18n} = this.props;
+        fetchFAQs(FAQtype, i18n.language).then(res => {
+            this.setState({ FAQs: res })
+        });
+    }
+
     render() {
-
         return (
-            <div>{this.props.location.pathname}</div>
+            <>
+                <ActionsBar />
+                <FAQ FAQs={this.state.FAQs} />
+            </>
         )
     }
 }
+
+export default withTranslation()(FAQs);

@@ -43,7 +43,7 @@ class App extends React.Component {
         const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications } = this.props;
         const user = getUserFromStorage();
 
-    
+
         if (user && user.id) {
 
             if (!currentUser) {
@@ -76,8 +76,8 @@ class App extends React.Component {
                     <AppLayout exact path={APP_PATHS.requestsHistory} component={RequestsHistory}></AppLayout>
                     <AppLayout exact path={APP_PATHS.activeResponses} component={ActiveResponses} />
                     <AppLayout exact path={APP_PATHS.notifications} component={Notifications} />
-                    <AppLayout exact path={APP_PATHS.requesterTips} component={FAQs} />
-                    <AppLayout exact path={APP_PATHS.helperTips} component={FAQs} />
+                    <AppLayout exact path={APP_PATHS.helperTips} component={() => <FAQs FAQtype={'helper'} />} />
+                    <AppLayout exact path={APP_PATHS.requesterTips} component={() => <FAQs FAQtype={'requester'} />} />
                     <AppLayout exact path={APP_PATHS.settings} component={Settings}></AppLayout>
                     <Route exact path={APP_PATHS.login} render={() => < Logister logister={'login'} />} />
                     <Route exact path={APP_PATHS.register} render={() => < Logister logister={'register'} />} />
