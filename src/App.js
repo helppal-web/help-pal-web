@@ -15,11 +15,14 @@ import { getUserFromStorage } from './helpers';
 import RequestsHistory from "./pages/RequestsHistory/RequestsHistory";
 import Settings from "./pages/Settings/Settings";
 import * as actions from './actions';
+import FAQs from './pages/FAQs/FAQs';
 
 export const APP_PATHS = {
     app: '/app',
     profile: '/app/profile',
     activeRequests: '/app/requests/active',
+    requesterTips: '/app/requester/tips',
+    helperTips: '/app/helper/tips',
     activeResponses: '/app/responses/active',
     notifications: '/notifications',
     login: '/login',
@@ -40,7 +43,7 @@ class App extends React.Component {
         const { currentUser, fetchUserById, fetchAllRequests, fetchNotifications } = this.props;
         const user = getUserFromStorage();
 
-    
+
         if (user && user.id) {
 
             if (!currentUser) {
@@ -73,6 +76,8 @@ class App extends React.Component {
                     <AppLayout exact path={APP_PATHS.requestsHistory} component={RequestsHistory}></AppLayout>
                     <AppLayout exact path={APP_PATHS.activeResponses} component={ActiveResponses} />
                     <AppLayout exact path={APP_PATHS.notifications} component={Notifications} />
+                    <AppLayout exact path={APP_PATHS.helperTips} component={() => <FAQs FAQtype={'helper'} />} />
+                    <AppLayout exact path={APP_PATHS.requesterTips} component={() => <FAQs FAQtype={'requester'} />} />
                     <AppLayout exact path={APP_PATHS.settings} component={Settings}></AppLayout>
                     <Route exact path={APP_PATHS.login} render={() => < Logister logister={'login'} />} />
                     <Route exact path={APP_PATHS.register} render={() => < Logister logister={'register'} />} />

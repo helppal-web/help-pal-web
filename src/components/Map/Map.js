@@ -88,7 +88,7 @@ export default function MapComponent({ requests, requestCallback }) {
     }
 
     const onHomeButtonClicked = () => {
-        map.current.leafletElement.panTo(latLng)
+        map.current.leafletElement.panTo(currentPosition ? currentPosition : latLng);
     }
 
     const getBounds = () => {

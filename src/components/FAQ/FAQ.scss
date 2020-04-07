@@ -1,0 +1,18 @@
+.faqs-container {
+  max-width: 80%;
+  padding-inline-start: 3rem;
+  padding-top: 2rem;
+  .summary-container {
+    flex-direction: row-reverse;
+
+    .MuiIconButton-edgeEnd {
+      margin-right: 0;
+      margin-inline-start: -12px;
+      .MuiIconButton-label {
+        .MuiSvgIcon-root {
+          color: #342aa4;
+        }
+      }
+    }
+  }
+}
