@@ -61,7 +61,7 @@ export const fetchFAQs = (FAQtype, language) => {
         switch (FAQtype) {
             case 'helper':
                 switch (language) {
-                    case 'en':
+                    case 'en-US':
                         resolve(englishHardCodedHelperFAQs);
                         break;
                     case 'he':
@@ -75,7 +75,7 @@ export const fetchFAQs = (FAQtype, language) => {
                 break;
             case 'requester':
                 switch (language) {
-                    case 'en':
+                    case 'en-US':
                         resolve(englishHardCodedRequesterFAQs);
                         break;
                     case 'he':
